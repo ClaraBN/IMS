@@ -3,7 +3,8 @@ import sys
 from requests import get
 from bs4 import BeautifulSoup
 
-
+#Custom script
+import database_entry
 
 search_url = "https://www.calorieking.com/us/en/foods/search?keywords="
 website_url = "https://www.calorieking.com"
@@ -14,7 +15,7 @@ item_fetched = []
 try:
     output_file = open("outfile.txt","r")
     output_file.close()
-    os.system("mv outfile.csv outfile_backup.txt")
+    os.system("mv outfile.txt outfile_backup.txt")
     #output_file.close()
     #output_file = open("outfile.csv","a")
 except:
@@ -30,16 +31,25 @@ output_file.write(output_header[:-1] + "\n")
 def receive_input():
     filename = sys.argv[1]
     
-    print (filename)
     if "." in filename:
         file_open = open(filename,"r").read().split()
         for names in file_open:
             open_url(names)
     else:
-        print (1)
         item_name = filename
         open_url(item_name)
-        
+
+def convet_to_float(value):
+    float_value = ""
+    for letters in value:
+        if letters.isdigit():
+            float_value += letters
+        elif letters == ".":
+            float_value += letters
+        else:
+            None
+    return (float_value)
+    
 def get_item_information(link,item):
     webpage = get(website_url  + link)
     soup = BeautifulSoup(webpage.text[:], 'html.parser')
@@ -55,7 +65,7 @@ def get_item_information(link,item):
             item_name = contents.find("a",href=True).text
             if item_name in needed_list:
                 content_value = contents.find("td",attrs={'class':"MuiTableCell-root jss471 MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall"}).text
-                properties[item_name] = content_value
+                properties[item_name] = convet_to_float(content_value)
         except:
             None
     
@@ -96,4 +106,9 @@ def open_url(item):
         None
         
 receive_input()
+
+def enter_into_database():
+    for data in item_fetched:
+        database_entry.writing(data)
+    
 print (item_fetched)
