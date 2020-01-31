@@ -4,11 +4,11 @@ from requests import get
 from bs4 import BeautifulSoup
 
 #Custom script
-import database_entry
+import database_entry as de
 
 search_url = "https://www.calorieking.com/us/en/foods/search?keywords="
 website_url = "https://www.calorieking.com"
-needed_list = ["Total Fat","Total Carbohydrate","Dietary Fiber","Sugars","Protein","Alcohol","Iron"]
+needed_list = ["Total Fat","Total Carbohydrate","Dietary Fiber","Sugars","Protein","Alcohol"]
 
 item_fetched = []
 
@@ -16,8 +16,6 @@ try:
     output_file = open("outfile.txt","r")
     output_file.close()
     os.system("mv outfile.txt outfile_backup.txt")
-    #output_file.close()
-    #output_file = open("outfile.csv","a")
 except:
 	None
 
@@ -59,8 +57,6 @@ def get_item_information(link,item):
     properties = {}
     properties["Name"] = item
     for contents in table_content:
-        #print (contents,"\n\n\n\n\n")
-        #if contents in needed_list:
         try:
             item_name = contents.find("a",href=True).text
             if item_name in needed_list:
@@ -100,15 +96,13 @@ def open_url(item):
                 else:
                     output_file.write('"' + out_dict[entry] + '"%')
                 length += 1
-                    
-        #print (len(item_fetched))
     except:
         None
         
 receive_input()
 
-def enter_into_database():
+def enter_into_database(item_fetched):
     for data in item_fetched:
-        database_entry.writing(data)
-    
-print (item_fetched)
+        de.writing(data)
+        
+enter_into_database(item_fetched)
