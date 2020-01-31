@@ -1,5 +1,8 @@
 @charset "UTF-8";
 /* Body */
+form{
+	display: inline-block;
+}
 body {
 	font-family: source-sans-pro;
 	background-color: #f2f2f2;
