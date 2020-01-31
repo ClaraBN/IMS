@@ -1,5 +1,5 @@
 <?php
-$hostname = "localhost:8889";
+$hostname = "130.243.236.106:8889";
 $username = "root";
 $password = "root";
 $dbname   = "DiaBeatIt";
