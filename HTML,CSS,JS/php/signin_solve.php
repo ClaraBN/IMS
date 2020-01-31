@@ -13,13 +13,13 @@ $row = mysqli_fetch_row($result);
 
 if ($row['username' === $user] AND $row['pwd' === $pw]) {
     //if existing user, redirecting into another page
-    $url = "nutrition.html";
+    $url = "../html/nutrition.html";
     header("location:".$url);
 }
 else {
     //if non-existing user, send out an alter and redirect to login-page
     echo "<script type='text/JavaScript'>
           alert('Incorrect username or password');
-           document.location.href = 'login.html'; </script>";
+           document.location.href = '../html/login.html'; </script>";
 }
 ?>
