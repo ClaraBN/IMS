@@ -8,8 +8,13 @@ $Fiber= 0;
 $Protein= 0;
 $Alcohol = 0;
 echo "<br>";
-foreach ( $_POST['food_name'] as $food) {
-	$quantity = $_POST['Quantity'];
+$quantities = $_POST['Quantity'];
+$foods = $_POST['food_name'];
+
+$i = 0;
+foreach( $foods as  $food ) {
+	$quantity = $quantities[$i];
+	$i++;
 	
 	$food = preg_replace( "/, $/", "", $food ); 
 	$sql = "SELECT * FROM food WHERE name = '$food'";

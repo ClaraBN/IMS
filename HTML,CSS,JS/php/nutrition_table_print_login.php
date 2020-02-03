@@ -14,11 +14,10 @@ $time = $_POST['time'] ;
 $quantities = $_POST['Quantity'];
 $foods = $_POST['food_name'];
 
-foreach (array_combine($quantities, $foods) as $quantity => $food ) {
-	//$quantity = $quantity[$index];
-	echo $quantity;
-	echo $food;
-	echo "dajfkjbhkashg";
+$i = 0;
+foreach( $foods as  $food ) {
+	$quantity = $quantities[$i];
+	$i++;
 	
 	$food = preg_replace( "/, $/", "", $food ); 
 	$sql = "SELECT * FROM food WHERE name = '$food'";

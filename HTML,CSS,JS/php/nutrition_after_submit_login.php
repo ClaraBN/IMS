@@ -56,6 +56,7 @@ th {
         <li><a href="Home_login.php">Home</a></li>
         <li><a href="nutrition_login.php">Nutrition checker</a></li>
 		<li><a href="educational_page_login.php">Learn more</a></li>
+		<li><a href="logout.php">Logout</a></li>
         <li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
         <!--<li> <a href="login.html">Sign In&nbsp;</a></li> -->
       </ul>
@@ -95,7 +96,7 @@ th {
 		<input type="date" name="date" placeholder="Enter date" required />
 		<input type="time" name="time" placeholder="Enter time" required />
 		<input type="text"  id="search0" name="food_name[]" placeholder="Name of the food" class="autoc" required />
-		<input type="number" min="1" set="0.01" name="Quantity" placeholder="Quantity" required>
+		<input type="number" min="1" set="0.01" name="Quantity[]" placeholder="Quantity" required>
 	</div>
 </span>
 <script>
@@ -121,7 +122,7 @@ function addNewRow(count){
   '<div class="row">'+
     '<div class="col-md-4">'+
         '<input type="text"  id="search'+count+'" name="food_name[]" placeholder="Name of the food" class="autoc" required />' +
-		'<input type="number" min="1" set=0.01 name="Quantity" placeholder="Quantity" required>' +
+		'<input type="number" min="1" set=0.01 name="Quantity[]" placeholder="Quantity" required>' +
     '</div>'+    
 '</div>'
 }

@@ -92,7 +92,7 @@ th {
 <form action="nutrition_table_print.php" method="POST">
 	<div id="container">
 		<input type="text"  id="search0" name="food_name[]" placeholder="Name of the food" class="autoc" required />
-		<input type="number" min="1" set="0.01" name="Quantity" placeholder="Quantity" required>
+		<input type="number" min="1" set="0.01" name="Quantity[]" placeholder="Quantity" required>
 	</div>
 </span>
 <script>
@@ -118,7 +118,7 @@ function addNewRow(count){
   '<div class="row">'+
     '<div class="col-md-4">'+
         '<input type="text"  id="search'+count+'" name="food_name[]" placeholder="Name of the food" class="autoc"/>' +
-		'<input type="number" min="1" set=0.01 name="Quantity" placeholder="Quantity">' +
+		'<input type="number" min="1" set=0.01 name="Quantity[]" placeholder="Quantity">' +
     '</div>'+    
 '</div>'
 }

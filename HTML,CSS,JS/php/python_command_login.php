@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "nutrition_after_submit_login.php";
 $food = $_POST['food_name'] ;
 echo '<div class="pop_up_for_adding"><br>Added '.$food.' to the database' ;
