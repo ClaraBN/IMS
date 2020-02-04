@@ -28,7 +28,6 @@ output_file.write(output_header[:-1] + "\n")
 
 def receive_input():
     all_arguments  = ""
-    
     n = 1
     while n < len(sys.argv):
         if n + 1 == len(sys.argv):
@@ -40,9 +39,19 @@ def receive_input():
     filename = all_arguments
     
     if "." in filename and len(sys.argv) == 2:
-        file_open = open(filename,"r").read().split()
+        file_open = open(filename,"r").readlines()
         for names in file_open:
-            open_url(names)
+            n = 0
+            all_arguments  = ""
+            name = names.split()
+            while n < len(name):
+                if n + 1 == len(name):
+                    all_arguments +=  str(name[n])
+                else:
+                    all_arguments +=  str(name[n]) + "+"
+                n += 1
+            print (all_arguments)
+            open_url(all_arguments)
     else:
         item_name = filename
         open_url(item_name)
