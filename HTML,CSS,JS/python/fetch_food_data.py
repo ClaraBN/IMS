@@ -62,16 +62,19 @@ def get_item_information(link,item):
     webpage = get(website_url  + link)
     #print (webpage,website_url  + link)
     soup = BeautifulSoup(webpage.text[:], 'html.parser')
-    table = soup.body.find('table', attrs={'class': 'MuiTable-root jss464'})
-    if table == None:
-        table = soup.body.find('table', attrs={'class': 'MuiTable-root jss465'})
+    tables = soup.body.find_all('table', attrs={'class': 'MuiTable-root'})
+    #print (len(tables))
+    for count,entry in enumerate(tables,1):
+        #print (entry)
+        if count == 2:
+            table = entry
     #print (table,1433241)
     table_tbody_content = table.find("tbody", attrs={'class': 'MuiTableBody-root'})
     table_content = table_tbody_content.find_all("tr")
     #print (table_content)
     properties = {}
     properties["Name"] = item
-    print (item)
+    #print (item)
     for contents in table_content:
         #print (item)
         try:
@@ -80,7 +83,7 @@ def get_item_information(link,item):
             #print (item_name)
             if item_name in needed_list:
                 content_value = contents.find("td").text
-                print (item_name,content_value)
+                #print (item_name,content_value)
                 properties[item_name] = convet_to_float(content_value)
         except:
             None
