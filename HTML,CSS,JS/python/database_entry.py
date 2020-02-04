@@ -8,7 +8,7 @@ def writing(data):
     conn = mysql.connector.connect(host="127.0.0.1",port=3306,user="root",passwd="",db="ims_project_check",buffered=True)
     #conn.autocommit(True)
     cursor = conn.cursor()
-    
+    #print (data)
     input_line = ""
     Name = data["Name"]
     try:
@@ -40,7 +40,6 @@ def writing(data):
         Alcohol = data["Alcohol"]
     except:
         Alcohol = "0"
-    
 
     last_id = cursor.execute("""SELECT id FROM food""")
     records = cursor.fetchall()
