@@ -16,20 +16,47 @@
 <!-- jQuery UI library -->
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 60%;
+  text-align: left;
+}
+td {
+  vertical-align: bottom;
+  color: black;
+  font-size:110%;
+  font-weight:bold;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+th {
+  background-color: #73713b;
+  color: white;
+}
+.pop_up_for_adding{
+	color: black;
+	font-weight: bold;
+}
+</style>
 </head>
 <body>
 <!-- Main Container -->
 <div class="container"> 
   <!-- Navigation -->
   <header class="page_header"> 
-    <a href="Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
+    <a href="../html/Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
   </a>
     <nav>
       <ul>
-        <li><a href="Home.html">Home</a></li>
-        <li><a href="nutrition.html">Nutrition checker</a></li>
-		<li><a href="educational_page.html">Learn more</a></li>
-        <li> <a href="login.html">Sign In&nbsp;</a></li>
+        <li><a href="../html/Home.html">Home</a></li>
+        <li><a href="../html/nutrition.html">Nutrition checker</a></li>
+		<li><a href="../html/educational_page.html">Learn more</a></li>
+        <li> <a href="../html/login.html">Sign In&nbsp;</a></li>
       </ul>
     </nav>
   </header>
@@ -62,13 +89,10 @@
 });
 </script>
 
-<form action="../php/nutrition_table_print.php" method="POST">
+<form action="nutrition_table_print.php" method="POST">
 	<div id="container">
-		
 		<input type="text"  id="search0" name="food_name[]" placeholder="Name of the food" class="autoc" required />
 		<input type="number" min="1" set="0.01" name="Quantity[]" placeholder="Quantity" required>
-		
-		
 	</div>
 </span>
 <script>
@@ -101,7 +125,4 @@ function addNewRow(count){
 </script>
 <input type="submit" value="Submit">
 </form>
-</section>
-</div>
-</body>
-</html>
+

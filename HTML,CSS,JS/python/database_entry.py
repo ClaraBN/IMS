@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 
-import MySQLdb
+#import MySQLdb
 import mysql.connector
 
 
 def writing(data):
-    conn = MySQLdb.connect(host="127.0.0.1",port=3306,user="root",passwd="",db="ims_project_check")
-    conn.autocommit(True)
+    conn = mysql.connector.connect(host="127.0.0.1",port=3306,user="root",passwd="",db="ims_project_check",buffered=True)
+    #conn.autocommit(True)
     cursor = conn.cursor()
-    
+    #print (data)
     input_line = ""
     Name = data["Name"]
     try:
@@ -40,9 +40,8 @@ def writing(data):
         Alcohol = data["Alcohol"]
     except:
         Alcohol = "0"
-    
 
-    last_id = cursor.execute("""SELECT id FROM nutrition""")
+    last_id = cursor.execute("""SELECT id FROM food""")
     records = cursor.fetchall()
     
     try:
@@ -54,18 +53,19 @@ def writing(data):
     except:
         next_number = 1
     
-    present_names = cursor.execute("""SELECT name FROM nutrition""")
+    present_names = cursor.execute("""SELECT name FROM food""")
     name_records = cursor.fetchall()
     for entry in name_records:
         if Name in entry:
             print ("Name present")
             return (None)
-    
-    cursor.execute("""SELECT * FROM nutrition""")
-    cursor.execute("""INSERT INTO nutrition (id, name, fat, carbohydrate, sugars, fiber, protein, alcohol) 
+    print (str(next_number),Name,Fat,Carbohydrate,Sugars,Dietary_Fiber,Protein,Alcohol)
+    cursor.execute("""SELECT * FROM food""")
+    cursor.execute("""INSERT INTO food (id, name, fat, carbohydrate, sugars, fiber, protein, alcohol) 
         VALUES (%s,%s,%s,%s,%s,%s,%s,%s)""",(str(next_number),Name,Fat,Carbohydrate,Sugars,Dietary_Fiber,Protein,Alcohol))
     #print ((str(next_number),Name,Fat,Carbohydrate,Sugars,Dietary_Fiber,Protein,Alcohol))
     cursor.close()
+    conn.commit()
     conn.close()
 
 

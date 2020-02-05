@@ -1,4 +1,7 @@
 <!doctype html>
+<?php
+session_start(); // Right at the top of your script
+?>
 <html lang="en-US">
 <head>
 <meta charset="utf-8">
@@ -21,30 +24,31 @@
 <div class="container"> 
   <!-- Navigation -->
   <header class="page_header"> 
-    <a href=#><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
+    <a href="Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
   </a>
     <nav>
       <ul>
-        <li><a href=#>Home</a></li>
-        <li><a href="#about">Nutrition checker</a></li>
-        <li> <a href="#contact">Sign In&nbsp;</a></li>
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="nutrition.html">Nutrition checker</a></li>
+		<li><a href="educational_page.html">Learn more</a></li>
+        <li> <a href="login.html">Sign In&nbsp;</a></li>
       </ul>
     </nav>
   </header>
-
+	
+  
   <section class="text_column">
 	<h1 class="signin_header">Sign in</h1>
 	<form action="../php/signin_solve.php" method="POST">
-    	<input type="text" name="username" placeholder="Username"><br>
-    	<input type="text" name="password" placeholder="Password"><br>
+    	<input type="text" name="username" placeholder="Username" required><br>
+    	<input type="text" name="password" placeholder="Password" required><br>
     	<input type="submit" value="Sign in">
 	</form><br>
-
-
+	
 	  <p>Dont have an account yet?</p>
 	  <p>Register<br>
-	<button type="button" onClick="redirection of page to register-page">Patient</button>
-	<button type="button" onClick="redirection of page to register-page">Doctor</button>	
+	<button type="button" onClick="window.location.href = 'register_user.html';">Patient</button>
+	<button type="button" onClick="window.location.href = 'register_user.html';">Doctor</button>	
 	  </p>
   </section>
 	

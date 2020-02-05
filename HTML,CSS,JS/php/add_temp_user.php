@@ -1,5 +1,5 @@
 <?php
-include 'openDB.php';
+include 'db.php';
 
 # put the recived data into the database
 $first_name = $_POST['fname'];

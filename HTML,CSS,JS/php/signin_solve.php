@@ -1,36 +1,30 @@
 <?php
+session_start();
 include 'db.php';
 
+//Retrieving input from form
 $user = $_POST['username'];
-$pwd = $_POST['password'];
+$pw = $_POST['password'];
+$_SESSION['name'] = $_POST['username'];
 
-
-if (empty($user)) {
-    print("Username is required");
-}
-elseif (empty($pwd)) {
-    print("Password is required");
-}
-else {
-
-$user_check = "select * from DiaBeatIt.patients where DiaBeatIt.patients.username = '$user' and DiaBeatIt.patients.pwd = '$pwd'";
+//Connecting to database to see if username and password
+$user_check = "select * from $dbname.user where $dbname.user.username = '$user' and $dbname.user.password = '$pw'";
 $result = mysqli_query($link, $user_check);
 $row = mysqli_fetch_row($result);
 
-if ($row['username' === $user]) {
-    //$url = "nutrition_form.php";
-    $url = "nutrition.html";
+
+if ($row['username' === $user] AND $row['pwd' === $pw]) {
+    //if existing user, redirecting into another page
+	$_SESSION['username']=$row[1];
+	$_SESSION['userid']=$row[0] ;
+    $url = "Home_login.php";
     header("location:".$url);
 }
 else {
-    //print("Incorrect username or password");
-    $url = "login.html";
-    header("location:".$url);
-
-     echo "<script type='text/JavaScript'>
-                alert('JavaScript is awesome!');
-            </script>";
-}
-
+    //if non-existing user, send out an alter and redirect to login-page
+	
+    echo "<script type='text/JavaScript'>
+          alert('Incorrect username or password');
+           document.location.href = '../html/login.html'; </script>";
 }
 ?>

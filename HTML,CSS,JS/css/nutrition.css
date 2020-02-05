@@ -3,6 +3,30 @@
 form{
 	display: inline-block;
 }
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 50%;
+  text-align: left;
+}
+td {
+  vertical-align: bottom;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+th {
+  background-color: #73713b;
+  color: white;
+}
+
+.Add_more_button{
+	position:relative;
+	left: 12%;
+	display: inline;
+}
 body {
 	font-family: source-sans-pro;
 	background-color: #f2f2f2;

@@ -1,0 +1,6 @@
+"Name"%"Total Fat"%"Total Carbohydrate"%"Dietary Fiber"%"Sugars"%"Protein"%"Alcohol"
+"Quinoa, cooked"
+"Bottled Spring Water"
+"Light Tuna, canned in water, drained"
+"Regular or Instant Oats, cooked with water"
+"Chicken Noodle Soup, condensed, canned, prepared with equal volume water"

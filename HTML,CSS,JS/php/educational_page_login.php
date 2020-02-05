@@ -1,4 +1,7 @@
 <!doctype html>
+<?php
+session_start(); // Right at the top of your script
+?>
 <html lang="en-US">
 <head>
 <meta charset="utf-8">
@@ -25,14 +28,16 @@
 <div class="container"> 
   <!-- Navigation -->
   <header class="page_header"> 
-    <a href="Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
+    <a href="Home_login.php"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
   </a>
     <nav>
       <ul>
-        <li><a href="Home.html">Home</a></li>
-        <li><a href="nutrition.html">Nutrition checker</a></li>
-		 <li><a href="educational_page.html">Learn more</a></li>
-        <li> <a href="login.html">Sign In&nbsp;</a></li>
+        <li><a href="Home_login.php">Home</a></li>
+        <li><a href="nutrition_login.php">Nutrition checker</a></li>
+		 <li><a href="educational_page_login.php">Learn more</a></li>
+		 <li><a href="logout.php">Logout</a></li>
+		 <li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
+        <!--<li> <a href="login.html">Sign In&nbsp;</a></li>-->
       </ul>
     </nav>
   </header>
