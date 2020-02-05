@@ -39,8 +39,7 @@
         </section>
         <div  align="center">
             <section class="about" id="about">
-                <form name="register_patient" action="../php/add_temp_user.php" method="POST"
-                      ><br><br>
+                <form name="register_patient" action="../php/add_dr.php" method="POST"><br><br>
                     <fieldset>
                         <legend>Personal information:</legend>
                         First Name:
@@ -49,10 +48,6 @@
                         Last name:
                         <input type="text" name="surname" placeholder="Last Name"
                                id="myInput2" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"><br>
-                        Social Security Number:
-                        <input type="tel" name="ssn" pattern="[0-9]{6}-[0-9]{4}" title="123456-1234" placeholder="123456-1234"
-                               id="myInput3" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"> * <br>
-                                <!--<input type="number" name="ssn"><br> innan jag böt-->
                         User Name:
                         <input type="text" name="user" maxlength="16" placeholder="User123" required autofocus
                                id="myInput4" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"> * <br>
@@ -65,14 +60,6 @@
                         Confirm Password:
                         <input type="password" name="password2" maxlength="50" placeholder="*********" required
                                id="myInput7" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"> * <br>
-                        Diabetic Type:<br>
-                        <input list="dtypes" name="type" placeholder="Choose your type" required>
-                        <datalist id="dtypes">
-                            <option value="Type 1">
-                            <option value="Type 2">
-                            <option value="Gestational Diabetes">
-                        </datalist> * <br><br>
-                        <input type="submit" value="Register">
                     </fieldset>
                 </form>
             </section>
