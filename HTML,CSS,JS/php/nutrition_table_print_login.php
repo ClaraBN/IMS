@@ -1,6 +1,6 @@
 <?php
 session_start(); // Right at the top of your script
-include "nutrition_after_submit_login.php";
+include "My_health_after_submit.php";
 include 'db.php';
 $fat = 0;
 $Carbohydrates = 0;

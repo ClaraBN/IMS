@@ -5,7 +5,7 @@ import mysql.connector
 
 
 def writing(data):
-    conn = mysql.connector.connect(host="127.0.0.1",port=3306,user="root",passwd="",db="ims_project_check",buffered=True)
+    conn = mysql.connector.connect(host="back.db1.course.it.uu.se",port=3306,user="spring20_ims_1",passwd="5LUrVPtV",db="spring20_ims_1",buffered=True)
     #conn.autocommit(True)
     cursor = conn.cursor()
     #print (data)

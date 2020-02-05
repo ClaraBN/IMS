@@ -16,12 +16,15 @@ session_start(); // Right at the top of your script
 <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
 <script>var __adobewebfontsappname__="dreamweaver"</script>
 <script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<style>
+.nutritional_h1 {
+	color: #FF00FF;
+	font-weight: bold;
+	font-size: 30px;
+	width: 100%;
+	float: left;
+}
+</style>
 </head>
 <body>
 <!-- Main Container -->
@@ -43,28 +46,40 @@ session_start(); // Right at the top of your script
   </header>
   <!-- Hero Section -->
   <section class="hero" id="hero">
-	  <p class="general_info">Diabetes mellitus is a cluster of illnesses defined by high levels of blood glucose. Nowadays, it affects more than 400 million people in the world. There are three main types of diabetes (although they're not the only ones) and it's linked to many other health issues. In this page, you'll be able to learn more about this disease. For that purpose, we've compiled information from several official sources. Ready to learn more?</p>
+  <h1 class = "nutritional_h1">Track your health</h1>
+	  </p><form action="My_data_plot.php" method="POST">
+		<select id="month" placeholder="Select month" name="month">
+		  <option value="January">January</option>
+		  <option value="February">February</option>
+		  <option value="March">March</option>
+		  <option value="April">April</option>
+		  <option value="May">May</option>
+		  <option value="June">June</option>
+		  <option value="July">July</option>
+		  <option value="August">August</option>
+		  <option value="September">September</option>
+		  <option value="October">October</option>
+		  <option value="November">November</option>
+		  <option value="December">December</option>
+		</select>
+		<select id="year" name="year">
+			<option value="2019">2019</option>
+			<option value="2020">2020</option>
+			<option value="2021">2021</option>
+			<option value="2022">2022</option>
+		</select>
+		<select id="content_type" name="content_type">
+			<option value="carbohydrate">Carbohydrate</option>
+			<option value="sugar">Sugar</option>
+			<option value="fat">Fat</option>
+			<option value="protein">Protein</option>
+			<option value="alcohol">Alcohol</option>
+		</select>
+		<input type="submit" value="Plot my data">
+		</form>
   </section>
+  
 	<section class="about" id="about">
-    <h2 class="hidden">About</h2>
-    <span><p class="text_column"><span class="information_head">Global scale of diabetes <br></span> 
-    <a href="https://www.who.int/news-room/fact-sheets/detail/diabetes" target="_blank">Key facts (WHO)</a><br>
-    <a href="https://www.who.int/diabetes/country-profiles/en/" target="_blank">Country profiles (WHO)</a><br>
-    <a href="https://www.who.int/diabetes/global-report/en/" target="_blank">Global report on diabetes, 2016 (WHO)</a><br>
-    <a href="https://www.who.int/features/qa/65/en/" target="_blank">Risks of diabetes in children (WHO)</a></p>
-
-    <p class="text_column"><span class="information_head">Recently diagnosed? <br></span>
-    <a href="https://www.diabetes.org/diabetes/type-1/type-1-self-care-manual" target="_blank">Type I diabetes self-care manual</a><br>
-    <a href="https://www.diabetes.org/diabetes/gestational-diabetes/how-to-treat-gestational-diabetes" target="_blank">Treatment of gestational diabetes</a><br>
-    <a href="https://www.diabetes.org/diabetes/device-technology" target="_blank">Possible devices</a><br>
-    <a href="https://www.diabetes.org/nutrition/food-and-blood-sugar" target="_blank">Food and blood sugar</a></p>
-    
-    <p class="text_column"><span class="information_head">Think you may be affected? <br></span>
-    <a href="https://www.diabetes.org/diabetes/type-1/symptoms" target="_blank">Symptoms of type I diabetes</a><br>
-    <a href="https://www.diabetes.org/diabetes/type-2/symptoms" target="_blank">Symptoms of type II diabetes</a><br>
-    <a href="https://www.diabetes.org/risk-test" target="_blank">Diabetes risk test</a><br>
-    <a href="https://www.diabetes.org/diabetes/genetics-diabetes" target="_blank">The genetics of diabetes</a></p>
-    </span> 
  </section>
   <!--
 	<section class="about" id="about">

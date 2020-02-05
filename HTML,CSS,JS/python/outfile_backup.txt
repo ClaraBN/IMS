@@ -1,0 +1,6 @@
+"Name"%"Total Fat"%"Total Carbohydrate"%"Dietary Fiber"%"Sugars"%"Protein"%"Alcohol"
+"24.1"%"17"%"0.8"%"0"%"5"%"Granny Smith Apple, raw, with skin"%"0.3"
+"23"%"17.6"%"0.3"%"0"%"3.2"%"Fuji Apple, raw, with skin"%"0.3"
+"21.2"%"15.8"%"0.4"%"0"%"3.5"%"Red Delicious Apple, raw, with skin"%"0.3"
+"24.7"%"18.6"%"0.5"%"0"%"4.3"%"Apples with Skin, raw"%"0.3"
+"14.9"%"11.3"%"0.3"%"0"%"2.5"%"Gala Apple, raw, with skin"%"0.1"
