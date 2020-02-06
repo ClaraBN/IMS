@@ -10,6 +10,10 @@ session_start(); // Right at the top of your script
 <title>Educational page</title>
 <style>
     a { text-decoration: none; }
+	.wrapper {
+  max-width: 800px;
+  margin: 50px auto;
+}
 </style>
 
 <link href="../css/educational.css" rel="stylesheet" type="text/css">
@@ -92,7 +96,7 @@ chart.render();
   <!-- Hero Section -->
   <section class="hero" id="hero">
   <h1 class = "nutritional_h1">Track your health</h1>
-	  </p><form id="plot_data_id" action="" method="POST" >
+	  </p><form id="plot_data_id" action="line_chart.php" method="POST" >
 		<select id="month" placeholder="Select month" name="month">
 		  <option value="January">January</option>
 		  <option value="February">February</option>
@@ -113,110 +117,21 @@ chart.render();
 			<option value="2021">2021</option>
 			<option value="2022">2022</option>
 		</select>
-		<select id="content_type" name="content_type">
-			<option value="carbohydrate">Carbohydrate</option>
-			<option value="sugars">Sugar</option>
-			<option value="fat">Fat</option>
-			<option value="protein">Protein</option>
-			<option value="alcohol">Alcohol</option>
-			<option value="fiber">Fiber</option>
-		</select>
 		<input type="submit" value="Plot my data">
 		</form>
   </section>
-  
-  <script>
-    $("#plot_data_id").submit(function() {
-		$.getJSON("demo_ajax_json.js", function(result){
-        $.ajax({
-            url: 'My_data_plot.php',
-            method: 'post',
 
-			success: function(data) {
-            $("#formsubmit").val("Thank you!");
-            /* TODO: add data */
-        }
-		})
-        return false;
-		})
-    });
-document.write(result)
-</script>
-
-<script>
-// Our labels along the x-axis
-var years = [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050];
-// For drawing the lines
-var africa = [86,114,106,106,107,111,133,221,783,2478];
-var asia = [282,350,411,502,635,809,947,1402,3700,5267];
-var europe = [168,170,178,190,203,276,408,547,675,734];
-var latinAmerica = [40,20,10,16,24,38,74,167,508,784];
-var northAmerica = [6,3,2,2,7,26,82,172,312,433];
-
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: years,
-    datasets: [
-      { 
-        data: africa,
-        label: "Africa",
-        borderColor: "#3e95cd",
-        fill: false
-      },
-      { 
-        data: asia,
-        label: "Asia",
-        borderColor: "#8e5ea2",
-        fill: false
-      },
-      { 
-        data: europe,
-        label: "Europe",
-        borderColor: "#3cba9f",
-        fill: false
-      },
-      { 
-        data: latinAmerica,
-        label: "Latin America",
-        borderColor: "#e8c3b9",
-        fill: false
-      },
-      { 
-        data: northAmerica,
-        label: "North America",
-        borderColor: "#c45850",
-        fill: false
-      }
-    ]
-  },
-  options: { // 
-   annotation: {
-      annotations: [{
-         type: 'box',
-         drawTime: 'beforeDatasetsDraw',
-         yScaleID: 'y-axis-0',
-         yMin: 2500,
-         yMax: 4000,
-         backgroundColor: 'rgba(0, 255, 0, 0.1)'
-      }]
-   }
-}
-});
-
-</script>
-
-<script>
-  var data = <?= $jsonData ?>;
-  console.log(data); // or whatever you need to do with the object
-  document.write(data);
-</script>
 	<section class="about" id="about">
 	<h1>Know your health</h1>
 
 <div id="chartContainer" style="height: 500px; width: 700px;"></div>
+<div class="wrapper">
+   <h1>World population over time</h1>
+   <h2>Number of people (in millions) living on earth, the last 500 years</h2>
+   <canvas id="myChart" width="1600" height="900"></canvas>
+</div>
 
+ <script src="line_chart.js"></script>
  </section>
   <!--
 	<section class="about" id="about">
