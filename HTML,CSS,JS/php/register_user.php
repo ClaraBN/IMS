@@ -123,7 +123,7 @@ function test_input($data) {
         <div style="width: 400px; float:left; height:500px; padding-left:366px;">
             <section class="about" id="about">
                 <form name="register_patient" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST"><br><br>
-                <!--action="../php/add_temp_user.php"<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>-->
+                <!--action="add_temp_user.php"<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>-->
                     <fieldset>
                         <legend>Personal information:</legend>
 
@@ -174,10 +174,6 @@ function test_input($data) {
             </section>
             <div style="float:left">
             </div>
-
-            Hello, today is <?php echo date("l, F jS, Y"); ?>.
-<p>PHP with &lt;p /p&gt;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Hello,today
-is &lt;?php echo date("l, F jS, Y"); ?&gt;.</p>
         </div>
                <div id="message" style="width: 210px; float:right; height:100px; padding-right:140px; padding-top:430px;">
                 <h3>Password must contain the following:</h3>
