@@ -1,6 +1,2 @@
 "Name"%"Total Fat"%"Total Carbohydrate"%"Dietary Fiber"%"Sugars"%"Protein"%"Alcohol"
-"Regular Beer (~5% alc.)"
-"Root Beer"
-"Light Beer (3.1% alc.)"
-"Low Alcohol (2.3% alc.)"
-"Non Alcoholic Beer (less than 0.5% alc.)"
+"Kiwi Fruit (Chinese Gooseberries), raw"%"0.4"%"10.1"%"2.1"%"6.2"%"0.8"%"0"
