@@ -158,6 +158,7 @@ var bgl = <?= $jsonbgl ?>;
 
 var ctx2 = document.getElementById("myChart2");
 var myChart2 = new Chart(ctx2, {
+
   type: 'line',
   data: {
     labels: days,
@@ -170,7 +171,19 @@ var myChart2 = new Chart(ctx2, {
       }
     ]
   },
-  options: { // 
+  options: { 
+    scales: {
+      xAxes: [{
+		  display: true,
+        ticks: {
+          beginAtZero: false,
+		  autoSkip: true,
+		  maxTicksLimit: 15,
+		  maxRotation: 0,
+          minRotation: 0
+        }
+      }]
+    },
    annotation: {
       annotations: [{
          type: 'box',
@@ -179,13 +192,16 @@ var myChart2 = new Chart(ctx2, {
          yMin: 65,
          yMax: 135,
          backgroundColor: 'rgba(0, 255, 0, 0.1)'
+		 
       }]
    },
    legend: {
        onClick: null
-   } 
+   }
+   
 }
 });
+
 </script>
 </section>
 </div>
