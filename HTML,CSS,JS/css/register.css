@@ -110,15 +110,15 @@ ul li:hover a {
 	text-align: justify;
 	font-weight: lighter;
 	line-height: 25px;
-	float: left;
+	float: center;
 	padding-left: 20px;
 	padding-right: 20px;
 	color: #A3A3A3;
 }
 .about {
     font-family: source-sans-pro;
-	padding-left: 25px;
-	padding-right: 25px;
+	padding-left: 0px;
+	padding-right: 0px;
 	padding-top: 0px;
 	padding-bottom: 25px;
 	display: inline-block;
@@ -222,3 +222,46 @@ input[type=text], select {
             background-color: DeepPink;
             }
 
+
+
+
+.label{
+float: center;
+}
+
+/* The message box is shown when the user clicks on the password field */
+message {
+  display:none;
+  background: #FFFFFF;
+  color: #FF00FF;
+  position: relative;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+message p {
+    font-family: source-sans-pro;
+  font-size: 16px;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: 0px;
+  content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+  color: Black;
+}
+
+.invalid:before {
+  position: relative;
+  left: 0px;
+  content: "✖";
+}
