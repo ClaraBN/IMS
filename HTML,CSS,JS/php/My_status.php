@@ -17,8 +17,7 @@ session_start(); // Right at the top of your script
 </style>
 
 <link href="../css/educational.css" rel="stylesheet" type="text/css">
-<!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
-<script>var __adobewebfontsappname__="dreamweaver"</script>
+<!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->	
 <script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
 <script src="https://cdn.anychart.com/js/8.0.1/anychart-core.min.js"></script>
 <script src="https://cdn.anychart.com/js/8.0.1/anychart-pie.min.js"></script>
@@ -34,11 +33,44 @@ session_start(); // Right at the top of your script
 	width: 100%;
 	float: left;
 }
+.container_this {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #FFFFFF;
+	height: 1000px;
+}
+.heading2 {
+	color: #000000;
+	font-weight: bold;
+	font-size: 20px;
+	width: 100%;
+	float: left;
+}
+.graphs {
+	position: relative;
+	left: 30%;
+}
+.graphs_title {
+	position: relative;
+	left: 50%;
+}
+.pie_chart {
+	position: relative;
+	left: 40%;
+}
+.graph_session_h1 {
+	color: #FF00FF;
+	font-weight: bold;
+	font-size: 30px;
+	position: relative;
+	left: 70%;
+}
 </style>
-
-<?php
-include 'pie_chart.php';
+<?php 
+include 'pie_chart.php'; 
 ?>
+
 <script>
 window.onload = function() {
 	
@@ -77,7 +109,7 @@ chart.render();
 </head>
 <body>
 <!-- Main Container -->
-<div class="container"> 
+<div class="container_this"> 
   <!-- Navigation -->
   <header class="page_header"> 
     <a href="Home_login.php"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
@@ -112,7 +144,6 @@ chart.render();
 		  <option value="December">December</option>
 		</select>
 		<select id="year" name="year">
-			<option value="2019">2019</option>
 			<option value="2020">2020</option>
 			<option value="2021">2021</option>
 			<option value="2022">2022</option>
@@ -122,25 +153,10 @@ chart.render();
   </section>
 
 	<section class="about" id="about">
-	<h1>Know your health</h1>
+	<h1 class="graph_session_h1 graphs_title">Know your health</h1>
 
-<div id="chartContainer" style="height: 500px; width: 700px;"></div>
-<div class="wrapper">
-   <h1>World population over time</h1>
-   <h2>Number of people (in millions) living on earth, the last 500 years</h2>
-   <canvas id="myChart" width="1600" height="900"></canvas>
-</div>
-
- <script src="line_chart.js"></script>
+<div id="chartContainer" class="pie_chart" style="height: 500px; width: 700px;"></div>
  </section>
-  <!--
-	<section class="about" id="about">
-    <h2 class="hidden">About</h2>
-	<p class="text_column"><span class="information_head">Nutritional Checker </span> sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-    <p class="text_column"><span class="information_head">Users </span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-    <p class="text_column"><span class="information_head">Doctors </span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-  </section>
-  -->
 </div>
 </body>
 </html>

@@ -60,7 +60,7 @@ foreach( $foods as  $food ) {
 		echo "<br>";
 	}
 
-	$insert = "INSERT INTO diet VALUES('$date','$time','$foodid','".$_SESSION['userid']."','$quantity')";
+	$insert = "INSERT INTO diet VALUES('$date','$time','$foodid','".$_SESSION['id']."','$quantity')";
 	echo $insert;
 	mysqli_query($link, $insert) ;
 }
