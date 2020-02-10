@@ -68,11 +68,13 @@
  <section></section>
     <script>
         function checkPassword(){
-            var pwd1=documents.forms["register_patient"]["password1"].value;
-            var pwd2=documents.forms["register_patient"]["password2"].value;
-            var n = pwd1.localeCompare(pwd2);
-            alert("Passwords doesn't match!");
-            return false;
+            var pwd1 = documents.getElementById(myInput6).value;
+            var pwd2 = documents.getElementById(myInput7).value;
+            if (pwd1 != pwd2){
+                alert("Passwords doesn't match!");
+                return false;
+            }
+            return true;
         }
         function validationEmail
                 alert("Thank you for registering! An email will be delivered shortly, please verify your email.");
