@@ -69,7 +69,7 @@ float: center;
 
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
-$pwd_err = $msg = "";
+$pwd_err = $email_err = $usern_err = $ssn_err = $send_err = $total_err = "";
 $first_name = $sur_name = $SSN = $user_name = $e_mail = $pswd = $pswd2 = $d_type = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -83,71 +83,91 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pswd2= test_input($_POST["password2"]);
     $d_type =test_input($_POST["diabetes"]);
 
+    // check if ssn is already in use
+
+
+    // check if username exists
+    include_once 'openDB.php';
+    $sql2 = mysqli_query($link, "SELECT id FROM temp_users where username='$user_name'");
+    if($sql2->num_rows > 0){
+        $usern_err = "Username is already in use, sorry! T-T )";
+    }
+    // check if email is in use
+    $sql = mysqli_query($link, "SELECT id FROM temp_users where email='$e_mail'");
+    if($sql->num_rows > 0){
+        $email_err = "Email is already in use!";
+    }
+
+    // check if passwords are the same
     if ($pswd == $pswd2){
-        # put the recived data into the database
-        include 'openDB.php';
-        $sql = mysqli_query($link, "SELECT id FROM temp_users where email='$e_mail'");
-        if($sql->num_rows > 0){
-            $msg = "Email is already in use!";
+        $hashedPassword = password_hash($pswd, PASSWORD_DEFAULT);
+    }else {
+        $pwd_err = "Passwords don't match!";
+    }
+
+        // send the email
+    $token = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM123456789!$/()*';
+    $token = str_shuffle($token);
+    $token = substr($token, 0, 10);
+    if($pwd_err = "" AND $email_err = "" AND $usern_err = ""){
+    require_once "../email/PHPMailer/PHPMailer.php";
+    require_once "../email/PHPMailer/SMTP.php";
+    require_once "../email/PHPMailer/Exception.php";
+    //Create a new PHPMailer instance $mail = new PHPMailer
+    $mail = new PHPMailer();
+
+    //SMTP Settings
+    $mail->isSMTP();
+    $mail->Host = "smtp.gmail.com";
+    $mail->SMTPAuth = true;
+    $mail->Username = "diabeatit.ims@gmail.com";
+    $mail->Password = 'ims_1234';
+    $mail->Port = 465; //587
+    $mail->SMTPSecure = "ssl"; //tls
+
+    //Email Settings
+    $mail->isHTML(true);
+    $mail->setFrom($e_mail, 'DiaBeatIt');
+    $mail->addAddress($e_mail);
+    $mail->Subject = "Please verify your registration";
+    $mail->Body = "
+        <h1>Thanks for registering!</h1><br>
+        Please click on the link below to confirm the registration:
+        <a href='http://localhost/DiaBeatIT/w3tutorials/Project/IMS/HTML,CSS,JS/php/confirm_user.php?email=$e_mail&token=$token'>Click Here</a>
+        ";
+        if ($mail->send()) {
+            $status = "success";
+            $response = "Email is sent!";
+            header('Location: ../html/login.html');
+        } else {
+            $send_err = "The email didn't send!";
+            $status = "failed";
+            $response = "Something is wrong: <br><br>" . $mail->ErrorInfo;
         }
-        else {
-            $token = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM123456789!$/()*';
-            $token = str_shuffle($token);
-            $token = substr($token, 0, 10);
-
-            $hashedPassword = password_hash($pswd, PASSWORD_DEFAULT);
-
+    }
+    // if ssn, username, email, pwd and mail is okay then add user to database
+    if($send_err = ""){
             mysqli_query($link,"INSERT INTO temp_users(fname, lname, email, pwd, diabetes, ssn, username, user_type, isEmailConfirmed, token)
             VALUES ('$first_name','$sur_name', '$e_mail', '$hashedPassword', '$d_type', '$SSN', '$user_name', 'patient', '0', '$token')")
             or die("Could not issue MySQL query");
-            include 'closeDB.php';
-
-            require_once "../email/PHPMailer/PHPMailer.php";
-            require_once "../email/PHPMailer/SMTP.php";
-            require_once "../email/PHPMailer/Exception.php";
-             //Create a new PHPMailer instance $mail = new PHPMailer
-            $mail = new PHPMailer();
-
-            //SMTP Settings
-            $mail->isSMTP();
-            $mail->Host = "smtp.gmail.com";
-            $mail->SMTPAuth = true;
-            $mail->Username = "diabeatit.ims@gmail.com";
-            $mail->Password = 'ims_1234';
-            $mail->Port = 465; //587
-            $mail->SMTPSecure = "ssl"; //tls
-
-            //Email Settings
-            $mail->isHTML(true);
-            $mail->setFrom($e_mail, 'DiaBeatIt');
-            $mail->addAddress($e_mail);
-            $mail->Subject = "Please verify your registration";
-            $mail->Body = "
-                <h1>Thanks for registering!</h1><br>
-                Please click on the link below to confirm the registration:
-                <a href='http://localhost/DiaBeatIT/w3tutorials/Project/IMS/HTML,CSS,JS/php/confirm_user.php?email=$e_mail&token=$token'>Click Here</a>
-                ";
-            if ($mail->send()) {
-                $status = "success";
-                $response = "Email is sent!";
-                header('Location: ../html/login.html');
-
-            } else {
-                $status = "failed";
-                $response = "Something is wrong: <br><br>" . $mail->ErrorInfo;
-            }
-            //exit(json_encode(array("status" => $status, "response" => $response)));
-         }
     }else{
-    $pwd_err = "Passwords don't match!";
+        $total_err = "email wasnt sent :( )";
     }
-}
+     include 'closeDB.php';
+ }
+
 function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
   return $data;
 }
+echo $pwd_err;
+echo $email_err;
+echo $usern_err;
+echo $ssn_err;
+echo $send_err;
+echo $total_err;
 ?>
 
     <div class="container">
@@ -185,11 +205,11 @@ function test_input($data) {
                                value="<?php echo $SSN;?>" required autofocus
                                id="myInput3" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"><br>
 
-                        <label for="myInput4"><b>* User Name: </b></label>
+                        <label for="myInput4"><b>* Username: <span class="error"><?php echo $usern_err;?></span></b></label>
                         <input type="text" name="username" maxlength="16" placeholder="User123" value="<?php echo $user_name;?>" required
                                id="myInput4" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"> <br>
 
-                        <label for="myInput5"><b>* Email:<span class="error"><?php echo $msg;?></span></b></label>
+                        <label for="myInput5"><b>* Email:<span class="error"><?php echo $email_err;?></span></b></label>
                         <input type="email" name="email" maxlength="50" placeholder="diabeatit@gmail.com"
                                value="<?php echo $e_mail;?>" required
                                id="myInput5" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)">
@@ -225,14 +245,14 @@ function test_input($data) {
                 <p id="letter" class="invalid"><b> A lowercase letter</b></p>
                 <p id="capital" class="invalid"><b> A capital (uppercase) letter</b></p>
                 <p id="number" class="invalid"><b> A number</b></p>
-                <p id="length" class="invalid"><b>Minimum 8 characters</b></p>
+                <p id="length" class="invalid"><b> Minimum 8 characters</b></p>
             </div>
     </div>
  <section></section>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script type="text/javascript">
         function sendEmail() {
-            var email = $("#email");
+            var email = $("#e_mail");
             if (isNotEmpty(email)) {
                 $.ajax({
                    url: 'sendEmail.php',
@@ -266,7 +286,7 @@ function test_input($data) {
         }
 
 
-            var myInput = document.getElementById("myInput6");
+    var myInput = document.getElementById("myInput6");
     var letter = document.getElementById("letter");
     var capital = document.getElementById("capital");
     var number = document.getElementById("number");
