@@ -139,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //exit(json_encode(array("status" => $status, "response" => $response)));
          }
     }else{
-    $pwd_err = "passwords don't match";
+    $pwd_err = "Passwords don't match!";
     }
 }
 function test_input($data) {
@@ -170,50 +170,49 @@ function test_input($data) {
             <section class="about" id="about">
                 <form name="register_patient" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST"><br><br>
                     <fieldset>
-                        <legend>Personal information:</legend>
+                        <legend align="center"><b>Personal information:</b></legend>
 
-                        <?php if ($msg != "") echo $msg . "<br><br>" ?>
-
-                        <label for="myInput1">First Name:</label>
+                        <label for="myInput1"><b>First Name:</b></label>
                         <input type="text" name="fname" placeholder="First Name" value="<?php echo $first_name;?>"
                                id="myInput1" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"><br>
 
-                        <label for="myInput2">Last name:</label>
+                        <label for="myInput2"><b>Last Name:</b></label>
                         <input type="text" name="lname" placeholder="Last Name" value="<?php echo $sur_name;?>"
                                id="myInput2" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"><br>
 
-                        <label for="myInput3">Social Security Number:</label>
+                        <label for="myInput3"><b>* Social Security Number: </b></label>
                         <input type="tel" name="ssn" pattern="[0-9]{6}-[0-9]{4}" title="123456-1234" placeholder="123456-1234"
                                value="<?php echo $SSN;?>" required autofocus
-                               id="myInput3" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"> * <br>
+                               id="myInput3" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"><br>
 
-                        <label for="myInput4">User Name:</label>
+                        <label for="myInput4"><b>* User Name: </b></label>
                         <input type="text" name="username" maxlength="16" placeholder="User123" value="<?php echo $user_name;?>" required
-                               id="myInput4" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"> * <br>
+                               id="myInput4" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"> <br>
 
-                        <label for="myInput5">Email:</label>
+                        <label for="myInput5"><b>* Email:<span class="error"><?php echo $msg;?></span></b></label>
                         <input type="email" name="email" maxlength="50" placeholder="diabeatit@gmail.com"
                                value="<?php echo $e_mail;?>" required
-                               id="myInput5" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"> *  <br>
+                               id="myInput5" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)">
+                        <br>
 
-                        <label for="myInput6">Password:</label>
+                        <label for="myInput6"><b>* Password: <span class="error"><?php echo $pwd_err;?></span> </b></label>
                         <input type="password" name="password1" maxlength="50" placeholder="*********" required
                                id="myInput6" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                               onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"> <span class="error">* <?php echo $pwd_err;?></span> <br>
+                               onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)">  <br>
 
-                        <label for="myInput7">Confirm Password:</label>
+                        <label for="myInput7"><b>Confirm Password:</b></label>
                         <input type="password" name="password2" maxlength="50" placeholder="*********" required
                                id="myInput7" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)">
                         <br>
 
-                        <label for="dtypes">Diabetic Type:</label><br>
+                        <label for="dtypes"><b>* Diabetic Type:</b></label><br>
                         <input list="dtypes" name="diabetes" placeholder="Choose your type" required>
                         <datalist id="dtypes">
                             <option value="Type 1">
                             <option value="Type 2">
                             <option value="Gestational Diabetes">
-                        </datalist> * <br><br>
+                        </datalist> <br><br>
                         <input type="submit" value="Register" onclick="sendEmail()" class="btn btn-primary">
                     </fieldset>
                 </form>
