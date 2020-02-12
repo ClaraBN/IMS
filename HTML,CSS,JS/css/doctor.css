@@ -37,7 +37,14 @@ body {
 	font-style: normal;
 	font-weight: 200;
 }
-
+/* Container */
+.container {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	height: 1000px;
+	background-color: #FFFFFF;
+}
 /* Navigation */
 header {
 	width: 100%;
@@ -105,7 +112,7 @@ ul li:hover a {
 .information_head {
 	color: #FF00FF;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 30px;
 }
 .nutritional_h1 {
 	color: #FF00FF;

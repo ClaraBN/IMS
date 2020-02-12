@@ -40,6 +40,14 @@ background: none;
 -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
 transition: all 0.3s ease 0s;
 }
+/* Container */
+.container {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	height: 1000px;
+	background-color: #FFFFFF;
+}
  </style>
 </head>
 <body>
@@ -60,19 +68,10 @@ transition: all 0.3s ease 0s;
       </ul>
     </nav>
   </header>
-  
+  	
   <section class="text_column">
     <h1 class = "nutritional_h1">My status</h1>
 <div class="button_cont" ><a class="example_e" href="My_status.php" rel="nofollow noopener">Check my status</a></div>
-	<h1 class = "nutritional_h1">Enter your BGL readings</h1>
-	<form action="../php/BGL_entry.php" method="POST">
-	<div id="container">
-		<input type="date" name="date" placeholder="Enter date" required />
-		<input type="time" name="time" placeholder="Enter time" required />
-		<input type="text" name="bgl_level" placeholder="BGL value" required />
-		<input type="submit" value="Submit and save">
-		</div>
-	</form>
 	<h1 class = "nutritional_h1">Let us know what you ate</h1>
 	<div class="python_search_form">
 	<p style="font-weight: bold;color:black;">Enter the food item here, if you cannot find in our database</p>
@@ -82,9 +81,8 @@ transition: all 0.3s ease 0s;
 	</form>
 	</div>
 	<br>
-	<span><span><div class="Add_more_button">
-	<button id="btn" style="position:relative;left:5%">Add more</button>
-	</div></span>
+	</section>
+	<section class="text_column">
 <script>
 	$(function(){	
     $('#search0').autocomplete({
@@ -96,7 +94,9 @@ transition: all 0.3s ease 0s;
     });
 });
 </script>
-
+<div class="Add_more_button">
+<button id="btn" style="position:relative;left:5%">Add more</button>
+</div>
 <form action="../php/nutrition_table_print_login.php" method="POST">
 	<div id="container">
 		<input type="date" name="date" placeholder="Enter date" required />
@@ -104,7 +104,7 @@ transition: all 0.3s ease 0s;
 		<input type="text"  id="search0" name="food_name[]" placeholder="Name of the food" class="autoc" required />
 		<input type="number" min="1" set="0.01" name="Quantity[]" placeholder="Quantity" required>
 	</div>
-</span>
+
 <script>
 var count=1;
   $("#btn").click(function(){
@@ -136,6 +136,18 @@ function addNewRow(count){
 <input type="submit" value="Submit and save">
 </form>
 </section>
+<section class="text_column">
+	<h1 class = "nutritional_h1">Enter your BGL readings</h1>
+	<form action="../php/BGL_entry.php" method="POST">
+	<div id="container">
+		<input type="date" name="date" placeholder="Enter date" required />
+		<input type="time" name="time" placeholder="Enter time" required />
+		<input type="text" name="bgl_level" placeholder="BGL value" required />
+		<input type="submit" value="Submit and save">
+		</div>
+	</form>
+</section>
 </div>
+
 </body>
 </html>
