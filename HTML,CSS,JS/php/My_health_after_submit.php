@@ -7,7 +7,6 @@
 <title>Light Theme</title>
 <link href="../css/nutrition.css" rel="stylesheet" type="text/css">
 
-<script>var __adobewebfontsappname__="dreamweaver"</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
 
@@ -17,31 +16,6 @@
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <style>
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-  width: 60%;
-  text-align: left;
-}
-td {
-  vertical-align: bottom;
-  color: black;
-  font-size:110%;
-  font-weight:bold;
-}
-th, td {
-  padding: 15px;
-  text-align: left;
-}
-tr:nth-child(even) {background-color: #f2f2f2;}
-th {
-  background-color: #73713b;
-  color: white;
-}
-.pop_up_for_adding{
-	color: black;
-	font-weight: bold;
-}
 .example_e {
 border: none;
 background: #404040;
@@ -62,11 +36,21 @@ background: none;
 -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
 transition: all 0.3s ease 0s;
 }
-</style>
+.container_this {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #FFFFFF;
+}
+.page_header{
+	height: 50px;
+	background-color: #73716A;
+}
+ </style>
 </head>
 <body>
 <!-- Main Container -->
-<div class="container"> 
+<div class="container_this"> 
   <!-- Navigation -->
   <header class="page_header"> 
     <a href="Home_login.php"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
@@ -82,32 +66,21 @@ transition: all 0.3s ease 0s;
       </ul>
     </nav>
   </header>
-	
-  
+  	
   <section class="text_column">
-      <h1 class = "nutritional_h1">My status</h1>
+    <h1 class = "nutritional_h1">My status</h1>
 <div class="button_cont" ><a class="example_e" href="My_status.php" rel="nofollow noopener">Check my status</a></div>
-	<h1 class = "nutritional_h1">Enter your BGL readings</h1>
-	<form action="../php/BGL_entry.php" method="POST">
-	<div id="container">
-		<input type="date" name="date" placeholder="Enter date" required />
-		<input type="time" name="time" placeholder="Enter time" required />
-		<input type="text"  name="bgl_level" placeholder="BGL value" required />
-		<input type="submit" value="Submit and save">
-		</div>
-	</form>
-	<div class="python_search_form">
 	<h1 class = "nutritional_h1">Let us know what you ate</h1>
+	<div class="python_search_form">
 	<p style="font-weight: bold;color:black;">Enter the food item here, if you cannot find in our database</p>
-	<form id="python_form" action="python_command_login.php" method="post">
+	<form id="python_form" action="../php/python_command_login.php" method="post">
 	<input type="text"  id="search" name="food_name" placeholder="Name of the food"/>
 	<input type="submit" name="python_search" value="search" form="python_form" />
 	</form>
 	</div>
 	<br>
-	<span><span><div class="Add_more_button">
-	<button id="btn" style="position:relative;left:5%">Add more</button>
-	</div></span>
+	</section>
+	<section class="text_column">
 <script>
 	$(function(){	
     $('#search0').autocomplete({
@@ -119,15 +92,17 @@ transition: all 0.3s ease 0s;
     });
 });
 </script>
-
-<form action="nutrition_table_print_login.php" method="POST">
+<div class="Add_more_button">
+<button id="btn" style="position:relative;left:5%">Add more</button>
+</div>
+<form action="../php/nutrition_table_print_login.php" method="POST">
 	<div id="container">
 		<input type="date" name="date" placeholder="Enter date" required />
 		<input type="time" name="time" placeholder="Enter time" required />
 		<input type="text"  id="search0" name="food_name[]" placeholder="Name of the food" class="autoc" required />
 		<input type="number" min="1" set="0.01" name="Quantity[]" placeholder="Quantity" required>
 	</div>
-</span>
+
 <script>
 var count=1;
   $("#btn").click(function(){
@@ -158,4 +133,15 @@ function addNewRow(count){
 </script>
 <input type="submit" value="Submit and save">
 </form>
-
+</section>
+<section class="text_column">
+	<h1 class = "nutritional_h1">Enter your BGL readings</h1>
+	<form action="../php/BGL_entry.php" method="POST">
+	<div id="container">
+		<input type="date" name="date" placeholder="Enter date" required />
+		<input type="time" name="time" placeholder="Enter time" required />
+		<input type="text" name="bgl_level" placeholder="BGL value" required />
+		<input type="submit" value="Submit and save">
+		</div>
+	</form>
+</section>

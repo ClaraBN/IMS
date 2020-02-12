@@ -37,14 +37,7 @@ body {
 	font-style: normal;
 	font-weight: 200;
 }
-/* Container */
-.container {
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
-	height: 1000px;
-	background-color: #FFFFFF;
-}
+
 /* Navigation */
 header {
 	width: 100%;
