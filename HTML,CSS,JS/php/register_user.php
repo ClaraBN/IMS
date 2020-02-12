@@ -13,7 +13,7 @@
         <script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+    <!--[if lt IE 9]-->
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <!--[endif]-->
@@ -53,6 +53,7 @@ float: center;
 .invalid {
   color: Black;
 }
+.error {color: red;}
 
 .invalid:before {
   position: relative;
@@ -60,18 +61,19 @@ float: center;
   content: "✖";
 }
 
-.error {color: #FF0000;}
+
 </style>
 </head>
 
 <body style="font-family: source-sans-pro;">
 
 <?php
-$pwd_err = "";
+use PHPMailer\PHPMailer\PHPMailer;
+$pwd_err = $msg = "";
 $first_name = $sur_name = $SSN = $user_name = $e_mail = $pswd = $pswd2 = $d_type = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    # put the recived data into the database
+
     $first_name = test_input($_POST['fname']);
     $sur_name = test_input($_POST["lname"]);
     $SSN = test_input($_POST["ssn"]);
@@ -82,20 +84,64 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $d_type =test_input($_POST["diabetes"]);
 
     if ($pswd == $pswd2){
+        # put the recived data into the database
         include 'openDB.php';
-        // put the received data into the database
-        // Trying to INSERT into "patients"
-        mysqli_query($link,"INSERT INTO temp_users(fname, lname, email, pwd, diabetes, ssn, username, user_type) VALUES
-        ('$first_name','$sur_name', '$e_mail', '$pswd', '$d_type', '$SSN', '$user_name', 'patient')")
-        or die("Could not issue MySQL query");
-        include 'closeDB.php';
-        include "../html/login.html";
-    }
-    else{
-    $pwd_err = "passwords doesn't match";
+        $sql = mysqli_query($link, "SELECT id FROM temp_users where email='$e_mail'");
+        if($sql->num_rows > 0){
+            $msg = "Email is already in use!";
+        }
+        else {
+            $token = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM123456789!$/()*';
+            $token = str_shuffle($token);
+            $token = substr($token, 0, 10);
+
+            $hashedPassword = password_hash($pswd, PASSWORD_DEFAULT);
+
+            mysqli_query($link,"INSERT INTO temp_users(fname, lname, email, pwd, diabetes, ssn, username, user_type, isEmailConfirmed, token)
+            VALUES ('$first_name','$sur_name', '$e_mail', '$hashedPassword', '$d_type', '$SSN', '$user_name', 'patient', '0', '$token')")
+            or die("Could not issue MySQL query");
+            include 'closeDB.php';
+
+            require_once "../email/PHPMailer/PHPMailer.php";
+            require_once "../email/PHPMailer/SMTP.php";
+            require_once "../email/PHPMailer/Exception.php";
+             //Create a new PHPMailer instance $mail = new PHPMailer
+            $mail = new PHPMailer();
+
+            //SMTP Settings
+            $mail->isSMTP();
+            $mail->Host = "smtp.gmail.com";
+            $mail->SMTPAuth = true;
+            $mail->Username = "diabeatit.ims@gmail.com";
+            $mail->Password = 'ims_1234';
+            $mail->Port = 465; //587
+            $mail->SMTPSecure = "ssl"; //tls
+
+            //Email Settings
+            $mail->isHTML(true);
+            $mail->setFrom($e_mail, 'DiaBeatIt');
+            $mail->addAddress($e_mail);
+            $mail->Subject = "Please verify your registration";
+            $mail->Body = "
+                <h1>Thanks for registering!</h1><br>
+                Please click on the link below to confirm the registration:
+                <a href='http://localhost/DiaBeatIT/w3tutorials/Project/IMS/HTML,CSS,JS/php/confirm_user.php?email=$e_mail&token=$token'>Click Here</a>
+                ";
+            if ($mail->send()) {
+                $status = "success";
+                $response = "Email is sent!";
+                header('Location: ../html/login.html');
+
+            } else {
+                $status = "failed";
+                $response = "Something is wrong: <br><br>" . $mail->ErrorInfo;
+            }
+            //exit(json_encode(array("status" => $status, "response" => $response)));
+         }
+    }else{
+    $pwd_err = "passwords don't match";
     }
 }
-
 function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
@@ -123,9 +169,10 @@ function test_input($data) {
         <div style="width: 400px; float:left; height:500px; padding-left:366px;">
             <section class="about" id="about">
                 <form name="register_patient" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST"><br><br>
-                <!--action="add_temp_user.php"<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>-->
                     <fieldset>
                         <legend>Personal information:</legend>
+
+                        <?php if ($msg != "") echo $msg . "<br><br>" ?>
 
                         <label for="myInput1">First Name:</label>
                         <input type="text" name="fname" placeholder="First Name" value="<?php echo $first_name;?>"
@@ -139,7 +186,6 @@ function test_input($data) {
                         <input type="tel" name="ssn" pattern="[0-9]{6}-[0-9]{4}" title="123456-1234" placeholder="123456-1234"
                                value="<?php echo $SSN;?>" required autofocus
                                id="myInput3" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"> * <br>
-                        <!--try to make boxes for the numbers, so they dont have to write "-" and so they cannot type more numbers than expected -->
 
                         <label for="myInput4">User Name:</label>
                         <input type="text" name="username" maxlength="16" placeholder="User123" value="<?php echo $user_name;?>" required
@@ -168,7 +214,7 @@ function test_input($data) {
                             <option value="Type 2">
                             <option value="Gestational Diabetes">
                         </datalist> * <br><br>
-                        <input type="submit" value="Register" onclick="return checkPassword()">
+                        <input type="submit" value="Register" onclick="sendEmail()" class="btn btn-primary">
                     </fieldset>
                 </form>
             </section>
@@ -184,8 +230,44 @@ function test_input($data) {
             </div>
     </div>
  <section></section>
-    <script>
-    var myInput = document.getElementById("myInput6");
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function sendEmail() {
+            var email = $("#email");
+            if (isNotEmpty(email)) {
+                $.ajax({
+                   url: 'sendEmail.php',
+                   method: 'POST',
+                   dataType: 'json',
+                   data: {
+                       name: 'DiaBeatIt',
+                       email: email.val(),
+                       subject: 'Please verify your email',
+                   }, success: function (response) {
+                   console.log("before if statement");
+                        if (response.status == "success")
+                            alert('Email Has Been Sent!');
+                        else {
+                            alert('Please Try Again!');
+                            console.log(response);
+                        }
+                   }
+                });
+            }
+        }
+
+        function isNotEmpty(caller) {
+            if (caller.val() == "") {
+                caller.css('border', '1px solid red');
+                return false;
+            } else
+                caller.css('border', '');
+
+            return true;
+        }
+
+
+            var myInput = document.getElementById("myInput6");
     var letter = document.getElementById("letter");
     var capital = document.getElementById("capital");
     var number = document.getElementById("number");
@@ -239,30 +321,14 @@ function test_input($data) {
         }
     }
 
-        function checkPassword(){
-            var pwd1 = documents.getElementById("myInput6");
-            var pwd2 = documents.getElementById("myInput7");
-            var test = wd1.value != pwd2.value;
-            document.write(test);
-            if (pwd1.value != pwd2.value){
-                alert("Passwords doesn't match!");
-                return false;
-            }
-            return true;
-            }
-
-                    // Focus = Changes the background color of input to SkyBlue
-        function focusFunction(x) {
-            document.getElementById(x).style.background = "#e6f9ff";
-        }
-        // No focus = Changes the background color of input to white
-        function blurFunction(x) {
-            document.getElementById(x).style.background = "";
-        }
-        function validationEmail() {
-                alert("Thank you for registering! An email will be delivered shortly, please verify your email.");
-        }
-
+    // Focus = Changes the background color of input to SkyBlue
+    function focusFunction(x) {
+        document.getElementById(x).style.background = "#e6f9ff";
+    }
+    // No focus = Changes the background color of input to white
+    function blurFunction(x) {
+        document.getElementById(x).style.background = "";
+    }
     </script>
 </body>
 </html>
