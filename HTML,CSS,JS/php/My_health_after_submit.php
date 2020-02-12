@@ -87,10 +87,17 @@ transition: all 0.3s ease 0s;
   <section class="text_column">
       <h1 class = "nutritional_h1">My status</h1>
 <div class="button_cont" ><a class="example_e" href="My_status.php" rel="nofollow noopener">Check my status</a></div>
-	<h1 class = "nutritional_h1">Nutritional information</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-	</p>
+	<h1 class = "nutritional_h1">Enter your BGL readings</h1>
+	<form action="../php/BGL_entry.php" method="POST">
+	<div id="container">
+		<input type="date" name="date" placeholder="Enter date" required />
+		<input type="time" name="time" placeholder="Enter time" required />
+		<input type="text"  name="bgl_level" placeholder="BGL value" required />
+		<input type="submit" value="Submit and save">
+		</div>
+	</form>
 	<div class="python_search_form">
+	<h1 class = "nutritional_h1">Let us know what you ate</h1>
 	<p style="font-weight: bold;color:black;">Enter the food item here, if you cannot find in our database</p>
 	<form id="python_form" action="python_command_login.php" method="post">
 	<input type="text"  id="search" name="food_name" placeholder="Name of the food"/>

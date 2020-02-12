@@ -60,8 +60,7 @@ foreach( $foods as  $food ) {
 		echo "<br>";
 	}
 
-	$insert = "INSERT INTO diet VALUES('$date','$time','$foodid','".$_SESSION['userid']."','$quantity')";
-	echo $insert;
+	$insert = "INSERT INTO diet VALUES('$date','$time','$foodid','".$_SESSION['id']."','$quantity')";
 	mysqli_query($link, $insert) ;
 }
 		echo ("<p style='color:black; font-weight: bold;'>Total amount of contents consumed in grams</p>");
