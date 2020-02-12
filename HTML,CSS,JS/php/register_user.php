@@ -73,7 +73,7 @@ $pwd_err = $email_err = $usern_err = $ssn_err = $send_err = $total_err = "";
 $first_name = $sur_name = $SSN = $user_name = $e_mail = $pswd = $pswd2 = $d_type = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    //echo "post method done, ";
     $first_name = test_input($_POST['fname']);
     $sur_name = test_input($_POST["lname"]);
     $SSN = test_input($_POST["ssn"]);
@@ -90,68 +90,77 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include_once 'openDB.php';
     $sql2 = mysqli_query($link, "SELECT id FROM temp_users where username='$user_name'");
     if($sql2->num_rows > 0){
-        $usern_err = "Username is already in use, sorry! T-T )";
+        $usern_err = "Username is already in use, sorry! T-T ";
+        //echo "Username is already in use, sorry! T-T ";
     }
     // check if email is in use
     $sql = mysqli_query($link, "SELECT id FROM temp_users where email='$e_mail'");
     if($sql->num_rows > 0){
         $email_err = "Email is already in use!";
+        //echo "Email is already in use!, ";
     }
 
     // check if passwords are the same
     if ($pswd == $pswd2){
+        //echo "passwords are the same, ";
         $hashedPassword = password_hash($pswd, PASSWORD_DEFAULT);
     }else {
         $pwd_err = "Passwords don't match!";
+        //echo "Passwords don't match!";
     }
 
-        // send the email
+     // send the email
     $token = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM123456789!$/()*';
     $token = str_shuffle($token);
     $token = substr($token, 0, 10);
-    if($pwd_err = "" AND $email_err = "" AND $usern_err = ""){
-    require_once "../email/PHPMailer/PHPMailer.php";
-    require_once "../email/PHPMailer/SMTP.php";
-    require_once "../email/PHPMailer/Exception.php";
-    //Create a new PHPMailer instance $mail = new PHPMailer
-    $mail = new PHPMailer();
+    if($pwd_err == "" AND $email_err == "" AND $usern_err == ""){
+        //echo "starting the phpMailer, ";
+        require_once "../email/PHPMailer/PHPMailer.php";
+        require_once "../email/PHPMailer/SMTP.php";
+        require_once "../email/PHPMailer/Exception.php";
+        //Create a new PHPMailer instance $mail = new PHPMailer
+        $mail = new PHPMailer();
 
-    //SMTP Settings
-    $mail->isSMTP();
-    $mail->Host = "smtp.gmail.com";
-    $mail->SMTPAuth = true;
-    $mail->Username = "diabeatit.ims@gmail.com";
-    $mail->Password = 'ims_1234';
-    $mail->Port = 465; //587
-    $mail->SMTPSecure = "ssl"; //tls
+        //SMTP Settings
+        $mail->isSMTP();
+        $mail->Host = "smtp.gmail.com";
+        $mail->SMTPAuth = true;
+        $mail->Username = "diabeatit.ims@gmail.com";
+        $mail->Password = 'ims_1234';
+        $mail->Port = 465; //587
+        $mail->SMTPSecure = "ssl"; //tls
 
-    //Email Settings
-    $mail->isHTML(true);
-    $mail->setFrom($e_mail, 'DiaBeatIt');
-    $mail->addAddress($e_mail);
-    $mail->Subject = "Please verify your registration";
-    $mail->Body = "
-        <h1>Thanks for registering!</h1><br>
-        Please click on the link below to confirm the registration:
-        <a href='http://localhost/DiaBeatIT/w3tutorials/Project/IMS/HTML,CSS,JS/php/confirm_user.php?email=$e_mail&token=$token'>Click Here</a>
-        ";
-        if ($mail->send()) {
+        //Email Settings
+        $mail->isHTML(true);
+        $mail->setFrom($e_mail, 'DiaBeatIt');
+        $mail->addAddress($e_mail);
+        $mail->Subject = "Please verify your registration";
+        $mail->Body = "
+            <h1>Thanks for registering!</h1><br>
+            Please click on the link below to confirm the registration:
+            <a href='http://localhost/DiaBeatIT/w3tutorials/Project/IMS/HTML,CSS,JS/php/confirm_user.php?email=$e_mail&token=$token'>Click Here</a>
+            ";
+        if ($mail->send()){
+            //echo "Email was sent, ";
             $status = "success";
             $response = "Email is sent!";
-            header('Location: ../html/login.html');
-        } else {
+        }else{
+            //echo "send() returned true, ";
             $send_err = "The email didn't send!";
             $status = "failed";
             $response = "Something is wrong: <br><br>" . $mail->ErrorInfo;
         }
     }
     // if ssn, username, email, pwd and mail is okay then add user to database
-    if($send_err = ""){
+    if($mail->send()){
             mysqli_query($link,"INSERT INTO temp_users(fname, lname, email, pwd, diabetes, ssn, username, user_type, isEmailConfirmed, token)
             VALUES ('$first_name','$sur_name', '$e_mail', '$hashedPassword', '$d_type', '$SSN', '$user_name', 'patient', '0', '$token')")
             or die("Could not issue MySQL query");
+            echo "<script type='text/javascript'>alert('Thank you for registering, please verify the email :D');</script>";
+
     }else{
-        $total_err = "email wasnt sent :( )";
+        $total_err = "email wasnt sent :( ";
+        //echo "send error not empty, ";
     }
      include 'closeDB.php';
  }

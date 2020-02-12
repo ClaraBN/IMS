@@ -1,6 +1,7 @@
 <?php
 	function redirect() {
 		header('Location: register_user.php');
+		//make a page that says "oops something went wrong, please try again from the beginning"
 		exit();
 	}
 
