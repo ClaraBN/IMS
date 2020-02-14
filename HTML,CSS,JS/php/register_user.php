@@ -184,10 +184,10 @@ echo $total_err;
             <a href="Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></a>
             <nav>
       <ul>
-        <li><a href="Home.html">Home</a></li>
-        <li><a href="nutrition.html">Nutrition checker</a></li>
-		 <li><a href="educational_page.html">Learn more</a></li>
-        <li> <a href="login.html">Sign In&nbsp;</a></li>
+        <li><a href="../html/Home.html">Home</a></li>
+        <li><a href="..html/nutrition.html">Nutrition checker</a></li>
+		 <li><a href="../html/educational_page.html">Learn more</a></li>
+        <li> <a href="../html/login.html">Sign In&nbsp;</a></li>
       </ul>
     </nav>
         </header>
