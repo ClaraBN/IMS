@@ -138,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Body = "
             <h1>Thanks for registering!</h1><br>
             Please click on the link below to confirm the registration:
-            <a href='http://localhost/DiaBeatIT/w3tutorials/Project/IMS/HTML,CSS,JS/php/confirm_user.php?email=$e_mail&token=$token'>Click Here</a>
+            <a href='http://130.243.228.153/DiaBeatIt/w3tutorials/Project/IMS/HTML,CSS,JS/php/confirm_user.php?email=$e_mail&token=$token'>Click Here</a>
             ";
         if ($mail->send()){
             //echo "Email was sent, ";

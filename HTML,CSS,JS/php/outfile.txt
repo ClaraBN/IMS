@@ -1,2 +1,6 @@
 "Name"%"Total Fat"%"Total Carbohydrate"%"Dietary Fiber"%"Sugars"%"Protein"%"Alcohol"
-"Kiwi Fruit (Chinese Gooseberries), raw"%"0.4"%"10.1"%"2.1"%"6.2"%"0.8"%"0"
+"Whole Wheat Pasta, cooked"%"0.8"%"37.7"%"4"%"1.1"%"7.6"%"0"
+"Wheat Bread, toasted"%"1"%"13.4"%"1.1"%"1.5"%"3.1"%"0"
+"Wheat Bread"%"1"%"14.3"%"1.2"%"1.8"%"3"%"0"
+"Whole Wheat Pasta, dry"%"1.5"%"78.8"%"8.7"%"15.4"
+"Dough, Pizza Dough, Whole Wheat"%"1.5"%"24"%"3"%"0"%"4"%"0"
