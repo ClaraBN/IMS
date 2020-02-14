@@ -272,6 +272,7 @@ echo $total_err;
                        email: email.val(),
                        subject: 'Please verify your email',
                    }, success: function (response) {
+                   // this part is useless :P
                    console.log("before if statement");
                         if (response.status == "success")
                             alert('Email Has Been Sent!');
