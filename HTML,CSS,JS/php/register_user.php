@@ -137,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Subject = "Please verify your registration";
         $mail->Body = "
             <h1>Thanks for registering!</h1><br>
-            Please click on the link below to confirm the registration:
+            Please click on the link below to confirm the registration (as this is a local link to Claras computer as a host the link won't open so copy the link and paste it to your browser):
             <a href='http://130.243.228.153/DiaBeatIt/w3tutorials/Project/IMS/HTML,CSS,JS/php/confirm_user.php?email=$e_mail&token=$token'>Click Here</a>
             ";
         if ($mail->send()){
