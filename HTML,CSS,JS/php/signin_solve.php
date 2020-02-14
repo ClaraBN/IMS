@@ -30,7 +30,7 @@ elseif (password_verify($pw, $row[3]) == TRUE AND $row[5] === 'doctor') {
     //If existing user and correct password, redirecting into another page
     $_SESSION['username']=$row[1];
     $_SESSION['id']=$row[0];
-    $url = "../php/Home_login.php";
+    $url = "../php/Doctors_home_page.php";
     header("location:".$url);
 }
 else {
