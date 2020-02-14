@@ -85,11 +85,11 @@ transition: all 0.3s ease 0s;
 
   <section class="text_column">
     <h1 class = "nutritional_h1">Patients</h1>
-    <p><em>Summary of your patients</em><br>
+    <p><em>Summary of your patients</em>
     <?php
     include 'db.php';
     $doctor_id = $_SESSION['id'];
-    $fetch_patients = "SELECT * FROM $dbname.patients_doctors WHERE $dbname.patients_doctors.doctor_id = '$doctor_id'";
+    $fetch_patients = "SELECT * FROM $dbname.patients_doctors WHERE $dbname.patients_doctors.doctor_id = '$doctor_id' AND $dbname.patients_doctors.is_confirmed ='1'";
     $result = mysqli_query($link, $fetch_patients);
 
     while($row = mysqli_fetch_row($result)) {
@@ -97,14 +97,76 @@ transition: all 0.3s ease 0s;
         $result2 = mysqli_query($link, $fetch_info);
         $row2 = mysqli_fetch_row($result2);
         echo nl2br("".PHP_EOL."");
-        //echo '<button id="btn'.$row[0].'" style="position:relative;left:5%">'.$row2[1].'</button>';
-        //echo '<button type="button" onClick="window.location.href = /php/doctors_page_alter_info.php;">'.$row2[1].'</button>';
-        //var id = '$row2[0]';
-        //echo "<button type='button' id ='btn' onClick='fetch_patient_info.php'>".$row2[1].'</button>';
         echo "<form name = 'fetch_info' action='../php/Doctors_patient_page.php' method='POST'><input type='submit' name = 'pat_id' value='$row2[0]'></form>";
+
     }
     ?>
 
+    <br><br>
+
+    <p><em>Add patient</em>
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
+    	<input type="text" name="email" placeholder="Patient Email" required><br>
+    	<input type="text" name="patientid" placeholder="Patient ID" required><br>
+    	<input type="submit" value="Send request to patient">
+	</form><br>
+
+    <?php
+    include 'db.php';
+    use PHPMailer\PHPMailer\PHPMailer;
+    $send_err = "";
+    $doctor_id = $_SESSION['id'];
+
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $token = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM123456789!$/()*';
+            $token = str_shuffle($token);
+            $token = substr($token, 0, 10);
+
+            $patient_id = $_POST['patientid']; //gör nån sql query för att hämta patient
+
+            $e_mail = $_POST['email'];
+            require_once "../email/PHPMailer/PHPMailer.php";
+            require_once "../email/PHPMailer/SMTP.php";
+            require_once "../email/PHPMailer/Exception.php";
+
+            $mail = new PHPMailer();
+
+            //SMTP Settings
+            $mail->isSMTP();
+            $mail->Host = "smtp.gmail.com";
+            $mail->SMTPAuth = true;
+            $mail->Username = "diabeatit.ims@gmail.com";
+            $mail->Password = 'ims_1234';
+            $mail->Port = 465; //587
+            $mail->SMTPSecure = "ssl"; //tls
+
+            //Email Settings
+            $mail->isHTML(true);
+            $mail->setFrom($e_mail, 'DiaBeatIt');
+            $mail->addAddress($e_mail);
+            $mail->Subject = "Please verify your doctor";
+            $mail->Body = "
+                <h1>Someone wants to add you as a patient!</h1><br>
+                Please click on the link below to confirm the doctor with id '$doctor_id':
+                <a href='http://localhost:8888/php/confirm_patient.php?email=$e_mail&token=$token&pid=$patient_id&did=$doctor_id'>Click Here</a>
+                ";
+            if ($mail->send()) {
+                $status = "success";
+                $response = "Email is sent!";
+                $sql = "INSERT INTO patients_doctors(patient_id, doctor_id, is_confirmed, token) VALUES ('$patient_id', '$doctor_id', '0', '$token')";
+                $result = mysqli_query($link, $sql);
+                echo $response;
+
+            } else {
+                $send_err = "the email didn't send";
+                $status = "failed";
+                $response = "Something is wrong: <br><br>" . $mail->ErrorInfo;
+                echo $send_err;
+            }
+
+    }
+    ?>
 
 
 
