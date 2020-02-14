@@ -109,15 +109,14 @@ transition: all 0.3s ease 0s;
 <div class="container"> 
   <!-- Navigation -->
   <header class="page_header"> 
-    <a href="Home_login.php"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
+    <a href="Doctors_home_page.php"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
   </a>
     <nav>
       <ul>
-        <li><a href="Home_login.php">Home</a></li>
+        <li><a href="Doctors_home_page.php">Home</a></li>
         <li><a href="Doctors_page.php">My page</a></li>
-		<li><a href="educational_page_login.php">Learn more</a></li>
 		<li><a href="logout.php">Logout</a></li>
-        <li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
+		<li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
         <!--<li> <a href="login.html">Sign In&nbsp;</a></li> -->
       </ul>
     </nav>
