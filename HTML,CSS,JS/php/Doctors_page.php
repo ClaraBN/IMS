@@ -47,14 +47,15 @@ transition: all 0.3s ease 0s;
 <div class="container"> 
   <!-- Navigation -->
   <header class="page_header"> 
-    <a href="Doctors_home_page.php"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
+    <a href="Home_login.php"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
   </a>
     <nav>
       <ul>
-        <li><a href="Doctors_home_page.php">Home</a></li>
+        <li><a href="Home_login.php">Home</a></li>
         <li><a href="Doctors_page.php">My page</a></li>
+		<li><a href="educational_page_login.php">Learn more</a></li>
 		<li><a href="logout.php">Logout</a></li>
-		<li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
+        <li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
         <!--<li> <a href="login.html">Sign In&nbsp;</a></li> -->
       </ul>
     </nav>
@@ -105,8 +106,8 @@ transition: all 0.3s ease 0s;
 
     <p><em>Add patient</em>
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
-    	<input type="text" name="email" placeholder="Patient Email" required><br>
-    	<input type="text" name="patientid" placeholder="Patient ID" required><br>
+    	<input type="email" name="email" placeholder="Patient Email" required><br>
+    	<input type="number" name="patientid" placeholder="Patient ID" min = "0" max = "10000000" required><br>
     	<input type="submit" value="Send request to patient">
 	</form><br>
 
@@ -115,56 +116,87 @@ transition: all 0.3s ease 0s;
     use PHPMailer\PHPMailer\PHPMailer;
     $send_err = "";
     $doctor_id = $_SESSION['id'];
+    $abort_request = "yes";
 
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    		include 'db.php';
             $token = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM123456789!$/()*';
             $token = str_shuffle($token);
             $token = substr($token, 0, 10);
 
             $patient_id = $_POST['patientid']; //gör nån sql query för att hämta patient
+			
+			//Check if patient before sending request
+			$patient_check = "SELECT * FROM users WHERE users.id = '$patient_id'";
+			$result = mysqli_query($link, $patient_check);
+			$patient_exist = mysqli_fetch_row($result);
+	
 
+			//Checking if patient ID and email match before sending request
             $e_mail = $_POST['email'];
-            require_once "../email/PHPMailer/PHPMailer.php";
-            require_once "../email/PHPMailer/SMTP.php";
-            require_once "../email/PHPMailer/Exception.php";
+            $email_check = "SELECT * FROM users WHERE users.id = '$patient_id' AND users.email = '$e_mail'";
+            $result2 = mysqli_query($link, $email_check);
+			$email_exists = mysqli_fetch_row($result2);
 
-            $mail = new PHPMailer();
+			
+			if (empty($patient_exist)) {
+				$abort_request = "no";
+				echo "You tried to add a non-existing patient";
+			}
+			elseif ($patient_exist[10] != '1') {
+				$abort_request = "no";
+				echo "You tried to add a non-existing patient!";
+			} 
+			elseif (empty($email_exists)) {
+				$abort_request = "no";
+				echo "Wrong patient-email";	
+			}
 
-            //SMTP Settings
-            $mail->isSMTP();
-            $mail->Host = "smtp.gmail.com";
-            $mail->SMTPAuth = true;
-            $mail->Username = "diabeatit.ims@gmail.com";
-            $mail->Password = 'ims_1234';
-            $mail->Port = 465; //587
-            $mail->SMTPSecure = "ssl"; //tls
+			
+            
+            if ($abort_request == "yes") {
+            	include 'db.php';
+            	require_once "../email/PHPMailer/PHPMailer.php";
+            	require_once "../email/PHPMailer/SMTP.php";
+            	require_once "../email/PHPMailer/Exception.php";
 
-            //Email Settings
-            $mail->isHTML(true);
-            $mail->setFrom($e_mail, 'DiaBeatIt');
-            $mail->addAddress($e_mail);
-            $mail->Subject = "Please verify your doctor";
-            $mail->Body = "
-                <h1>Someone wants to add you as a patient!</h1><br>
-                Please click on the link below to confirm the doctor with id '$doctor_id':
-                <a href='http://localhost:8888/php/confirm_patient.php?email=$e_mail&token=$token&pid=$patient_id&did=$doctor_id'>Click Here</a>
-                ";
-            if ($mail->send()) {
-                $status = "success";
-                $response = "Email is sent!";
-                $sql = "INSERT INTO patients_doctors(patient_id, doctor_id, is_confirmed, token) VALUES ('$patient_id', '$doctor_id', '0', '$token')";
-                $result = mysqli_query($link, $sql);
-                echo $response;
+            	$mail = new PHPMailer();
 
-            } else {
-                $send_err = "the email didn't send";
-                $status = "failed";
-                $response = "Something is wrong: <br><br>" . $mail->ErrorInfo;
-                echo $send_err;
-            }
+            	//SMTP Settings
+            	$mail->isSMTP();
+            	$mail->Host = "smtp.gmail.com";
+            	$mail->SMTPAuth = true;
+            	$mail->Username = "diabeatit.ims@gmail.com";
+            	$mail->Password = 'ims_1234';
+            	$mail->Port = 465; //587
+            	$mail->SMTPSecure = "ssl"; //tls
 
-    }
+            	//Email Settings
+            	$mail->isHTML(true);
+            	$mail->setFrom($e_mail, 'DiaBeatIt');
+            	$mail->addAddress($e_mail);
+           	 	$mail->Subject = "Please verify your doctor";
+            	$mail->Body = "
+                	<h1>Someone wants to add you as a patient!</h1><br>
+                	Please click on the link below to confirm the doctor with id '$doctor_id':
+                	<a href='http://localhost:8888/php/confirm_patient.php?email=$e_mail&token=$token&pid=$patient_id&did=$doctor_id'>Click Here</a>
+                	";
+            	if ($mail->send()) {
+                	$status = "success";
+                	$response = "Email is sent!";
+                	$sql = "INSERT INTO patients_doctors(patient_id, doctor_id, is_confirmed, token) VALUES ('$patient_id', '$doctor_id', '0', '$token')";
+                	$result = mysqli_query($link, $sql);
+                	echo $response;
+
+            	} else {
+                	$send_err = "The email failed to send";
+                	$status = "failed";
+                	$response = "Something is wrong: <br><br>" . $mail->ErrorInfo;
+                	echo $send_err;
+            	}
+			}
+    	}
     ?>
 
 
