@@ -10,11 +10,11 @@
 	} else {
 		include 'openDB.php';
 
-		$email = $_GET['email'];
-		$token = $_GET['token'];
+		//$email = $_GET['email'];
+		//$token = $_GET['token'];
 		//should be
-		// $email = real_escape_string($_GET['email']);
-		// $token = real_escape_string($_GET['token']);
+		$email =  $link -> real_escape_string($_GET['email']);
+		$token = $link -> real_escape_string($_GET['token']);
 
 		$sql =  mysqli_query($link, "SELECT id FROM temp_users WHERE email='$email' AND token='$token' AND isEmailConfirmed=0");
 		if ($sql->num_rows > 0) {

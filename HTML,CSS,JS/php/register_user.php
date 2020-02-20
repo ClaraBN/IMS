@@ -1,7 +1,9 @@
+<?php @session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,11 +67,11 @@ float: center;
 </style>
 </head>
 
-<body style="font-family: source-sans-pro;">
+<body style="font-family: source-sans-pro;" onload="reload_captcha()">
 
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
-$pwd_err = $email_err = $usern_err = $ssn_err = $send_err = $total_err = "";
+$pwd_err = $email_err = $usern_err = $ssn_err = $send_err = $total_err = $captcha_err = "";
 $first_name = $sur_name = $SSN = $user_name = $e_mail = $pswd = $pswd2 = $d_type = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -83,20 +85,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pswd2= test_input($_POST["password2"]);
     $d_type =test_input($_POST["diabetes"]);
 
-    // check if ssn is already in use
+    // check if captcha is correct
+    if(!isset($_REQUEST['g-recaptcha-response']) || empty($_POST['g-recaptcha-response'])){
+        $captcha_err = "Please fill the captcha ... ¯\_(ツ)_/¯";
+    }else{
+        $cresponse = urlencode($_REQUEST['g-recaptcha-response']);//urlencode removes everything thats not alphanumeric and saves the users captcha input to the variable
+            if($cresponse!= $_SESSION['custom_captcha']){
+                $captcha_err = "Invalid captcha! (ง •̀_•́)ง";
+            }
+    }
 
+if($captcha_err==""){
+    //echo "no captcha errors";
+    // check if ssn is already in use
+    include_once 'openDB.php';
+    $sql3 = mysqli_query($link, "SELECT id FROM temp_users where ssn='$SSN'");
+    if($sql3->num_rows > 0){
+        $ssn_err = "This Social Security Number is already in use ( ͡° ͜ʖ ͡°) ";
+        //echo "Username is already in use, sorry! T-T ";
+    }
 
     // check if username exists
     include_once 'openDB.php';
     $sql2 = mysqli_query($link, "SELECT id FROM temp_users where username='$user_name'");
     if($sql2->num_rows > 0){
-        $usern_err = "Username is already in use, sorry! T-T ";
+        $usern_err = "It already exists! (╯°□°）╯︵ ┻━┻";
         //echo "Username is already in use, sorry! T-T ";
     }
     // check if email is in use
     $sql = mysqli_query($link, "SELECT id FROM temp_users where email='$e_mail'");
     if($sql->num_rows > 0){
-        $email_err = "Email is already in use!";
+        $email_err = "Email is already in use! (o_O)";
         //echo "Email is already in use!, ";
     }
 
@@ -105,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //echo "passwords are the same, ";
         $hashedPassword = password_hash($pswd, PASSWORD_DEFAULT);
     }else {
-        $pwd_err = "Passwords don't match!";
+        $pwd_err = "Passwords don't match! ಠ_ಠ ";
         //echo "Passwords don't match!";
     }
 
@@ -113,8 +132,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $token = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM123456789!$/()*';
     $token = str_shuffle($token);
     $token = substr($token, 0, 10);
-    if($pwd_err == "" AND $email_err == "" AND $usern_err == ""){
-        //echo "starting the phpMailer, ";
+    if($pwd_err == "" AND $email_err == "" AND $usern_err == "" AND $ssn_err == ""){
+        echo "starting the phpMailer, ";
         require_once "../email/PHPMailer/PHPMailer.php";
         require_once "../email/PHPMailer/SMTP.php";
         require_once "../email/PHPMailer/Exception.php";
@@ -137,46 +156,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Subject = "Please verify your registration";
         $mail->Body = "
             <h1>Thanks for registering!</h1><br>
-            Please click on the link below to confirm the registration (as this is a local link to Claras computer as a host the link won't open so copy the link and paste it to your browser):
-            <a href='http://130.243.228.153/DiaBeatIt/w3tutorials/Project/IMS/HTML,CSS,JS/php/confirm_user.php?email=$e_mail&token=$token'>Click Here</a>
+            Please click on the link below to confirm the registration
+            <a href='http://localhost/DiaBeatIT/w3tutorials/Project/IMS/HTML,CSS,JS/php/confirm_user?email=$e_mail&token=$token'>Click Here</a>
             ";
+             // if ssn, username, email, pwd and mail is okay then add user to database
         if ($mail->send()){
             //echo "Email was sent, ";
             $status = "success";
             $response = "Email is sent!";
+
+            mysqli_query($link,"INSERT INTO temp_users(fname, lname, email, pwd, diabetes, ssn, username, user_type, isEmailConfirmed, token)
+            VALUES ('$first_name','$sur_name', '$e_mail', '$hashedPassword', '$d_type', '$SSN', '$user_name', 'patient', '0', '$token')")
+            or die("Could not issue MySQL query");
+            echo "<script type='text/javascript'>alert('Thank you for registering, please verify the email (•̀ᴗ•́)و ̑̑ ');</script>";
         }else{
-            //echo "send() returned true, ";
+            //echo "send() returned false, ";
+            $total_err = "email wasnt sent :( ";
+            //echo "send error not empty, ";
             $send_err = "The email didn't send!";
             $status = "failed";
             $response = "Something is wrong: <br><br>" . $mail->ErrorInfo;
         }
     }
-    // if ssn, username, email, pwd and mail is okay then add user to database
-    if($mail->send()){
-            mysqli_query($link,"INSERT INTO temp_users(fname, lname, email, pwd, diabetes, ssn, username, user_type, isEmailConfirmed, token)
-            VALUES ('$first_name','$sur_name', '$e_mail', '$hashedPassword', '$d_type', '$SSN', '$user_name', 'patient', '0', '$token')")
-            or die("Could not issue MySQL query");
-            echo "<script type='text/javascript'>alert('Thank you for registering, please verify the email :D');</script>";
-
-    }else{
-        $total_err = "email wasnt sent :( ";
-        //echo "send error not empty, ";
-    }
      include 'closeDB.php';
  }
-
+}
 function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
   return $data;
 }
-echo $pwd_err;
-echo $email_err;
-echo $usern_err;
-echo $ssn_err;
-echo $send_err;
-echo $total_err;
+//echo $pwd_err;
+//echo $email_err;
+//echo $usern_err;
+//echo $ssn_err;
+//echo $send_err;
+//echo $total_err;
 ?>
 
     <div class="container">
@@ -209,7 +225,7 @@ echo $total_err;
                         <input type="text" name="lname" placeholder="Last Name" value="<?php echo $sur_name;?>"
                                id="myInput2" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"><br>
 
-                        <label for="myInput3"><b>* Social Security Number: </b></label>
+                        <label for="myInput3"><b>* Social Security Number: <span class="error"><?php echo $ssn_err;?></span></b></label>
                         <input type="tel" name="ssn" pattern="[0-9]{6}-[0-9]{4}" title="123456-1234" placeholder="123456-1234"
                                value="<?php echo $SSN;?>" required autofocus
                                id="myInput3" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"><br>
@@ -241,9 +257,20 @@ echo $total_err;
                             <option value="Type 1">
                             <option value="Type 2">
                             <option value="Gestational Diabetes">
-                        </datalist> <br><br>
+                        </datalist> <br>
+                        <div id="custom_captcha">
+                            <p> <b>Please enter the captcha: <span class="error"><?php echo $captcha_err;?></span> </b> <br>
+                                <img src="captcha.php" id="capt">
+                                &nbsp;
+                                <input width="30" height="30" type="image" src="../images/reload.png" onClick="reload_captcha();">
+                            </p>
+                            <p>
+                                <input type="text" name="g-recaptcha-response">
+                            </p>
+                        </div>
                         <input type="submit" value="Register" onclick="sendEmail()" class="btn btn-primary">
                     </fieldset>
+
                 </form>
             </section>
             <div style="float:left">
@@ -256,8 +283,11 @@ echo $total_err;
                 <p id="number" class="invalid"><b> A number</b></p>
                 <p id="length" class="invalid"><b> Minimum 8 characters</b></p>
             </div>
+
     </div>
+
  <section></section>
+
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script type="text/javascript">
         function sendEmail() {
@@ -358,6 +388,10 @@ echo $total_err;
     function blurFunction(x) {
         document.getElementById(x).style.background = "";
     }
-    </script>
+    function reload_captcha(){
+        img=document.getElementById("capt");
+        img.src="captcha.php";// this gets the url for the image created in captcha.php
+}
+</script>
 </body>
 </html>
