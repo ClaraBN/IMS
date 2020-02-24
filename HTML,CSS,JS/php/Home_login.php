@@ -18,6 +18,11 @@ session_start(); // Right at the top of your script
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+<?php
+if(!isset($_SESSION['username'])){
+    header('location:../html/login.html');
+}
+?>
 </head>
 <body>
 <!-- Main Container -->

@@ -146,7 +146,11 @@ chart.render();
 }
 </script>
 
-
+<?php
+if(!isset($_SESSION['username'])){
+    header('location:../html/login.html');
+}
+?>
 </head>
 <body>
 <!-- Main Container -->

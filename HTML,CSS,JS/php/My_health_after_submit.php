@@ -47,6 +47,11 @@ transition: all 0.3s ease 0s;
 	background-color: #73716A;
 }
  </style>
+<?php
+if(!isset($_SESSION['username'])){
+    header('location:../html/login.html');
+}
+?>
 </head>
 <body>
 <!-- Main Container -->

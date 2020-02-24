@@ -26,6 +26,11 @@ session_start();
 <!-- jQuery UI library -->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<?php
+if(!isset($_SESSION['username'])){
+    header('location:../html/login.html');
+}
+?>
 </head>
 
 <body style="font-family: source-sans-pro;">

@@ -104,6 +104,11 @@ transition: all 0.3s ease 0s;
 }
  </style>
 </head>
+<?php
+if(!isset($_SESSION['username'])){
+    header('location:../html/login.html');
+}
+?>
 <body>
 <!-- Main Container -->
 <div class="container"> 
