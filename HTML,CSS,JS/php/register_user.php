@@ -62,7 +62,10 @@ float: center;
   left: 0px;
   content: "✖";
 }
-
+.content_information {
+	width: 80%;
+    margin: 0 auto;
+}
 
 </style>
 </head>
@@ -208,10 +211,9 @@ function test_input($data) {
     </nav>
         </header>
         <section>
-            <h1 class="hero_header heading_font">Create an Account</h1>
-            <h1 class="hero_header">&nbsp;</h1>
+            <h1 class="hero_header" style="width: 300px; margin: 0 auto;">&nbsp Create an Account</h1>
         </section>
-        <div style="width: 400px; float:left; height:500px; padding-left:366px;">
+        <div style="width: 400px;  height:500px; margin: 0 auto;">
             <section class="about" id="about">
                 <form name="register_patient" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST"><br><br>
                     <fieldset>
@@ -285,7 +287,6 @@ function test_input($data) {
             </div>
 
     </div>
-
  <section></section>
 
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
