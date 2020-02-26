@@ -62,7 +62,7 @@ $result = mysqli_query($link,"SELECT DISTINCT patient_id FROM exercise WHERE pat
 $row = mysqli_fetch_assoc($result);
 $patient_id = $row["patient_id"];
 
-if ($patient_id = $id){
+if ($patient_id == $id){
     ?> <div align="center">
     <section class="about" id="about">
         <form name="exercise_log" action="../php/exercise_after_submit_login.php" method="POST"><br><br>
@@ -76,27 +76,24 @@ if ($patient_id = $id){
                     What type of exercise did you do?<br>
                     For how long did you exercise?<br> 
                 
-                    <form action="../php/exercise_after_submit_login.php" method="POST">
-                        <div id="container">
-                            <input list="extype" name="extype" placeholder="Insert intensity" required>
-                            <datalist id="extype">
-                                <option value="Low intensity">
-                                <option value="Medium intensity">
-                                <option value="High intensity">
-                            </datalist>
-                            <input list="exquant" name="exquant" placeholder="Insert time" required>
-                            <datalist id="exquant">
-                                <option value="+10 min">
-                                <option value="+20 min">
-                                <option value="+30 min">
-                                <option value="+40 min">
-                                <option value="+50 min">
-                                <option value="+60 min">
-                                <option value="+70 min">
-                                <option value="+80 min">
-                                <option value="+90 min">
-                            </datalist>
-                        </div>
+                    <input list="extype" name="extype" placeholder="Insert intensity" required>
+                    <datalist id="extype">
+                        <option value="Low intensity">
+                        <option value="Medium intensity">
+                        <option value="High intensity">
+                    </datalist>
+                    <input list="exquant" name="exquant" placeholder="Insert time" required>
+                    <datalist id="exquant">
+                        <option value="+10 min">
+                        <option value="+20 min">
+                        <option value="+30 min">
+                        <option value="+40 min">
+                        <option value="+50 min">
+                        <option value="+60 min">
+                        <option value="+70 min">
+                        <option value="+80 min">
+                        <option value="+90 min">
+                    </datalist>
                     <br>
                     <span>
                         <div class="Add_more_button">

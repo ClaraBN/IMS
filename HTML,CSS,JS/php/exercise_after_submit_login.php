@@ -54,15 +54,45 @@ if(!isset($_SESSION['username'])){
 
 <div>
 <?php
+      
+$id = $_SESSION['id'];
+$result = mysqli_query($link,"SELECT DISTINCT patient_id FROM exercise WHERE patient_id = '$id'");
+$row = mysqli_fetch_assoc($result);
+$patient_id = $row["patient_id"];
 
-$date = $_POST["date"];
-$time = $_POST["time"];
-$sex = $_POST["sex"];
-$age = $_POST["age"];
-$height = $_POST["height"];
-$weight = $_POST["weight"];
-$ex_type = $_POST["extype"];
-$ex_quant = $_POST["exquant"];
+if ($patient_id == $id){
+    $date = $_POST["date"];
+    $time = $_POST["time"];
+
+    $sex_sql = mysqli_query($link,"SELECT sex FROM exercise WHERE patient_id = '$id' ORDER BY fdate DESC, ftime DESC");
+    $row_sex = mysqli_fetch_assoc($sex_sql);
+    $sex = $row_sex["sex"];
+
+    $age_sql = mysqli_query($link,"SELECT age FROM exercise WHERE patient_id = '$id' ORDER BY fdate DESC, ftime DESC");
+    $row_age = mysqli_fetch_assoc($age_sql);
+    $age = $row_age["age"];
+
+    $height_sql = mysqli_query($link,"SELECT height FROM exercise WHERE patient_id = '$id' ORDER BY fdate DESC, ftime DESC");
+    $row_height = mysqli_fetch_assoc($height_sql);
+    $height = $row_height["height"];
+
+    $weight_sql = mysqli_query($link, "SELECT weight FROM exercise WHERE patient_id = '$id' ORDER BY fdate DESC, ftime DESC");
+    $row_weight = mysqli_fetch_assoc($weight_sql);
+    $weight = $row_weight["weight"];
+
+    $ex_type = $_POST["extype"];
+    $ex_quant = $_POST["exquant"];
+}else{
+
+    $date = $_POST["date"];
+    $time = $_POST["time"];
+    $sex = $_POST["sex"];
+    $age = $_POST["age"];
+    $height = $_POST["height"];
+    $weight = $_POST["weight"];
+    $ex_type = $_POST["extype"];
+    $ex_quant = $_POST["exquant"];
+}
 
 echo "<br>";
 echo $date;
@@ -83,20 +113,20 @@ echo $ex_quant;
 echo "<br>";
 
 if ($sex == "Female"){
-   echo bmr_female($age,$height,$weight); 
+   echo $bmr = bmr_female($age,$height,$weight); 
 } else {
-    echo bmr_male($age,$height,$weight); 
+    echo $bmr = bmr_male($age,$height,$weight); 
 }
 
 echo "<br>";
 
 
 function bmr_female($age,$height,$weight){
-    return $bmr = 655 + (9.6*$weight) + (1.8*$height) - (4.7*$age);
+    return 655 + (9.6*$weight) + (1.8*$height) - (4.7*$age);
 }
 
 function bmr_male($age,$height,$weight){
-    return $bmr = 66 + (13.7*$weight) + (5*$height) - (6.8*$age);
+    return 66 + (13.7*$weight) + (5*$height) - (6.8*$age);
 }
 
 $insert = "INSERT INTO exercise(fdate,ftime,sex,age,height,weight,patient_id,ex_type,min_spent,bmr) VALUES('$date','$time','$sex', '$age', '$height', '$weight', ".$_SESSION['id'].",'$ex_type','$ex_quant','$bmr')";
