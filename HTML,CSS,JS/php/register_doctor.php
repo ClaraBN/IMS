@@ -198,7 +198,7 @@ echo $total_err;
 
     <div class="container">
         <header class="page_header">
-            <a href="Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></a>
+            <a href="../html/Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></a>
             <nav>
       <ul>
         <li><a href="../html/Home.html">Home</a></li>

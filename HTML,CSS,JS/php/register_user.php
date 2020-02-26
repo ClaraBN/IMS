@@ -197,7 +197,7 @@ function test_input($data) {
 
     <div class="container">
         <header class="page_header">
-            <a href="Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></a>
+            <a href="../html/Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></a>
             <nav>
       <ul>
         <li><a href="../html/Home.html">Home</a></li>
@@ -211,9 +211,9 @@ function test_input($data) {
             <h1 class="hero_header heading_font">Create an Account</h1>
             <h1 class="hero_header">&nbsp;</h1>
         </section>
-        <div style="width: 400px; float:left; height:500px; padding-left:366px;">
+        <div style="width: 40vw; float:left; padding-left:37%;">
             <section class="about" id="about">
-                <form name="register_patient" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST"><br><br>
+                <form name="register_patient" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
                     <fieldset>
                         <legend align="center"><b>Personal information:</b></legend>
 
@@ -240,11 +240,7 @@ function test_input($data) {
                                id="myInput5" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)">
                         <br>
 
-                        <label for="myInput6"><b>* Password: <span class="error"><?php echo $pwd_err;?></span> </b></label>
-                        <input type="password" name="password1" maxlength="50" placeholder="*********" required
-                               id="myInput6" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                               onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)">  <br>
+                        <label for="myInput6"><b>* Password: <span class="error"><?php echo $pwd_err;?></span> </b></label><br>
 
                         <label for="myInput7"><b>Confirm Password:</b></label>
                         <input type="password" name="password2" maxlength="50" placeholder="*********" required
@@ -273,22 +269,20 @@ function test_input($data) {
 
                 </form>
             </section>
-            <div style="float:left">
-            </div>
         </div>
-               <div id="message" style="width: 210px; float:right; height:100px; padding-right:140px; padding-top:430px;">
+               <div id="message" style="width: 14vw; height:100px; padding-left:16vw; padding-top:0vh;">
                 <h3>Password must contain the following:</h3>
                 <p id="letter" class="invalid"><b> A lowercase letter</b></p>
                 <p id="capital" class="invalid"><b> A capital (uppercase) letter</b></p>
                 <p id="number" class="invalid"><b> A number</b></p>
                 <p id="length" class="invalid"><b> Minimum 8 characters</b></p>
             </div>
-
     </div>
-
- <section></section>
-
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <input type="password" name="password1" maxlength="50" placeholder="*********" required
+                               id="myInput6" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                               onFocus="focusFunction(this.id)" onBlur="blurFunction(this.id)">
     <script type="text/javascript">
         function sendEmail() {
             var email = $("#e_mail");
