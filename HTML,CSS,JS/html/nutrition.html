@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Light Theme</title>
+<title>Nutritional Information</title>
 <link href="../css/nutrition.css" rel="stylesheet" type="text/css">
 <style>
 /* Container */
@@ -27,9 +27,9 @@
 </head>
 <body>
 <!-- Main Container -->
-<div class="container"> 
+<div class="container">
   <!-- Navigation -->
-  <header class="page_header"> 
+  <header class="page_header">
     <a href="Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
   </a>
     <nav>
@@ -41,8 +41,8 @@
       </ul>
     </nav>
   </header>
-	
-  
+
+
   <section class="text_column">
 	<h1 class = "nutritional_h1">Nutritional information</h1>
 	<p>In this page, you'll be able to keep track of your diet! Add food to your log to check what nutrients it contains.
@@ -59,7 +59,7 @@
 	<button id="btn">Add more</button>
 	</div></span>
 <script>
-	$(function(){	
+	$(function(){
     $('#search0').autocomplete({
         source: "../php/autocomplete_search.php",
 		select: function( event, ui ) {
@@ -72,17 +72,17 @@
 
 <form action="../php/nutrition_table_print.php" method="POST">
 	<div id="container">
-		
+
 		<input type="text"  id="search0" name="food_name[]" placeholder="Name of the food" class="autoc" required />
 		<input type="number" min="1" set="0.01" name="Quantity[]" placeholder="Quantity" required>
-		
-		
+
+
 	</div>
 </span>
 <script>
 var count=1;
   $("#btn").click(function(){
-  
+
   $("#container").append(addNewRow(count));
   count++;
 });
@@ -103,7 +103,7 @@ function addNewRow(count){
     '<div class="col-md-4">'+
         '<input type="text"  id="search'+count+'" name="food_name[]" placeholder="Name of the food" class="autoc"/>' +
 		'<input type="number" min="1" set=0.01 name="Quantity[]" placeholder="Quantity">' +
-    '</div>'+    
+    '</div>'+
 '</div>'
 }
 </script>
