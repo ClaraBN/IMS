@@ -24,7 +24,23 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
 </head>
 
 <body style="font-family: source-sans-pro;">
@@ -51,21 +67,26 @@ $height = $_POST['height'];
 $weight = $_POST['weight'];
 $ex_type = $_POST['extype'];
 $ex_quant = $_POST['exquant'];
+?>
 
-echo "<br>";
-echo $sex;
-echo "<br>";
-echo $age;
-echo "<br>";
-echo $height;
-echo "<br>";
-echo $weight;
-echo "<br>";
-echo $ex_type;
-echo "<br>";
-echo $ex_quant;
-echo "<br>";
+<table style="width:100%">
+  <tr>
+    <th>Age</th>
+    <th>Height</th> 
+    <th>Weight</th>
+    <th>Exercise type</th>
+    <th>Amount of exercise</th>
+  </tr>
+  <tr>
+    <td>$age</td>
+    <td>$height</td>
+    <td>$weight</td>
+    <td>$ex_type</td>
+    <td>$ex_quant</td>
+  </tr>
+</table>
 
+<?php
 if ($sex == "Female"){
    echo bmr_female($age,$height,$weight); 
 } else {
