@@ -102,6 +102,14 @@ background: none;
 -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
 transition: all 0.3s ease 0s;
 }
+.canvasjs-chart-canvas {
+	position: absolute;
+	left: 50%;
+}
+.content_information {
+	width: 400px;
+    margin: 0 auto;
+}
  </style>
 </head>
 <?php
@@ -129,7 +137,7 @@ if(!isset($_SESSION['username'])){
 
 
   
-  <section class="text_column">
+  <section class="content_information">
     <h1 class = "nutritional_h1">Personal information</h1><br>
     <p><em>Summary of your personal settings</em> <br><br>
     <?php
@@ -151,7 +159,7 @@ if(!isset($_SESSION['username'])){
     </p>
   </section>
 
-  <section class="text_column">
+  <section class="content_information">
     <h1 class = "nutritional_h1">Patients</h1>
     <p><em>Summary of your patients</em><br>
 
