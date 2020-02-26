@@ -40,6 +40,10 @@ background: none;
 -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
 transition: all 0.3s ease 0s;
 }
+.content_information {
+	width: 400px;
+    margin: 0 auto;
+}
  </style>
  <?php
 if(!isset($_SESSION['username'])){
@@ -56,9 +60,8 @@ if(!isset($_SESSION['username'])){
   </a>
     <nav>
       <ul>
-        <li><a href="Home_login.php">Home</a></li>
+        <li><a href="Doctors_home_page.php">Home</a></li>
         <li><a href="Doctors_page.php">My page</a></li>
-		<li><a href="educational_page_login.php">Learn more</a></li>
 		<li><a href="logout.php">Logout</a></li>
         <li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
         <!--<li> <a href="login.html">Sign In&nbsp;</a></li> -->
@@ -74,7 +77,7 @@ if(!isset($_SESSION['username'])){
     $row_doctor = mysqli_fetch_row($result_doctor);
   ?>
 
-  <section class="text_column">
+  <section class="content_information">
     <h1 class = "nutritional_h1">Personal information</h1><br><br>
     <p><em>Update personal settings</em></p>
     <form name = "update_user" action="../php/update_info_user.php" method="POST">

@@ -12,7 +12,7 @@ session_start(); // Right at the top of your script
 <style>
     a { text-decoration: none; }
 	.wrapper {
-  max-width: 400px;
+  max-width: 800px;
   margin: 50px auto;
 }
 </style>
@@ -60,10 +60,7 @@ session_start(); // Right at the top of your script
     position: center;
 	right: 50%;
 }
-.pie_chart {
-	position: relative;
-	right: 40%;
-}
+
 .graph_session_h1 {
 	color: #FF00FF;
 	font-weight: bold;
@@ -80,6 +77,9 @@ session_start(); // Right at the top of your script
 .page_header{
 	height: 50px;
 	background-color: #73716A;
+}
+.pie_chart {
+	vertical-align: middle;
 }
 </style>
 
@@ -103,6 +103,10 @@ background: none;
 -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
 -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
 transition: all 0.3s ease 0s;
+}
+.content_information {
+	width: 400px;
+    margin: 0 auto;
 }
  </style>
 
@@ -170,7 +174,7 @@ if(!isset($_SESSION['username'])){
     </nav>
   </header>
 
-  <section class="text_column">
+  <section class="content_information">
     <h1 class = "nutritional_h1">Personal information</h1><br>
     <p><em>Summary of your personal settings</em> <br><br>
     <?php
@@ -191,13 +195,13 @@ if(!isset($_SESSION['username'])){
     <br><button type="button" onClick="window.location.href = '../php/doctors_page_alter_info.php';">Change personal settings</button>
     </p>
   </section>
+<br>
+  <section class="content_information">
 
-  <section class="text_column">
     <h1 class = "nutritional_h1">Patients</h1>
     <p><em>Summary of your patients</em><br>
 
     <button type="button" onClick="window.location.href = '../php/doctors_page.php';">Go back</button>
-
 
     <form id='plot_data_id' action='line_chart_doctor.php' method='POST' >
 		<select id='month' placeholder='Select month' name='month'>
@@ -227,10 +231,7 @@ if(!isset($_SESSION['username'])){
 		</select>
 		<input type='submit' value='Plot patient data'>;
 
-		<div id="chartContainer" class="pie_chart"  style="height: 500px; width: 700px;"></div>
-
 		</form>
 
     
  </section>
-
