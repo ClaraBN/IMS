@@ -57,9 +57,9 @@ def writing(data):
     name_records = cursor.fetchall()
     for entry in name_records:
         if Name in entry:
-            print ("Name present")
-            return (None)
-    print (str(next_number),Name,Fat,Carbohydrate,Sugars,Dietary_Fiber,Protein,Alcohol)
+            #print ("Name present")
+            return (False)
+    #print (str(next_number),Name,Fat,Carbohydrate,Sugars,Dietary_Fiber,Protein,Alcohol)
     cursor.execute("""SELECT * FROM food""")
     cursor.execute("""INSERT INTO food (id, name, fat, carbohydrate, sugars, fiber, protein, alcohol) 
         VALUES (%s,%s,%s,%s,%s,%s,%s,%s)""",(str(next_number),Name,Fat,Carbohydrate,Sugars,Dietary_Fiber,Protein,Alcohol))
@@ -67,5 +67,6 @@ def writing(data):
     cursor.close()
     conn.commit()
     conn.close()
+    return (Name)
 
 
