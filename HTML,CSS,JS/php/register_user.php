@@ -278,7 +278,7 @@ function test_input($data) {
             <div style="float:left">
             </div>
         </div>
-               <div id="message" style="width: 210px; float:right; height:100px; padding-right:140px; padding-top:430px;">
+               <div id="message" style="width: 210px; float: left; display: none;">
                 <h3>Password must contain the following:</h3>
                 <p id="letter" class="invalid"><b> A lowercase letter</b></p>
                 <p id="capital" class="invalid"><b> A capital (uppercase) letter</b></p>
