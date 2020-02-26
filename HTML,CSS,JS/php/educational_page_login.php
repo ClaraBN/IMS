@@ -10,6 +10,10 @@ session_start(); // Right at the top of your script
 <title>Educational page</title>
 <style>
     a { text-decoration: none; }
+	.content_information {
+	width: 70%;
+    margin: 0 auto;
+}
 </style>
 
 <link href="../css/educational.css" rel="stylesheet" type="text/css">
@@ -36,7 +40,6 @@ if(!isset($_SESSION['username'])){
 		 <li><a href="educational_page_login.php">Learn more</a></li>
 		 <li><a href="logout.php">Logout</a></li>
 		 <li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
-        <!--<li> <a href="login.html">Sign In&nbsp;</a></li>-->
       </ul>
     </nav>
   </header>
@@ -44,7 +47,7 @@ if(!isset($_SESSION['username'])){
   <section class="hero" id="hero">
 	  <p class="general_info">Diabetes mellitus is a cluster of illnesses defined by high levels of blood glucose. Nowadays, it affects more than 400 million people in the world. There are three main types of diabetes (although they're not the only ones) and it's linked to many other health issues. In this page, you'll be able to learn more about this disease. For that purpose, we've compiled information from several official sources. Ready to learn more?</p>
   </section>
-	<section class="about" id="about">
+	<section class="about content_information" id="about">
     <h2 class="hidden">About</h2>
     <span><p class="text_column"><span class="information_head">Global scale of diabetes <br></span> 
     <a href="https://www.who.int/news-room/fact-sheets/detail/diabetes" target="_blank">Key facts (WHO)</a><br>
@@ -65,14 +68,6 @@ if(!isset($_SESSION['username'])){
     <a href="https://www.diabetes.org/diabetes/genetics-diabetes" target="_blank">The genetics of diabetes</a></p>
     </span> 
  </section>
-  <!--
-	<section class="about" id="about">
-    <h2 class="hidden">About</h2>
-	<p class="text_column"><span class="information_head">Nutritional Checker </span> sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-    <p class="text_column"><span class="information_head">Users </span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-    <p class="text_column"><span class="information_head">Doctors </span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-  </section>
-  -->
 </div>
 </body>
 </html>
