@@ -52,8 +52,9 @@ session_start(); // Right at the top of your script
 	left: 30%;
 }
 .graphs_title {
-	position: relative;
-	left: 50%;
+	width: 70%;
+	margin: 0 auto;
+	padding-top: 20px;
 }
 .pie_chart {
 	position: relative;
@@ -63,8 +64,13 @@ session_start(); // Right at the top of your script
 	color: #FF00FF;
 	font-weight: bold;
 	font-size: 30px;
-	position: relative;
-	left: 70%;
+	width: 250px;
+	margin: 0 auto;
+	padding-top: 0px;
+}
+.content_information {
+	width: 400px;
+    margin: 0 auto;
 }
 </style>
 <?php 
@@ -160,7 +166,7 @@ if(!isset($_SESSION['username'])){
 	<section class="about" id="about">
 	<h1 class="graph_session_h1 graphs_title">Know your health</h1>
 
-<div id="chartContainer" class="pie_chart" style="height: 500px; width: 700px;"></div>
+<div id="chartContainer" class="content_information" style="height: 500px; width: 700px;"></div>
  </section>
 </div>
 </body>
