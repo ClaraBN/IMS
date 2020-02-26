@@ -10,10 +10,7 @@ session_start(); // Right at the top of your script
 <title>Educational page</title>
 <style>
     a { text-decoration: none; }
-	.content_information {
-	width: 70%;
-    margin: 0 auto;
-}
+
 </style>
 
 <link href="../css/educational.css" rel="stylesheet" type="text/css">
@@ -47,7 +44,7 @@ if(!isset($_SESSION['username'])){
   <section class="hero" id="hero">
 	  <p class="general_info">Diabetes mellitus is a cluster of illnesses defined by high levels of blood glucose. Nowadays, it affects more than 400 million people in the world. There are three main types of diabetes (although they're not the only ones) and it's linked to many other health issues. In this page, you'll be able to learn more about this disease. For that purpose, we've compiled information from several official sources. Ready to learn more?</p>
   </section>
-	<section class="about content_information" id="about">
+	<section class="about" id="about">
     <h2 class="hidden">About</h2>
     <span><p class="text_column"><span class="information_head">Global scale of diabetes <br></span> 
     <a href="https://www.who.int/news-room/fact-sheets/detail/diabetes" target="_blank">Key facts (WHO)</a><br>
