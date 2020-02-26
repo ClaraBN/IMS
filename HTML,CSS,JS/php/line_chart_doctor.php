@@ -1,6 +1,9 @@
 <?php include 'doctor_patient_page_submit.php'; ?>
 
 <div class="graph_container">
+ <div class="wrapper">
+<div id="chartContainer" class="pie_chart heading2"  style="height: 450px; width: 800px;"></div>
+</div>
 <div class="wrapper">
    <?php
    $month = $_POST['month'];
@@ -205,6 +208,7 @@ var myChart2 = new Chart(ctx2, {
 });
 
 </script>
+
 </section>
 </div>
 </body>
