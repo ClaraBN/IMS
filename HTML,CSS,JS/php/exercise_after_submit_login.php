@@ -54,6 +54,7 @@ if(!isset($_SESSION['username'])){
 
 <div>
 <?php
+
 $date = $_POST["date"];
 $time = $_POST["time"];
 $sex = $_POST["sex"];
@@ -62,10 +63,6 @@ $height = $_POST["height"];
 $weight = $_POST["weight"];
 $ex_type = $_POST["extype"];
 $ex_quant = $_POST["exquant"];
-
-$insert = "INSERT INTO exercise(fdate,ftime,sex,age,height,weight,patient_id,ex_type,min_spent) VALUES('$date','$time','$sex', '$age', '$height', '$weight', ".$_SESSION['id'].",'$ex_type','$ex_quant')";
-mysqli_query($link, $insert);
-
 
 echo "<br>";
 echo $date;
@@ -95,12 +92,15 @@ echo "<br>";
 
 
 function bmr_female($age,$height,$weight){
-    return 655 + (9.6*$weight) + (1.8*$height) - (4.7*$age);
+    return $bmr = 655 + (9.6*$weight) + (1.8*$height) - (4.7*$age);
 }
 
 function bmr_male($age,$height,$weight){
-    return 66 + (13.7*$weight) + (5*$height) - (6.8*$age);
+    return $bmr = 66 + (13.7*$weight) + (5*$height) - (6.8*$age);
 }
+
+$insert = "INSERT INTO exercise(fdate,ftime,sex,age,height,weight,patient_id,ex_type,min_spent,bmr) VALUES('$date','$time','$sex', '$age', '$height', '$weight', ".$_SESSION['id'].",'$ex_type','$ex_quant','$bmr')";
+mysqli_query($link, $insert);
 
 ?>
 
