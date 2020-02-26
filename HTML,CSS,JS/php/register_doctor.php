@@ -71,19 +71,19 @@ float: center;
 
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
-$pwd_err = $email_err = $usern_err = $ssn_err = $send_err = $total_err = $captcha_err = "";
-$first_name = $sur_name = $SSN = $user_name = $e_mail = $pswd = $pswd2 = $d_type = "";
+$pwd_err = $email_err = $usern_err = $work_err = $send_err = $total_err = $captcha_err = "";
+$first_name = $sur_name = $workplace = $user_name = $e_mail = $pswd = $pswd2 = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //echo "post method done, ";
     $first_name = test_input($_POST['fname']);
     $sur_name = test_input($_POST["lname"]);
-    $SSN = test_input($_POST["ssn"]);
+    $workplace = test_input($_POST["workplace"]);
     $user_name = test_input($_POST["username"]);
     $e_mail = test_input($_POST["email"]);
     $pswd= test_input($_POST["password1"]);
     $pswd2= test_input($_POST["password2"]);
-    $d_type =test_input($_POST["diabetes"]);
+
 
     // check if captcha is correct
     if(!isset($_REQUEST['g-recaptcha-response']) || empty($_POST['g-recaptcha-response'])){
@@ -96,13 +96,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 if($captcha_err==""){
-    //echo "no captcha errors";
-    // check if ssn is already in use
+    echo "no captcha errors";
+    // check if workplace is already in use
     include_once 'openDB.php';
-    $sql3 = mysqli_query($link, "SELECT id FROM temp_users where ssn='$SSN'");
+    $sql3 = mysqli_query($link, "SELECT id FROM temp_users where workplace='$workplace'");
     if($sql3->num_rows > 0){
-        $ssn_err = "This Social Security Number is already in use ( ͡° ͜ʖ ͡°) ";
-        //echo "Username is already in use, sorry! T-T ";
+        $work_err = "This Social Security Number is already in use ( ͡° ͜ʖ ͡°) ";
+        echo "Username is already in use, sorry! T-T ";
     }
 
     // check if username exists
@@ -110,30 +110,30 @@ if($captcha_err==""){
     $sql2 = mysqli_query($link, "SELECT id FROM temp_users where username='$user_name'");
     if($sql2->num_rows > 0){
         $usern_err = "It already exists! (╯°□°）╯︵ ┻━┻";
-        //echo "Username is already in use, sorry! T-T ";
+        echo "Username is already in use, sorry! T-T ";
     }
     // check if email is in use
     $sql = mysqli_query($link, "SELECT id FROM temp_users where email='$e_mail'");
     if($sql->num_rows > 0){
         $email_err = "Email is already in use! (o_O)";
-        //echo "Email is already in use!, ";
+        echo "Email is already in use!, ";
     }
 
     // check if passwords are the same
     if ($pswd == $pswd2){
-        //echo "passwords are the same, ";
+        echo "passwords are the same, ";
         $hashedPassword = password_hash($pswd, PASSWORD_DEFAULT);
     }else {
         $pwd_err = "Passwords don't match! ಠ_ಠ ";
-        //echo "Passwords don't match!";
+        echo "Passwords don't match!";
     }
 
      // send the email
     $token = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM123456789!$/()*';
     $token = str_shuffle($token);
     $token = substr($token, 0, 10);
-    if($pwd_err == "" AND $email_err == "" AND $usern_err == "" AND $ssn_err == ""){
-        //echo "starting the phpMailer, ";
+    if($pwd_err == "" AND $email_err == "" AND $usern_err == "" AND $work_err == ""){
+        echo "starting the phpMailer, ";
         require_once "../email/PHPMailer/PHPMailer.php";
         require_once "../email/PHPMailer/SMTP.php";
         require_once "../email/PHPMailer/Exception.php";
@@ -159,20 +159,19 @@ if($captcha_err==""){
             Please click on the link below to confirm the registration
             <a href='http://localhost/DiaBeatIT/w3tutorials/Project/IMS/HTML,CSS,JS/php/confirm_user?email=$e_mail&token=$token'>Click Here</a>
             ";
-             // if ssn, username, email, pwd and mail is okay then add user to database
+             // if workplace, username, email, pwd and mail is okay then add user to database
         if ($mail->send()){
-            //echo "Email was sent, ";
+            echo "Email was sent, ";
             $status = "success";
             $response = "Email is sent!";
 
-            mysqli_query($link,"INSERT INTO temp_users(fname, lname, email, pwd, diabetes, ssn, username, user_type, isEmailConfirmed, token)
-            VALUES ('$first_name','$sur_name', '$e_mail', '$hashedPassword', '$d_type', '$SSN', '$user_name', 'patient', '0', '$token')")
+            mysqli_query($link,"INSERT INTO temp_users(fname, lname, email, pwd, workplace, username, user_type, isEmailConfirmed, token)
+            VALUES ('$first_name','$sur_name', '$e_mail', '$hashedPassword', '$workplace', '$user_name', 'patient', '0', '$token')")
             or die("Could not issue MySQL query");
             echo "<script type='text/javascript'>alert('Thank you for registering, please verify the email (•̀ᴗ•́)و ̑̑ ');</script>";
         }else{
-            //echo "send() returned false, ";
+            echo "send() returned false, ";
             $total_err = "email wasnt sent :( ";
-            //echo "send error not empty, ";
             $send_err = "The email didn't send!";
             $status = "failed";
             $response = "Something is wrong: <br><br>" . $mail->ErrorInfo;
@@ -187,12 +186,14 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
-//echo $pwd_err;
-//echo $email_err;
-//echo $usern_err;
-//echo $ssn_err;
-//echo $send_err;
-//echo $total_err;
+echo "Here comes all errors";
+echo $captcha_err;
+echo $pwd_err;
+echo $email_err;
+echo $usern_err;
+echo $work_err;
+echo $send_err;
+echo $total_err;
 ?>
 
     <div class="container">
@@ -213,7 +214,7 @@ function test_input($data) {
         </section>
         <div style="width: 400px; float:left; height:500px; padding-left:366px;">
             <section class="about" id="about">
-                <form name="register_patient" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST"><br><br>
+                <form name="register_doctor" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST"><br><br>
                     <fieldset>
                         <legend align="center"><b>Personal information:</b></legend>
 
@@ -225,9 +226,9 @@ function test_input($data) {
                         <input type="text" name="lname" placeholder="Last Name" value="<?php echo $sur_name;?>"
                                id="myInput2" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"><br>
 
-                        <label for="myInput3"><b>* Social Security Number: <span class="error"><?php echo $ssn_err;?></span></b></label>
-                        <input type="tel" name="ssn" pattern="[0-9]{6}-[0-9]{4}" title="123456-1234" placeholder="123456-1234"
-                               value="<?php echo $SSN;?>" required autofocus
+                        <label for="myInput3"><b>* Name of workplace: <span class="error"><?php echo $work_err;?></span></b></label>
+                        <input type="text" name="workplace" title="workplace" placeholder="Akademiska"
+                               value="<?php echo $workplace;?>" required autofocus
                                id="myInput3" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)"><br>
 
                         <label for="myInput4"><b>* Username: <span class="error"><?php echo $usern_err;?></span></b></label>
@@ -251,13 +252,6 @@ function test_input($data) {
                                id="myInput7" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)">
                         <br>
 
-                        <label for="dtypes"><b>* Diabetic Type:</b></label><br>
-                        <input list="dtypes" name="diabetes" placeholder="Choose your type" required>
-                        <datalist id="dtypes">
-                            <option value="Type 1">
-                            <option value="Type 2">
-                            <option value="Gestational Diabetes">
-                        </datalist> <br>
                         <div id="custom_captcha">
                             <p> <b>Please enter the captcha: <span class="error"><?php echo $captcha_err;?></span> </b> <br>
                                 <img src="captcha.php" id="capt">

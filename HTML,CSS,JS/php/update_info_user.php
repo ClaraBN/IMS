@@ -2,16 +2,26 @@
 session_start();
 include 'db.php';
 
+
 //Retrieve updated information
-$f_name = $_POST['fname'];
-$l_name = $_POST['lname'];
+$f_name = prevent_injection($_POST['fname']);
+$l_name = prevent_injection($_POST['lname']);
 $ssn = $_POST['ssn'];
-$user = $_POST['username'];
-$pwd1 = $_POST['pw1'];
-$pwd2 = $_POST['pw2'];
+$user = prevent_injection($_POST['username']);
+$pwd1 = prevent_injection($_POST['pw1']);
+$pwd2 = prevent_injection($_POST['pw2']);
 $e_mail = $_POST['email'];
-$work_place = $_POST['workplace'];
+$work_place = prevent_injection($_POST['workplace']);
 $id = $_SESSION['id'];
+
+
+function prevent_injection($data) {
+  $data1 = str_replace(' ', '', $data); //remove white-spaces
+  $data2 = stripslashes($data1); //remove back-slashes
+  $data3 = preg_replace('/[^A-Za-z0-9\-]/', '', $data2); //remove special characters
+  return $data3;
+}
+
 
 //Check if username exists
 $check_user = "SELECT count(*) FROM $dbname.users WHERE $dbname.users.username = '$user' AND $dbname.users.id != '$id'";

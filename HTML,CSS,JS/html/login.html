@@ -1,25 +1,23 @@
 <!doctype html>
-<?php
-session_start(); // Right at the top of your script
-?>
 <html lang="en-US">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
 <title>Light Theme</title>
 <link href="../css/login_css.css" rel="stylesheet" type="text/css">
 <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
 <script>var __adobewebfontsappname__="dreamweaver"</script>
 <script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<SCRIPT type="text/javascript">
+	window.history.forward();
+	function noBack() { window.history.forward(); }
+</SCRIPT>
 </head>
-<body>
+<body onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="">
 <!-- Main Container -->
 <div class="container"> 
   <!-- Navigation -->
@@ -48,7 +46,7 @@ session_start(); // Right at the top of your script
 	  <p>Dont have an account yet?</p>
 	  <p>Register<br>
 	<button type="button" onClick="window.location.href = '../php/register_user.php';">User</button>
-	<button type="button" onClick="window.location.href = 'register_doctor.html';">Doctor</button>
+	<button type="button" onClick="window.location.href = '../php/register_doctor.php';">Doctor</button>
 	  </p>
   </section>
 	

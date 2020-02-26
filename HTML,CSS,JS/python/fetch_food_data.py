@@ -138,8 +138,18 @@ def open_url(item):
         
 receive_input()
 #print (item_fetched)
+
 def enter_into_database(item_fetched):
+    item_names = ""
     for data in item_fetched:
-        de.writing(data)
+        entry_record = de.writing(data)
+        if entry_record:
+            item_names += entry_record + ",<br>"
+    if len(item_names) == 0 and len(item_fetched) == 0:
+        print ("Nothing found in the database")
+    elif len(item_names) == 0 and len(item_fetched) != 0:
+        print ("Item already present in the database")
+    else:
+        print ("Added <br>" + item_names + " to the database<br>")
         
 enter_into_database(item_fetched)

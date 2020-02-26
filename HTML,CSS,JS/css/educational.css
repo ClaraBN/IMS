@@ -108,20 +108,19 @@ ul li:hover a {
 }
 /* About Section */
 .text_column {
-	//width: 28%;
-	position: relative;
-	left: 30%;
+	width: 25%;
 	text-align: justify;
 	font-weight: lighter;
 	line-height: 25px;
-	float: left;
-	padding-left: 20px;
-	padding-right: 20px;
-	color: #A3A3A3;
+	float: right;
+	padding-left: 0%;
+	padding-right: 5%;
+	color: #A3A3q3;
 }
 .about {
-	padding-left: 25px;
-	padding-right: 25px;
+	width: 100%;
+	padding-left: 0px;
+	padding-right: 0px;
 	padding-top: 35px;
 	display: inline-block;
 	background-color: #FFFFFF;

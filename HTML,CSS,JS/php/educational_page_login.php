@@ -10,18 +10,18 @@ session_start(); // Right at the top of your script
 <title>Educational page</title>
 <style>
     a { text-decoration: none; }
+
 </style>
 
 <link href="../css/educational.css" rel="stylesheet" type="text/css">
 <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
 <script>var __adobewebfontsappname__="dreamweaver"</script>
 <script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<?php
+if(!isset($_SESSION['username'])){
+    header('location:../html/login.html');
+}
+?>
 </head>
 <body>
 <!-- Main Container -->
@@ -37,7 +37,6 @@ session_start(); // Right at the top of your script
 		 <li><a href="educational_page_login.php">Learn more</a></li>
 		 <li><a href="logout.php">Logout</a></li>
 		 <li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
-        <!--<li> <a href="login.html">Sign In&nbsp;</a></li>-->
       </ul>
     </nav>
   </header>
@@ -66,14 +65,6 @@ session_start(); // Right at the top of your script
     <a href="https://www.diabetes.org/diabetes/genetics-diabetes" target="_blank">The genetics of diabetes</a></p>
     </span> 
  </section>
-  <!--
-	<section class="about" id="about">
-    <h2 class="hidden">About</h2>
-	<p class="text_column"><span class="information_head">Nutritional Checker </span> sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-    <p class="text_column"><span class="information_head">Users </span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-    <p class="text_column"><span class="information_head">Doctors </span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-  </section>
-  -->
 </div>
 </body>
 </html>
