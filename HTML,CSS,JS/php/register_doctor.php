@@ -186,7 +186,6 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
-echo "Here comes all errors";
 echo $captcha_err;
 echo $pwd_err;
 echo $email_err;
@@ -209,10 +208,9 @@ echo $total_err;
     </nav>
         </header>
         <section>
-            <h1 class="hero_header heading_font">Create an Account</h1>
-            <h1 class="hero_header">&nbsp;</h1>
+            <h1 class="hero_header" style="width: 300px; margin: 0 auto;">&nbsp Create an Account</h1>
         </section>
-        <div style="width: 400px; float:left; height:500px; padding-left:366px;">
+        <div style="width: 400px;  height:500px; margin: 0 auto;">
             <section class="about" id="about">
                 <form name="register_doctor" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST"><br><br>
                     <fieldset>
