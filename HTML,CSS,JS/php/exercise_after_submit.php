@@ -24,6 +24,41 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
+<style>
+/* Container */
+.container {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 1000px;
+    background-color: #FFFFFF;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 60%;
+  text-align: left;
+}
+td {
+  vertical-align: bottom;
+  color: black;
+  font-size:110%;
+  font-weight:bold;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+th {
+  background-color: #73713b;
+  color: white;
+}
+.pop_up_for_adding{
+    color: black;
+    font-weight: bold;
+}
+</style>
 
 </head>
 
@@ -53,25 +88,31 @@ $ex_type = $_POST['extype'];
 $ex_quant = $_POST['exquant'];
 
 echo "<br>";
+echo "<table border='1'>"; //define an html table
+//<th> Defines a header cell in a table
+//<tr> Defines a row in a table
+//<td> Defines a cell in a table
+echo "<tr><th>Sex</th><th>Age</th><th>Height</th><th>Weight</th><th>Exercise type</th><th>Amount of exercise</th><th>Basal metabolic rate</th></tr>";
+echo "<tr><td>";
 echo $sex;
-echo "<br>";
+echo "</td><td>";
 echo $age;
-echo "<br>";
+echo "</td><td>";
 echo $height;
-echo "<br>";
+echo "</td><td>";
 echo $weight;
-echo "<br>";
+echo "</td><td>";
 echo $ex_type;
-echo "<br>";
+echo "</td><td>";
 echo $ex_quant;
-echo "<br>";
-
+echo "</td><td>";
 if ($sex == "Female"){
-   echo bmr_female($age,$height,$weight); 
+   echo $bmr = bmr_female($age,$height,$weight); 
 } else {
-    echo bmr_male($age,$height,$weight); 
+    echo $bmr = bmr_male($age,$height,$weight); 
 }
-
+echo "</td></tr>";
+echo "</table>";
 echo "<br>";
 
 
@@ -82,7 +123,6 @@ function bmr_female($age,$height,$weight){
 function bmr_male($age,$height,$weight){
     return 66 + (13.7*$weight) + (5*$height) - (6.8*$age);
 }
-
 ?>
 </div>
 </body>
