@@ -164,9 +164,9 @@ echo $ex_quant;
 echo "</td><td>";
 
 if ($sex == "Female"){
-   echo $bmr = bmr_female($age,$height,$weight); 
+   echo $bmr = bmr_female($age,$height,$weight,$ex_type); 
 } else {
-    echo $bmr = bmr_male($age,$height,$weight); 
+    echo $bmr = bmr_male($age,$height,$weight,$ex_type); 
 }
 
 echo "</td></tr>";
@@ -174,25 +174,27 @@ echo "</table>";
 echo "<br>";
 
 
-function bmr_female($age,$height,$weight){
+function bmr_female($age,$height,$weight,$ex_type){
     if ($ex_type == "Low intensity"){
-      return (655 + (9.6*$weight) + (1.8*$height) - (4.7*$age))*1.5;
+      $bmr = (655 + (9.6*$weight) + (1.8*$height) - (4.7*$age))*1.5;
     } elseif ($ex_type == "Medium intensity"){
-      return (655 + (9.6*$weight) + (1.8*$height) - (4.7*$age))*1.6;
+      $bmr = (655 + (9.6*$weight) + (1.8*$height) - (4.7*$age))*1.6;
     } else {
-      return (655 + (9.6*$weight) + (1.8*$height) - (4.7*$age))*2;
+      $bmr = (655 + (9.6*$weight) + (1.8*$height) - (4.7*$age))*2;
     }
+    return $bmr;
     
 }
 
-function bmr_male($age,$height,$weight){
+function bmr_male($age,$height,$weight,$ex_type){
     if ($ex_type == "Low intensity"){
-      return (66 + (13.7*$weight) + (5*$height) - (6.8*$age))*1.5;
+      $bmr = (66 + (13.7*$weight) + (5*$height) - (6.8*$age))*1.5;
     } elseif ($ex_type == "Medium intensity"){
-      return (66 + (13.7*$weight) + (5*$height) - (6.8*$age))*1.7;
+      $bmr = (66 + (13.7*$weight) + (5*$height) - (6.8*$age))*1.7;
     } else {
-      return (66 + (13.7*$weight) + (5*$height) - (6.8*$age))*2;
+      $bmr = (66 + (13.7*$weight) + (5*$height) - (6.8*$age))*2;
     }
+    return $bmr;
 }
 
 $insert = "INSERT INTO exercise(fdate,ftime,sex,age,height,weight,patient_id,ex_type,min_spent,bmr) VALUES('$date','$time','$sex', '$age', '$height', '$weight', ".$_SESSION['id'].",'$ex_type','$ex_quant','$bmr')";
