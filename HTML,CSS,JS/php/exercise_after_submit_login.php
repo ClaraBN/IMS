@@ -130,6 +130,15 @@ if ($patient_id == $id){
     $ex_quant = $_POST["exquant"];
 }
 
+
+echo "<div class='info text'>";
+echo "<h1>Calory intake</h1>";
+echo "<p>Depending on certain biological factors such as age, weight, height or sex, the maximum amount of calories you can ingest while maintaining your current weight will vary.</php>";
+echo "<p>In the following table, you will find this information as your Basal Metabolic Rate.</p>";
+echo "<br>";
+echo "<p>According to the information we have stored in our database and the data you added:</p>";
+echo "<br>";
+echo "</div>";
 echo "<br>";
 echo "<table border='1'>"; //define an html table
 //<th> Defines a header cell in a table

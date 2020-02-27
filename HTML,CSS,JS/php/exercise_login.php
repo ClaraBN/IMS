@@ -75,7 +75,7 @@ if ($patient_id == $id){
                         
                     What type of exercise did you do?<br>
                     For how long did you exercise?<br> 
-                
+                    <div id="container">
                     <input list="extype" name="extype" placeholder="Insert intensity" required>
                     <datalist id="extype">
                         <option value="Low intensity">
@@ -94,6 +94,7 @@ if ($patient_id == $id){
                         <option value="+80 min">
                         <option value="+90 min">
                     </datalist>
+                    </div>
                     <br>
                     <span>
                         <div class="Add_more_button">

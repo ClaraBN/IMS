@@ -25,7 +25,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 <style>
-<<<<<<< HEAD
 /* Container */
 .container {
     width: 90%;
@@ -87,8 +86,14 @@ $weight = $_POST['weight'];
 $ex_type = $_POST['extype'];
 $ex_quant = $_POST['exquant'];
 
-
+echo "<div class='info text'>";
+echo "<h1>Calory intake</h1>";
+echo "<p>Depending on certain biological factors such as age, weight, height or sex, the maximum amount of calories you can ingest while maintaining your current weight will vary.</php>";
+echo "<p>In the following table, you will find this information as your Basal Metabolic Rate.</p>";
 echo "<br>";
+echo "<p>According to the information you specified:</p>";
+echo "<br>";
+echo "</div>";
 echo "<table border='1'>"; //define an html table
 //<th> Defines a header cell in a table
 //<tr> Defines a row in a table
