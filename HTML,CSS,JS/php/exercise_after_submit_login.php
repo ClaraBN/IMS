@@ -29,7 +29,6 @@ include 'db.php';
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-<<<<<<< HEAD
 <style>
 /* Container */
 .container {
@@ -66,9 +65,6 @@ th {
 }
 </style>
 
-
-=======
->>>>>>> format
 <?php
 if(!isset($_SESSION['username'])){
     header('location:../html/login.html');
@@ -135,7 +131,6 @@ if ($patient_id == $id){
 }
 
 echo "<br>";
-<<<<<<< HEAD
 echo "<table border='1'>"; //define an html table
 //<th> Defines a header cell in a table
 //<tr> Defines a row in a table
@@ -158,36 +153,15 @@ echo $ex_type;
 echo "</td><td>";
 echo $ex_quant;
 echo "</td><td>";
-=======
-echo $date;
-echo "<br>";
-echo $time;
-echo "<br>";
-echo $sex;
-echo "<br>";
-echo $age;
-echo "<br>";
-echo $height;
-echo "<br>";
-echo $weight;
-echo "<br>";
-echo $ex_type;
-echo "<br>";
-echo $ex_quant;
-echo "<br>";
 
->>>>>>> format
 if ($sex == "Female"){
    echo $bmr = bmr_female($age,$height,$weight); 
 } else {
     echo $bmr = bmr_male($age,$height,$weight); 
 }
-<<<<<<< HEAD
+
 echo "</td></tr>";
 echo "</table>";
-=======
-
->>>>>>> format
 echo "<br>";
 
 

@@ -60,25 +60,6 @@ th {
     font-weight: bold;
 }
 </style>
-
-=======
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-</style>
->>>>>>> format
 </head>
 
 <body style="font-family: source-sans-pro;">
@@ -105,7 +86,7 @@ $height = $_POST['height'];
 $weight = $_POST['weight'];
 $ex_type = $_POST['extype'];
 $ex_quant = $_POST['exquant'];
-<<<<<<< HEAD
+
 
 echo "<br>";
 echo "<table border='1'>"; //define an html table
@@ -133,36 +114,6 @@ if ($sex == "Female"){
 }
 echo "</td></tr>";
 echo "</table>";
-=======
-?>
-
-<table style="width:100%">
-  <tr>
-    <th>Age</th>
-    <th>Height</th> 
-    <th>Weight</th>
-    <th>Exercise type</th>
-    <th>Amount of exercise</th>
-  </tr>
-  <tr>
-    <td>$age</td>
-    <td>$height</td>
-    <td>$weight</td>
-    <td>$ex_type</td>
-    <td>$ex_quant</td>
-  </tr>
-</table>
-
-<?php
-if ($sex == "Female"){
-   echo bmr_female($age,$height,$weight); 
-} else {
-    echo bmr_male($age,$height,$weight); 
-}
-
->>>>>>> format
-echo "<br>";
-
 
 function bmr_female($age,$height,$weight){
     return 655 + (9.6*$weight) + (1.8*$height) - (4.7*$age);
@@ -171,10 +122,6 @@ function bmr_female($age,$height,$weight){
 function bmr_male($age,$height,$weight){
     return 66 + (13.7*$weight) + (5*$height) - (6.8*$age);
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> format
 ?>
 </div>
 </body>
