@@ -121,11 +121,24 @@ echo "</td></tr>";
 echo "</table>";
 
 function bmr_female($age,$height,$weight){
-    return 655 + (9.6*$weight) + (1.8*$height) - (4.7*$age);
+    if ($ex_type == "Low intensity"){
+      return (655 + (9.6*$weight) + (1.8*$height) - (4.7*$age))*1.5;
+    } elseif ($ex_type == "Medium intensity"){
+      return (655 + (9.6*$weight) + (1.8*$height) - (4.7*$age))*1.6;
+    } else {
+      return (655 + (9.6*$weight) + (1.8*$height) - (4.7*$age))*2;
+    }
+    
 }
 
 function bmr_male($age,$height,$weight){
-    return 66 + (13.7*$weight) + (5*$height) - (6.8*$age);
+    if ($ex_type == "Low intensity"){
+      return (66 + (13.7*$weight) + (5*$height) - (6.8*$age))*1.5;
+    } elseif ($ex_type == "Medium intensity"){
+      return (66 + (13.7*$weight) + (5*$height) - (6.8*$age))*1.7;
+    } else {
+      return (66 + (13.7*$weight) + (5*$height) - (6.8*$age))*2;
+    }
 }
 ?>
 </div>

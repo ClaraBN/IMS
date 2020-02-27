@@ -63,7 +63,8 @@ $row = mysqli_fetch_assoc($result);
 $patient_id = $row["patient_id"];
 
 if ($patient_id == $id){
-    ?> <div align="center">
+    ?>
+    <div align="center">
     <section class="about" id="about">
         <form name="exercise_log" action="../php/exercise_after_submit_login.php" method="POST"><br><br>
             <fieldset>
