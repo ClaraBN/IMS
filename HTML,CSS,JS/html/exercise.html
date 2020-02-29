@@ -34,16 +34,16 @@ We recommend that you do not modify it.-->
                     <li><a href="Home.html">Home</a></li>
                     <li><a href="nutrition.html">Nutrition checker</a></li>
             		<li><a href="educational_page.html">Learn more</a></li>
-                    <li><a href="login.html">Sign In&nbsp;</a></li>
+                    <li><a href="login.html">Log In&nbsp;</a></li>
                 </ul>
             </nav>
         </header>
-        
+
         <section>
             <h1 class="hero_header heading_font">Exercise tracker</h1>
             <h1 class="hero_header">&nbsp;</h1>
         </section>
-        
+
     <div align="center" class="ex_log">
     <form name="exercise_log" action="../php/exercise_after_submit.php" method="POST"><br><br>
         <fieldset>
@@ -60,9 +60,9 @@ We recommend that you do not modify it.-->
             	<input type="number" min=100 max=200 name="height" placeholder="Height" required><br><br>
                 Weight (kg): <br>
                 <input type="number" min=2 max=200 name="weight" placeholder="Weight" required><br><br>
-            			
+
             	What type of exercise did you do?<br>
-            	For how long did you exercise?<br> 
+            	For how long did you exercise?<br>
                     <div id="container">
                     <input list="extype" name="extype" placeholder="Insert intensity" required>
                         <datalist id="extype">
@@ -90,14 +90,14 @@ We recommend that you do not modify it.-->
                             <br>
                         </div>
                     </span>
-                
+
                         <script>
                             var count=1;
                               $("#btn").click(function(){
                               $("#container").append(addNewRow(count));
                                 count++;
                                 });
-                        
+
                             function addNewRow(count){
                             return  '<scr' + 'ipt>'+
                         	'$(function(){	'+
@@ -123,18 +123,18 @@ We recommend that you do not modify it.-->
                             '<option value="+80 min">' +
                             '<option value="+90 min">' +
                             '</datalist>' +
-                            '</div>'+    
+                            '</div>'+
                             '</div>'
                             }
                         </script>
 
                     <input type="submit" value="Save log">
                     </div>
-                    </fieldset>      
+                    </fieldset>
                     </form>
         </div>
     </div>
-    
+
  <section></section>
     <script>
         // Focus = Changes the background color of input to SkyBlue
