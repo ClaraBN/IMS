@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
 session_start();
-include 'db.php';
 ?>
 <html lang="en-US">
 
@@ -55,129 +54,34 @@ if(!isset($_SESSION['username'])){
             <h1 class="hero_header heading_font">Exercise tracker</h1>
             <h1 class="hero_header">&nbsp;</h1>
         </section>
-
-<?php        
-$id = $_SESSION['id'];
-$result = mysqli_query($link,"SELECT DISTINCT patient_id FROM exercise WHERE patient_id = '$id'");
-$row = mysqli_fetch_assoc($result);
-$patient_id = $row["patient_id"];
-
-if ($patient_id == $id){
-    ?>
+        
     <div align="center">
     <section class="about" id="about">
         <form name="exercise_log" action="../php/exercise_after_submit_login.php" method="POST"><br><br>
             <fieldset>
                 <legend>Exercise log</legend>
-                    Date:<br>
-                    <input type="date" name="date" placeholder="Enter date" required /><br><br>
+            		Date:<br>
+            		<input type="date" name="date" placeholder="Enter date" required /><br><br>
                     Time:<br>
                     <input type="time" name="time" placeholder="Enter time" required /><br><br>
-                        
-                    What type of exercise did you do?<br>
-                    For how long did you exercise?<br> 
-                    <div id="container">
-                    <input list="extype" name="extype" placeholder="Insert intensity" required>
-                    <datalist id="extype">
-                        <option value="Low intensity">
-                        <option value="Medium intensity">
-                        <option value="High intensity">
-                    </datalist>
-                    <input list="exquant" name="exquant" placeholder="Insert time" required>
-                    <datalist id="exquant">
-                        <option value="+10 min">
-                        <option value="+20 min">
-                        <option value="+30 min">
-                        <option value="+40 min">
-                        <option value="+50 min">
-                        <option value="+60 min">
-                        <option value="+70 min">
-                        <option value="+80 min">
-                        <option value="+90 min">
-                    </datalist>
-                    </div>
-                    <br>
-                    <span>
-                        <div class="Add_more_button">
-                            <button id="btn">Add more exercise</button>
-                            <br>
-                        </div>
-                    </span>
-                                    
-
-                        
-                    <input type="submit" value="Save log">
-                    </fieldset>
-                    </form>
-                
-                
-                        <script>
-                            var count=1;
-                              $("#btn").click(function(){
-                              $("#container").append(addNewRow(count));
-                                count++;
-                                });
-                        
-                            function addNewRow(count){
-                            return  '<scr' + 'ipt>'+
-                            '$(function(){  '+
-                            '});'+
-                            '</scr' + 'ipt>' +
-                            '<div class="row">' +
-                            '<div class="col-md-4">' +
-                            '<input list="extype" name="extype" placeholder="Insert intensity" required>' +
-                            '<datalist id="extype">' +
-                            '<option value="Low intensity">' +
-                            '<option value="Medium intensity">' +
-                            '<option value="High intensity">' +
-                            '</datalist>' +
-                            '<input list="exquant" name="exquant" placeholder="Insert time" required>' +
-                            '<datalist id="exquant">' +
-                            '<option value="+10 min">' +
-                            '<option value="+20 min">' +
-                            '<option value="+30 min">' +
-                            '<option value="+40 min">' +
-                            '<option value="+50 min">' +
-                            '<option value="+60 min">' +
-                            '<option value="+70 min">' +
-                            '<option value="+80 min">' +
-                            '<option value="+90 min">' +
-                            '</datalist>' +
-                            '</div>'+    
-                            '</div>'
-                            }
-                        </script>      
-                
-            </section>
-            <?php
-} else {
-    ?> <div align="center">
-    <section class="about" id="about">
-        <form name="exercise_log" action="../php/exercise_after_submit_login.php" method="POST"><br><br>
-            <fieldset>
-                <legend>Exercise log</legend>
-                    Date:<br>
-                    <input type="date" name="date" placeholder="Enter date" required /><br><br>
-                    Time:<br>
-                    <input type="time" name="time" placeholder="Enter time" required /><br><br>
-                    Biological sex:<br>
-                    <input list="sex" name="sex" placeholder="Insert biological sex" required>
-                        <datalist id="sex">
-                            <option value="Female">
-                            <option value="Male">
-                        </datalist><br><br>
+            		Biological sex:<br>
+            		<input list="sex" name="sex" placeholder="Insert biological sex" required>
+                		<datalist id="sex">
+                    		<option value="Female">
+                    		<option value="Male">
+                		</datalist><br><br>
                     Age: <br>
                     <input type="number" min=0 max=120 name="age" placeholder="Age"
                                id="myInput1" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)" required><br><br>
-                    Height (cm): <br>
-                    <input type="number" min=100 max=200 name="height" placeholder="Height"
+            		Height (cm): <br>
+            		<input type="number" min=100 max=200 name="height" placeholder="Height"
                                id="myInput2" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)" required><br><br>
                     Weight (kg): <br>
                     <input type="number" min=2 max=200 name="weight" placeholder="Weight"
                                id="myInput3" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)" required><br><br>
-                        
-                    What type of exercise did you do?<br>
-                    For how long did you exercise?<br> 
+            			
+            		What type of exercise did you do?<br>
+            		For how long did you exercise?<br> 
                 
                     <form action="../php/exercise_after_submit_login.php" method="POST">
                         <div id="container">
@@ -224,12 +128,12 @@ if ($patient_id == $id){
                         
                             function addNewRow(count){
                             return  '<scr' + 'ipt>'+
-                            '$(function(){  '+
+                        	'$(function(){	'+
                             '});'+
                             '</scr' + 'ipt>' +
                             '<div class="row">' +
                             '<div class="col-md-4">' +
-                            '<input list="extype" name="extype" placeholder="Insert intensity" required>' +
+                        	'<input list="extype" name="extype" placeholder="Insert intensity" required>' +
                             '<datalist id="extype">' +
                             '<option value="Low intensity">' +
                             '<option value="Medium intensity">' +
@@ -250,12 +154,10 @@ if ($patient_id == $id){
                             '</div>'+    
                             '</div>'
                             }
-                        </script> 
-    <?php
-}
-?>
-
-    </div>
+                        </script>      
+                
+            </section>
+        </div>
     </div>
     
  <section></section>
