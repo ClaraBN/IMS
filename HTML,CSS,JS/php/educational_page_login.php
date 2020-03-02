@@ -25,18 +25,19 @@ if(!isset($_SESSION['username'])){
 </head>
 <body>
 <!-- Main Container -->
-<div class="container"> 
+<div class="container">
   <!-- Navigation -->
-  <header class="page_header"> 
+  <header class="page_header">
     <a href="Home_login.php"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
   </a>
     <nav>
       <ul>
         <li><a href="Home_login.php">Home</a></li>
         <li><a href="My_health.php">My health</a></li>
-		 <li><a href="educational_page_login.php">Learn more</a></li>
-		 <li><a href="logout.php">Logout</a></li>
-		 <li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
+        <li><a href="exercise_login.php">Exercise tracker</a></li>
+		   <li><a href="educational_page_login.php">Learn more</a></li>
+		   <li><a href="logout.php">Logout</a></li>
+		   <li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
       </ul>
     </nav>
   </header>
@@ -46,7 +47,7 @@ if(!isset($_SESSION['username'])){
   </section>
 	<section class="about" id="about">
     <h2 class="hidden">About</h2>
-    <span><p class="text_column"><span class="information_head">Global scale of diabetes <br></span> 
+    <span><p class="text_column"><span class="information_head">Global scale of diabetes <br></span>
     <a href="https://www.who.int/news-room/fact-sheets/detail/diabetes" target="_blank">Key facts (WHO)</a><br>
     <a href="https://www.who.int/diabetes/country-profiles/en/" target="_blank">Country profiles (WHO)</a><br>
     <a href="https://www.who.int/diabetes/global-report/en/" target="_blank">Global report on diabetes, 2016 (WHO)</a><br>
@@ -57,13 +58,13 @@ if(!isset($_SESSION['username'])){
     <a href="https://www.diabetes.org/diabetes/gestational-diabetes/how-to-treat-gestational-diabetes" target="_blank">Treatment of gestational diabetes</a><br>
     <a href="https://www.diabetes.org/diabetes/device-technology" target="_blank">Possible devices</a><br>
     <a href="https://www.diabetes.org/nutrition/food-and-blood-sugar" target="_blank">Food and blood sugar</a></p>
-    
+
     <p class="text_column"><span class="information_head">Think you may be affected? <br></span>
     <a href="https://www.diabetes.org/diabetes/type-1/symptoms" target="_blank">Symptoms of type I diabetes</a><br>
     <a href="https://www.diabetes.org/diabetes/type-2/symptoms" target="_blank">Symptoms of type II diabetes</a><br>
     <a href="https://www.diabetes.org/risk-test" target="_blank">Diabetes risk test</a><br>
     <a href="https://www.diabetes.org/diabetes/genetics-diabetes" target="_blank">The genetics of diabetes</a></p>
-    </span> 
+    </span>
  </section>
 </div>
 </body>
