@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Light Theme</title>
+<title>My health</title>
 <link href="../css/nutrition.css" rel="stylesheet" type="text/css">
 
 <script>var __adobewebfontsappname__="dreamweaver"</script>
@@ -31,12 +31,13 @@ td {
 }
 th, td {
   padding: 15px;
-  text-align: left;
+  text-align: center;
 }
-tr:nth-child(even) {background-color: #f2f2f2;}
+tr:nth-child(even) {background-color: #ffffff;}
 th {
-  background-color: #73713b;
-  color: white;
+  background-color: #a6e4ff;
+  color: black;
+  text-align:center;
 }
 .pop_up_for_adding{
 	color: black;
