@@ -42,6 +42,7 @@ if(!isset($_SESSION['username'])){
                 <ul>
                     <li><a href="Home_login.php">Home</a></li>
                     <li><a href="nutrition_login.php">Nutrition checker</a></li>
+                    <li><a href="exercise_login.php">Exercise tracker</a></li>
             		<li><a href="educational_page_login.php">Learn more</a></li>
                     <li><a href="logout.php">Logout</a></li>
                     <li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
@@ -49,12 +50,12 @@ if(!isset($_SESSION['username'])){
                 </ul>
             </nav>
         </header>
-        
+
         <section>
             <h1 class="hero_header heading_font">Exercise tracker</h1>
             <h1 class="hero_header">&nbsp;</h1>
         </section>
-        
+
     <div align="center">
     <section class="about" id="about">
         <form name="exercise_log" action="../php/exercise_after_submit_login.php" method="POST"><br><br>
@@ -79,10 +80,10 @@ if(!isset($_SESSION['username'])){
                     Weight (kg): <br>
                     <input type="number" min=2 max=200 name="weight" placeholder="Weight"
                                id="myInput3" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)" required><br><br>
-            			
+
             		What type of exercise did you do?<br>
-            		For how long did you exercise?<br> 
-                
+            		For how long did you exercise?<br>
+
                     <form action="../php/exercise_after_submit_login.php" method="POST">
                         <div id="container">
                             <input list="extype" name="extype" placeholder="Insert intensity" required>
@@ -111,21 +112,21 @@ if(!isset($_SESSION['username'])){
                             <br>
                         </div>
                     </span>
-                                    
 
-                        
+
+
                     <input type="submit" value="Save log">
                     </fieldset>
                     </form>
-                
-                
+
+
                         <script>
                             var count=1;
                               $("#btn").click(function(){
                               $("#container").append(addNewRow(count));
                                 count++;
                                 });
-                        
+
                             function addNewRow(count){
                             return  '<scr' + 'ipt>'+
                         	'$(function(){	'+
@@ -151,15 +152,15 @@ if(!isset($_SESSION['username'])){
                             '<option value="+80 min">' +
                             '<option value="+90 min">' +
                             '</datalist>' +
-                            '</div>'+    
+                            '</div>'+
                             '</div>'
                             }
-                        </script>      
-                
+                        </script>
+
             </section>
         </div>
     </div>
-    
+
  <section></section>
     <script>
         // Focus = Changes the background color of input to SkyBlue
