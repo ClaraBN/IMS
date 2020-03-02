@@ -64,8 +64,8 @@ th {
       <ul>
         <li><a href="../html/Home.html">Home</a></li>
         <li><a href="../html/nutrition.html">Nutrition checker</a></li>
-		<li><a href="../html/exercise.html">Calorie burn</a></li>
-		<li><a href="../html/educational_page.html">Learn more</a></li>
+		    <li><a href="../html/exercise.html">Exercise tracker</a></li>
+		    <li><a href="../html/educational_page.html">Learn more</a></li>
         <li> <a href="../html/login.html">Log In&nbsp;</a></li>
       </ul>
     </nav>
