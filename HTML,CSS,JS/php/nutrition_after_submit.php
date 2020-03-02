@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Light Theme</title>
+<title>Nutrition checker</title>
 <link href="../css/nutrition.css" rel="stylesheet" type="text/css">
 
 <script>var __adobewebfontsappname__="dreamweaver"</script>
@@ -39,12 +39,13 @@ td {
 }
 th, td {
   padding: 15px;
-  text-align: left;
+  text-align: center;
 }
-tr:nth-child(even) {background-color: #f2f2f2;}
+tr:nth-child(even) {background-color: #ffffff;}
 th {
-  background-color: #73713b;
-  color: white;
+  background-color: #a6e4ff;
+  color: black;
+  text-align: center;
 }
 .pop_up_for_adding{
 	color: black;
@@ -54,9 +55,9 @@ th {
 </head>
 <body>
 <!-- Main Container -->
-<div class="container"> 
+<div class="container">
   <!-- Navigation -->
-  <header class="page_header"> 
+  <header class="page_header">
     <a href="../html/Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
   </a>
     <nav>
@@ -69,12 +70,12 @@ th {
       </ul>
     </nav>
   </header>
-	
-  
+
+
   <section class="text_column">
 	<h1 class = "nutritional_h1">Nutritional information</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-	</p>
+	<p> In this page, you'll be able to keep track of your diet! Add food to your log to check what nutrients it contains.
+  </p>
 	<div class="python_search_form">
 	<p style="font-weight: bold;color:black;">Enter the food item here, if you cannot find in our database</p>
 	<form id="python_form" action="../php/python_command.php" method="post">
@@ -87,7 +88,7 @@ th {
 	<button id="btn">Add more</button>
 	</div></span>
 <script>
-	$(function(){	
+	$(function(){
     $('#search0').autocomplete({
         source: "../php/autocomplete_search.php",
 		select: function( event, ui ) {
@@ -107,7 +108,7 @@ th {
 <script>
 var count=1;
   $("#btn").click(function(){
-  
+
   $("#container").append(addNewRow(count));
   count++;
 });
@@ -128,7 +129,7 @@ function addNewRow(count){
     '<div class="col-md-4">'+
         '<input type="text"  id="search'+count+'" name="food_name[]" placeholder="Name of the food" class="autoc"/>' +
 		'<input type="number" min="1" set=0.01 name="Quantity[]" placeholder="Quantity">' +
-    '</div>'+    
+    '</div>'+
 '</div>'
 }
 </script>
