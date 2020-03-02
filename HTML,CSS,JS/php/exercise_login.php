@@ -41,7 +41,7 @@ if(!isset($_SESSION['username'])){
             <nav>
                 <ul>
                     <li><a href="Home_login.php">Home</a></li>
-                    <li><a href="nutrition_login.php">Nutrition checker</a></li>
+                    <li><a href="My_health.php">My health</a></li>
                     <li><a href="exercise_login.php">Exercise tracker</a></li>
             		<li><a href="educational_page_login.php">Learn more</a></li>
                     <li><a href="logout.php">Logout</a></li>
