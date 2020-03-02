@@ -36,9 +36,10 @@ if(!isset($_SESSION['username'])){
       <ul class="menu">
         <li><a href="Home_login.php">Home</a></li>
         <li><a href="My_health.php">My health</a></li>
-	<li><a href="educational_page_login.php">Learn more</a></li>
-	<li><a href="logout.php">Logout</a></li>
-	<li style="color:yellow;font-weight: bold;
+        <li><a href="../html/exercise.html">Exercise tracker</a></li>
+	    <li><a href="educational_page_login.php">Learn more</a></li>
+	    <li><a href="logout.php">Logout</a></li>
+	    <li style="color:yellow;font-weight: bold;
             background-color: #73716A; padding-top: 6px">
             Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
         <!--<li> <a href="login.html">Sign In&nbsp;</a></li> -->
