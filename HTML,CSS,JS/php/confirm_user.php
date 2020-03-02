@@ -16,9 +16,9 @@
 		$email =  $link -> real_escape_string($_GET['email']);
 		$token = $link -> real_escape_string($_GET['token']);
 
-		$sql =  mysqli_query($link, "SELECT id FROM temp_users WHERE email='$email' AND token='$token' AND isEmailConfirmed=0");
+		$sql =  mysqli_query($link, "SELECT id FROM users WHERE email='$email' AND token='$token' AND isEmailConfirmed=0");
 		if ($sql->num_rows > 0) {
-			mysqli_query($link, "UPDATE temp_users SET isEmailConfirmed=1, token='' WHERE email='$email'");
+			mysqli_query($link, "UPDATE users SET isEmailConfirmed=1, token='' WHERE email='$email'");
 			include "../html/login.html";
 		} else
 			redirect();

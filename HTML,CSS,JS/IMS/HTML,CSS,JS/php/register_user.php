@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register User</title>
+    <title>DiaBeatIt User account</title>
     <link href="../css/register.css" rel="stylesheet" type="text/css">
     <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page.
     We recommend that you do not modify it.-->
@@ -62,10 +62,7 @@ float: center;
   left: 0px;
   content: "✖";
 }
-.content_information {
-	width: 80%;
-    margin: 0 auto;
-}
+
 
 </style>
 </head>
@@ -79,7 +76,6 @@ $first_name = $sur_name = $SSN = $user_name = $e_mail = $pswd = $pswd2 = $d_type
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //echo "post method done, ";
-    // stop javascript injections
     $first_name = test_input($_POST['fname']);
     $sur_name = test_input($_POST["lname"]);
     $SSN = test_input($_POST["ssn"]);
@@ -99,101 +95,91 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
     }
 
-    if($captcha_err==""){
-        //echo "no captcha errors";
-        // check if ssn is already in use
-        include_once 'openDB.php';
-        // stop sql injections:
-        $first_name = $link -> real_escape_string($first_name);
-        $sur_name = $link -> real_escape_string($sur_name);
-        $SSN = $link -> real_escape_string($SSN);
-        $user_name = $link -> real_escape_string($user_name);
-        $e_mail = $link -> real_escape_string($e_mail);
-        $pswd = $link -> real_escape_string($pswd);
-        $pswd2 = $link -> real_escape_string($pswd2);
-        $d_type = $link -> real_escape_string($d_type);
-
-        $sql3 = mysqli_query($link, "SELECT id FROM users where ssn='$SSN'");
-        if($sql3->num_rows > 0){
-            $ssn_err = "This Social Security Number is already in use ( ͡° ͜ʖ ͡°) ";
-            //echo "Username is already in use, sorry! T-T ";
-        }
-
-        // check if username exists
-        include_once 'openDB.php';
-        $sql2 = mysqli_query($link, "SELECT id FROM users where username='$user_name'");
-        if($sql2->num_rows > 0){
-            $usern_err = "It already exists! (╯°□°）╯︵ ┻━┻";
-            //echo "Username is already in use, sorry! T-T ";
-        }
-        // check if email is in use
-        $sql = mysqli_query($link, "SELECT id FROM users where email='$e_mail'");
-        if($sql->num_rows > 0){
-            $email_err = "Email is already in use! (o_O)";
-            //echo "Email is already in use!, ";
-        }
-
-        // check if passwords are the same
-        if ($pswd == $pswd2){
-            //echo "passwords are the same, ";
-            $hashedPassword = password_hash($pswd, PASSWORD_DEFAULT);
-        }else {
-            $pwd_err = "Passwords don't match! ಠ_ಠ ";
-            //echo "Passwords don't match!";
-        }
-
-        // send the email
-        $token = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM123456789!$/()*';
-        $token = str_shuffle($token);
-        $token = substr($token, 0, 10);
-        if($pwd_err == "" AND $email_err == "" AND $usern_err == "" AND $ssn_err == ""){
-            //echo "starting the phpMailer, ";
-            require_once "../email/PHPMailer/PHPMailer.php";
-            require_once "../email/PHPMailer/SMTP.php";
-            require_once "../email/PHPMailer/Exception.php";
-            //Create a new PHPMailer instance $mail = new PHPMailer
-            $mail = new PHPMailer();
-
-            //SMTP Settings
-            $mail->isSMTP();
-            $mail->Host = "smtp.gmail.com";
-            $mail->SMTPAuth = true;
-            $mail->Username = "diabeatit.ims@gmail.com";
-            $mail->Password = 'ims_1234';
-            $mail->Port = 465; //587
-            $mail->SMTPSecure = "ssl"; //tls
-
-            //Email Settings
-            $mail->isHTML(true);
-            $mail->setFrom($e_mail, 'DiaBeatIt');
-            $mail->addAddress($e_mail);
-            $mail->Subject = "Please verify your registration";
-            $mail->Body = "
-                <h1>Thanks for registering!</h1><br>
-                Please click on the link below to confirm the registration
-                <a href='http://localhost/DiaBeatIT/w3tutorials/Project/IMS/HTML,CSS,JS/php/confirm_user?email=$e_mail&token=$token'>Click Here</a>
-                ";
-                // if ssn, username, email, pwd and mail is okay then add user to database
-            if ($mail->send()){
-                //echo "Email was sent, ";
-                $status = "success";
-                $response = "Email is sent!";
-
-                mysqli_query($link,"INSERT INTO users(fname, lname, email, pwd, diabetes, ssn, username, user_type, isEmailConfirmed, token)
-                VALUES ('$first_name','$sur_name', '$e_mail', '$hashedPassword', '$d_type', '$SSN', '$user_name', 'patient', '0', '$token')")
-                or die("Could not issue MySQL query");
-                echo "<script type='text/javascript'>alert('Thank you for registering, please verify the email (•̀ᴗ•́)و ̑̑ ');</script>";
-            }else{
-                //echo "send() returned false, ";
-                $total_err = "email wasnt sent :( ";
-                //echo "send error not empty, ";
-                $send_err = "The email didn't send!";
-                $status = "failed";
-                $response = "Something is wrong: <br><br>" . $mail->ErrorInfo;
-            }
-        }
-        include 'closeDB.php';
+if($captcha_err==""){
+    //echo "no captcha errors";
+    // check if ssn is already in use
+    include_once 'openDB.php';
+    $sql3 = mysqli_query($link, "SELECT id FROM temp_users where ssn='$SSN'");
+    if($sql3->num_rows > 0){
+        $ssn_err = "This Social Security Number is already in use ( ͡° ͜ʖ ͡°) ";
+        //echo "Username is already in use, sorry! T-T ";
     }
+
+    // check if username exists
+    include_once 'openDB.php';
+    $sql2 = mysqli_query($link, "SELECT id FROM temp_users where username='$user_name'");
+    if($sql2->num_rows > 0){
+        $usern_err = "It already exists! (╯°□°）╯︵ ┻━┻";
+        //echo "Username is already in use, sorry! T-T ";
+    }
+    // check if email is in use
+    $sql = mysqli_query($link, "SELECT id FROM temp_users where email='$e_mail'");
+    if($sql->num_rows > 0){
+        $email_err = "Email is already in use! (o_O)";
+        //echo "Email is already in use!, ";
+    }
+
+    // check if passwords are the same
+    if ($pswd == $pswd2){
+        //echo "passwords are the same, ";
+        $hashedPassword = password_hash($pswd, PASSWORD_DEFAULT);
+    }else {
+        $pwd_err = "Passwords don't match! ಠ_ಠ ";
+        //echo "Passwords don't match!";
+    }
+
+     // send the email
+    $token = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM123456789!$/()*';
+    $token = str_shuffle($token);
+    $token = substr($token, 0, 10);
+    if($pwd_err == "" AND $email_err == "" AND $usern_err == "" AND $ssn_err == ""){
+        //echo "starting the phpMailer, ";
+        require_once "../email/PHPMailer/PHPMailer.php";
+        require_once "../email/PHPMailer/SMTP.php";
+        require_once "../email/PHPMailer/Exception.php";
+        //Create a new PHPMailer instance $mail = new PHPMailer
+        $mail = new PHPMailer();
+
+        //SMTP Settings
+        $mail->isSMTP();
+        $mail->Host = "smtp.gmail.com";
+        $mail->SMTPAuth = true;
+        $mail->Username = "diabeatit.ims@gmail.com";
+        $mail->Password = 'ims_1234';
+        $mail->Port = 465; //587
+        $mail->SMTPSecure = "ssl"; //tls
+
+        //Email Settings
+        $mail->isHTML(true);
+        $mail->setFrom($e_mail, 'DiaBeatIt');
+        $mail->addAddress($e_mail);
+        $mail->Subject = "Please verify your registration";
+        $mail->Body = "
+            <h1>Thanks for registering!</h1><br>
+            Please click on the link below to confirm the registration
+            <a href='http://localhost/DiaBeatIT/w3tutorials/Project/IMS/HTML,CSS,JS/php/confirm_user?email=$e_mail&token=$token'>Click Here</a>
+            ";
+             // if ssn, username, email, pwd and mail is okay then add user to database
+        if ($mail->send()){
+            //echo "Email was sent, ";
+            $status = "success";
+            $response = "Email is sent!";
+
+            mysqli_query($link,"INSERT INTO temp_users(fname, lname, email, pwd, diabetes, ssn, username, user_type, isEmailConfirmed, token)
+            VALUES ('$first_name','$sur_name', '$e_mail', '$hashedPassword', '$d_type', '$SSN', '$user_name', 'patient', '0', '$token')")
+            or die("Could not issue MySQL query");
+            echo "<script type='text/javascript'>alert('Thank you for registering, please verify the email (•̀ᴗ•́)و ̑̑ ');</script>";
+        }else{
+            //echo "send() returned false, ";
+            $total_err = "email wasnt sent :( ";
+            //echo "send error not empty, ";
+            $send_err = "The email didn't send!";
+            $status = "failed";
+            $response = "Something is wrong: <br><br>" . $mail->ErrorInfo;
+        }
+    }
+     include 'closeDB.php';
+ }
 }
 function test_input($data) {
   $data = trim($data);
@@ -201,7 +187,6 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
-// just some echos to see whats going wrong with the if statements above
 //echo $pwd_err;
 //echo $email_err;
 //echo $usern_err;
@@ -209,25 +194,26 @@ function test_input($data) {
 //echo $send_err;
 //echo $total_err;
 ?>
+
     <div class="container">
         <header class="page_header">
-            <a href="Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></a>
+            <a href="../html/Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></a>
             <nav>
       <ul>
         <li><a href="../html/Home.html">Home</a></li>
         <li><a href="../html/nutrition.html">Nutrition checker</a></li>
-        <li><a href="../html/exercise.html">Calorie burn</a></li>
-		<li><a href="../html/educational_page.html">Learn more</a></li>
-        <li> <a href="../html/login.html">Log In&nbsp;</a></li>
+		 <li><a href="../html/educational_page.html">Learn more</a></li>
+        <li> <a href="../html/login.html">Sign In&nbsp;</a></li>
       </ul>
     </nav>
         </header>
         <section>
-            <h1 class="hero_header" style="width: 300px; margin: 0 auto;">&nbsp Create an Account</h1>
+            <h1 class="hero_header heading_font">Create an Account</h1>
+            <h1 class="hero_header">&nbsp;</h1>
         </section>
-        <div style="width: 400px;  height:500px; margin: 0 auto;">
+        <div style="width: 40vw; float:left; padding-left:37%;">
             <section class="about" id="about">
-                <form name="register_patient" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST"><br><br>
+                <form name="register_patient" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
                     <fieldset>
                         <legend align="center"><b>Personal information:</b></legend>
 
@@ -254,11 +240,7 @@ function test_input($data) {
                                id="myInput5" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)">
                         <br>
 
-                        <label for="myInput6"><b>* Password: <span class="error"><?php echo $pwd_err;?></span> </b></label>
-                        <input type="password" name="password1" maxlength="50" placeholder="*********" required
-                               id="myInput6" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                               onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)">  <br>
+                        <label for="myInput6"><b>* Password: <span class="error"><?php echo $pwd_err;?></span> </b></label><br>
 
                         <label for="myInput7"><b>Confirm Password:</b></label>
                         <input type="password" name="password2" maxlength="50" placeholder="*********" required
@@ -287,20 +269,20 @@ function test_input($data) {
 
                 </form>
             </section>
-            <div style="float:left">
-            </div>
         </div>
-               <div id="message" style="width: 210px; float: left; display: none;">
+               <div id="message" style="width: 14vw; height:100px; padding-left:16vw; padding-top:0vh;">
                 <h3>Password must contain the following:</h3>
                 <p id="letter" class="invalid"><b> A lowercase letter</b></p>
                 <p id="capital" class="invalid"><b> A capital (uppercase) letter</b></p>
                 <p id="number" class="invalid"><b> A number</b></p>
                 <p id="length" class="invalid"><b> Minimum 8 characters</b></p>
             </div>
-
     </div>
- <section></section>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <input type="password" name="password1" maxlength="50" placeholder="*********" required
+                               id="myInput6" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                               onFocus="focusFunction(this.id)" onBlur="blurFunction(this.id)">
     <script type="text/javascript">
         function sendEmail() {
             var email = $("#e_mail");

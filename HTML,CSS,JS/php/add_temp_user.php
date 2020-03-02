@@ -14,7 +14,7 @@ $d_type =$_POST["diabetes"];
 
 if ($pswd == $pswd2){
 include 'openDB.php';
-mysqli_query($link,"INSERT INTO temp_users(fname, lname, email, pwd, diabetes, ssn, username, user_type) VALUES
+mysqli_query($link,"INSERT INTO users(fname, lname, email, pwd, diabetes, ssn, username, user_type) VALUES
  ('$first_name','$sur_name', '$e_mail', '$pswd', '$d_type', '$SSN', '$user_name', 'patient')")
 or die("Could not issue MySQL query");
 include 'closeDB.php';
