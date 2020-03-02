@@ -129,9 +129,10 @@ if(!isset($_SESSION['username'])){
       <ul>
         <li><a href="Home_login.php">Home</a></li>
         <li><a href="My_health.php">My health</a></li>
-		 <li><a href="educational_page_login.php">Learn more</a></li>
-		 <li><a href="logout.php">Logout</a></li>
-		 <li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
+        <li><a href="../html/exercise.html">Exercise tracker</a></li>
+		<li><a href="educational_page_login.php">Learn more</a></li>
+		<li><a href="logout.php">Logout</a></li>
+		<li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
         <!--<li> <a href="login.html">Sign In&nbsp;</a></li>-->
       </ul>
     </nav>
