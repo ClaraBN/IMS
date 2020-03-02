@@ -55,9 +55,9 @@ if(!isset($_SESSION['username'])){
 </head>
 <body>
 <!-- Main Container -->
-<div class="container_this"> 
+<div class="container_this">
   <!-- Navigation -->
-  <header class="page_header"> 
+  <header class="page_header">
     <a href="Home_login.php"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
   </a>
     <nav>
@@ -72,7 +72,7 @@ if(!isset($_SESSION['username'])){
       </ul>
     </nav>
   </header>
-  	
+
   <section class="text_column">
     <h1 class = "nutritional_h1">My status</h1>
 <div class="button_cont" ><a class="example_e" href="My_status.php" rel="nofollow noopener">Check my status</a></div>
@@ -88,7 +88,7 @@ if(!isset($_SESSION['username'])){
 	</section>
 	<section class="text_column">
 <script>
-	$(function(){	
+	$(function(){
     $('#search0').autocomplete({
         source: "../php/autocomplete_search.php",
 		select: function( event, ui ) {
@@ -112,7 +112,7 @@ if(!isset($_SESSION['username'])){
 <script>
 var count=1;
   $("#btn").click(function(){
-  
+
   $("#container").append(addNewRow(count));
   count++;
 });
@@ -133,7 +133,7 @@ function addNewRow(count){
     '<div class="col-md-4">'+
         '<input type="text"  id="search'+count+'" name="food_name[]" placeholder="Name of the food" class="autoc" required />' +
 		'<input type="number" min="1" set=0.01 name="Quantity[]" placeholder="Quantity" required>' +
-    '</div>'+    
+    '</div>'+
 '</div>'
 }
 </script>

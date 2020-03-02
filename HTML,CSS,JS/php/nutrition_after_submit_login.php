@@ -46,24 +46,25 @@ th {
 </head>
 <body>
 <!-- Main Container -->
-<div class="container"> 
+<div class="container">
   <!-- Navigation -->
-  <header class="page_header"> 
+  <header class="page_header">
     <a href="Home_login.php"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
   </a>
     <nav>
       <ul>
         <li><a href="Home_login.php">Home</a></li>
         <li><a href="nutrition_login.php">Nutrition checker</a></li>
-		<li><a href="educational_page_login.php">Learn more</a></li>
-		<li><a href="logout.php">Logout</a></li>
+        <li><a href="../html/exercise.html">Exercise tracker</a></li>
+		    <li><a href="educational_page_login.php">Learn more</a></li>
+		    <li><a href="logout.php">Logout</a></li>
         <li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
         <!--<li> <a href="login.html">Sign In&nbsp;</a></li> -->
       </ul>
     </nav>
   </header>
-	
-  
+
+
   <section class="text_column">
 	<h1 class = "nutritional_h1">Nutritional information</h1>
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
@@ -80,7 +81,7 @@ th {
 	<button id="btn" style="position:relative;left:5%">Add more</button>
 	</div></span>
 <script>
-	$(function(){	
+	$(function(){
     $('#search0').autocomplete({
         source: "../php/autocomplete_search.php",
 		select: function( event, ui ) {
@@ -102,7 +103,7 @@ th {
 <script>
 var count=1;
   $("#btn").click(function(){
-  
+
   $("#container").append(addNewRow(count));
   count++;
 });
@@ -123,7 +124,7 @@ function addNewRow(count){
     '<div class="col-md-4">'+
         '<input type="text"  id="search'+count+'" name="food_name[]" placeholder="Name of the food" class="autoc" required />' +
 		'<input type="number" min="1" set=0.01 name="Quantity[]" placeholder="Quantity" required>' +
-    '</div>'+    
+    '</div>'+
 '</div>'
 }
 </script>
