@@ -21,7 +21,7 @@ table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
   width: 60%;
-  text-align: left;
+  text-align: center;
 }
 td {
   vertical-align: bottom;
