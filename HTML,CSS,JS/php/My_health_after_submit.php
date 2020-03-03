@@ -46,6 +46,32 @@ transition: all 0.3s ease 0s;
 	height: 50px;
 	background-color: #73716A;
 }
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 60%;
+  text-align: left;
+}
+td {
+  vertical-align: bottom;
+  color: black;
+  font-size:110%;
+  font-weight:bold;
+}
+th, td {
+  padding: 15px;
+  text-align: center;
+}
+tr:nth-child(even) {background-color: #ffffff;}
+th {
+  background-color: #a6e4ff;
+  color: black;
+  text-align: center;
+}
+.pop_up_for_adding{
+	color: black;
+	font-weight: bold;
+}
  </style>
 <?php
 if(!isset($_SESSION['username'])){
