@@ -1,6 +1,9 @@
 <?php include 'My_status_after_submit.php'; ?>
 
 <div class="graph_container">
+ <div class="wrapper">
+<div id="chartContainer" class="pie_chart heading2"  style="height: 450px; width: 800px;"></div>
+</div>
 <div class="wrapper">
    <?php
    $month = $_POST['month'];
@@ -8,7 +11,7 @@
    echo '<h1 class="graphs_title" >Total consumption for this '.$month.' in grams</h1>';
    echo '</div>';
    ?>
-   <canvas class="graphs" id="myChart" width="1600" height="900"></canvas>
+   <canvas class="graphs" id="myChart" width="800" height="450"></canvas>
   
 </div>
 <div class="wrapper">
@@ -18,7 +21,7 @@
    echo '<h1 class="graphs_title">BGL level for the month of '.$month.' in grams</h1>';
    echo '</div>';
    ?>
- <canvas class="graphs" id="myChart2" width="1600" height="900"></canvas>
+ <canvas class="graphs" id="myChart2" width="800" height="450"></canvas>
  </div>
 </div>
 <?php
