@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
 session_start();
-include 'db.php';
 ?>
 
 <html lang="en-US">
@@ -11,24 +10,17 @@ include 'db.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Exercise tracker</title>
-    <link href="../css/register.css" rel="stylesheet" type="text/css">
-    <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page.
-    We recommend that you do not modify it.-->
-        <script>var __adobewebfontsappname__="dreamweaver"</script>
-        <script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    <link href="../css/exercise.css" rel="stylesheet" type="text/css">
+    <script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<!-- jQuery UI library -->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-
+<style>
+.bmr_output {
+	font-size: 25px;
+	font-weight: bold;
+}
+</style>
 <?php
 if(!isset($_SESSION['username'])){
     header('location:../html/login.html');
@@ -52,9 +44,68 @@ if(!isset($_SESSION['username'])){
                 </ul>
             </nav>
         </header>
+ <section>
+        <h1 class="hero_header" style="font-size: 25px; width: 350px; margin: auto;">Exercise tracker</h1>
+    </section>
 
-<div>
+    <div style="width: 500px;  height:500px; margin: 0 auto;">
+        <form name="exercise_log" action="../php/exercise_db_entry.php" method="POST"><br><br>
+            <fieldset>
+                <legend>Exercise log</legend>
+            		Date:<br>
+            		<input type="date" name="date" placeholder="Enter date" required /><br><br>
+                    Time:<br>
+                    <input type="time" name="time" placeholder="Enter time" required /><br><br>
+            		Biological sex:<br>
+            		<input list="sex" name="sex" placeholder="Insert biological sex" required>
+                		<datalist id="sex">
+                    		<option value="Female">
+                    		<option value="Male">
+                		</datalist><br><br>
+                    Age: <br>
+                    <input type="number" min=10 max=120 name="age" placeholder="Age"
+                               id="myInput1" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)" required><br><br>
+            		Height (cm): <br>
+            		<input type="number" min=50 max=200 name="height" placeholder="Height"
+                               id="myInput2" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)" required><br><br>
+                    Weight (kg): <br>
+                    <input type="number" min=20 max=200 name="weight" placeholder="Weight"
+                               id="myInput3" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)" required><br><br>
+
+            		What type of exercise did you do?<br>
+            		For how long did you exercise?<br>
+
+                    <form action="../php/exercise_after_submit_login.php" method="POST">
+                        <div id="container">
+                            <input list="extype" name="extype" placeholder="Insert intensity" required>
+                            <datalist id="extype">
+                                <option value="Low intensity">
+                                <option value="Medium intensity">
+                                <option value="High intensity">
+                            </datalist>
+                            <input list="exquant" name="exquant" placeholder="Insert time" required>
+                            <datalist id="exquant">
+                                <option value="+10 min">
+                                <option value="+20 min">
+                                <option value="+30 min">
+                                <option value="+40 min">
+                                <option value="+50 min">
+                                <option value="+60 min">
+                                <option value="+70 min">
+                                <option value="+80 min">
+                                <option value="+90 min">
+                            </datalist>
+                        </div>
+                    <br>
+                    <span><button class="Add_more_button" type="submit" id="btn">Add more exercise</button>
+                    <input type="submit" value="Calculate">
+                    </span>
+				</fieldset>
+            </form>
+        </div>
+	
 <?php
+include 'db.php';
 $date = $_POST["date"];
 $time = $_POST["time"];
 $sex = $_POST["sex"];
@@ -64,36 +115,18 @@ $weight = $_POST["weight"];
 $ex_type = $_POST["extype"];
 $ex_quant = $_POST["exquant"];
 
-$insert = "INSERT INTO exercise(fdate,ftime,sex,age,height,weight,patient_id,ex_type,min_spent) VALUES('$date','$time','$sex', '$age', '$height', '$weight', ".$_SESSION['id'].",'$ex_type','$ex_quant')";
-mysqli_query($link, $insert);
-
-
-echo "<br>";
-echo $date;
-echo "<br>";
-echo $time;
-echo "<br>";
-echo $sex;
-echo "<br>";
-echo $age;
-echo "<br>";
-echo $height;
-echo "<br>";
-echo $weight;
-echo "<br>";
-echo $ex_type;
-echo "<br>";
-echo $ex_quant;
-echo "<br>";
-
 if ($sex == "Female"){
-   echo bmr_female($age,$height,$weight); 
+   $bmr = bmr_female($age,$height,$weight); 
 } else {
-    echo bmr_male($age,$height,$weight); 
+   $bmr = bmr_male($age,$height,$weight); 
 }
 
 echo "<br>";
-
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br><br><div class=\"bmr_output\">";
 
 function bmr_female($age,$height,$weight){
     return 655 + (9.6*$weight) + (1.8*$height) - (4.7*$age);
@@ -103,8 +136,61 @@ function bmr_male($age,$height,$weight){
     return 66 + (13.7*$weight) + (5*$height) - (6.8*$age);
 }
 
-?>
+#Input data going into our database
+$insert = "INSERT INTO exercise(date,time,sex,age,height,weight,patient_id,ex_type,min_spent,bmr) VALUES('$date','$time','$sex', '$age', '$height', '$weight', ".$_SESSION['id'].",'$ex_type','$ex_quant','$bmr')";
 
-</div>
+mysqli_query($link, $insert);
+
+echo "Basal metabolic rate = ",$bmr;
+echo "</div>";
+?>
+    </div>
+<script>
+                            var count=1;
+                              $("#btn").click(function(){
+                              $("#container").append(addNewRow(count));
+                                count++;
+                                });
+
+                            function addNewRow(count){
+                            return  '<scr' + 'ipt>'+
+                        	'$(function(){	'+
+                            '});'+
+                            '</scr' + 'ipt>' +
+                            '<div class="row">' +
+                            '<div class="col-md-4">' +
+                        	'<input list="extype" name="extype" placeholder="Insert intensity" required>' +
+                            '<datalist id="extype">' +
+                            '<option value="Low intensity">' +
+                            '<option value="Medium intensity">' +
+                            '<option value="High intensity">' +
+                            '</datalist>' +
+                            '<input list="exquant" name="exquant" placeholder="Insert time" required>' +
+                            '<datalist id="exquant">' +
+                            '<option value="+10 min">' +
+                            '<option value="+20 min">' +
+                            '<option value="+30 min">' +
+                            '<option value="+40 min">' +
+                            '<option value="+50 min">' +
+                            '<option value="+60 min">' +
+                            '<option value="+70 min">' +
+                            '<option value="+80 min">' +
+                            '<option value="+90 min">' +
+                            '</datalist>' +
+                            '</div>'+
+                            '</div>'
+                            }
+	</script>
+ <section></section>
+    <script>
+        // Focus = Changes the background color of input to SkyBlue
+        function focusFunction(x) {
+            document.getElementById(x).style.background = "#e6f9ff";
+        }
+        // No focus = Changes the background color of input to white
+        function blurFunction(x) {
+            document.getElementById(x).style.background = "white";
+        }
+    </script>
 </body>
 </html>
