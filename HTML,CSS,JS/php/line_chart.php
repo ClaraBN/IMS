@@ -189,8 +189,8 @@ var myChart2 = new Chart(ctx2, {
          type: 'box',
          drawTime: 'beforeDatasetsDraw',
          yScaleID: 'y-axis-0',
-         yMin: 65,
-         yMax: 135,
+         yMin: 80,
+         yMax: 180,
          backgroundColor: 'rgba(0, 255, 0, 0.1)'
 		 
       }]
