@@ -57,25 +57,28 @@ th {
 <!-- Main Container -->
 <div class="container">
   <!-- Navigation -->
-  <header class="page_header">
-    <a href="../html/Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
-  </a>
-    <nav>
-      <ul>
+  <header class="header">
+    <a href="Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
+
+    <input class="menu-btn" type="checkbox" id="menu-btn" />
+    <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+      <ul class="menu">
         <li><a href="../html/Home.html">Home</a></li>
         <li><a href="../html/nutrition.html">Nutrition checker</a></li>
-		    <li><a href="../html/exercise.html">Exercise tracker</a></li>
-		    <li><a href="../html/educational_page.html">Learn more</a></li>
+		<li><a href="../html/exercise.html">Exercise tracker</a></li>
+	    <li><a href="../html/educational_page.html">Learn more</a></li>
         <li> <a href="../html/login.html">Log In&nbsp;</a></li>
       </ul>
-    </nav>
   </header>
 
-
+  <section class="hero" id="hero">
+      <h1 class = "nutritional_h1">Nutritional information</h1>
+        <p style="font-weight: bold;">In this page, you'll be able to keep track of your diet! Add food to your log to check what nutrients it contains.
+	</p>
+  </section>
+  <section class="about" id="about">
   <section class="text_column">
-	<h1 class = "nutritional_h1">Nutritional information</h1>
-	<p> In this page, you'll be able to keep track of your diet! Add food to your log to check what nutrients it contains.
-  </p>
+	
 	<div class="python_search_form">
 	<p style="font-weight: bold;color:black;">Enter the food item here, if you cannot find in our database</p>
 	<form id="python_form" action="../php/python_command.php" method="post">
@@ -83,10 +86,10 @@ th {
 	<input type="submit" name="python_search" value="search" form="python_form" />
 	</form>
 	</div>
-	<br>
-	<span><span><div class="Add_more_button">
+        <br>
+        <span><span><div class="Add_more_button">
 	<button id="btn">Add more</button>
-	</div></span>
+    </div></span>
 <script>
 	$(function(){
     $('#search0').autocomplete({
@@ -135,4 +138,24 @@ function addNewRow(count){
 </script>
 <input type="submit" value="Submit">
 </form>
+<br>
+<br>
+<!--
+</section>
+      
+  </section> 
+  <h1 class="hero_header">
+  <footer class="footer">
+    <p style="margin-top: 0px;margin-bottom: 0px; text-align: center">Contact us! <br/>
+    <a href="http://facebook.com"><img src="../images/facebook_icon.png" alt="facebook icon" height="30" width="30" /></a> &nbsp
+    <a href="http://gmail.com"><img src="../images/gmail_icon.png" alt="gmail icon" height="30" width="30" /></a> &nbsp
+    <a href="http://instagram.com"><img src="../images/instagram_icon.png" alt="instagram icon" height="30" width="30" /></a> &nbsp
+    <a href="http://linkedin.com"><img src="../images/linkedin_icon.png" alt="linkedin icon" height="30" width="30" /></a> &nbsp
+    <a href="http://twitter.com"><img src="../images/twitter_icon.png" alt="twitter icon" height="30" width="30" /></a> &nbsp
+    </p>
+  </footer>
+  </h1> 
+</div>
+</body>
+</html> -->
 
