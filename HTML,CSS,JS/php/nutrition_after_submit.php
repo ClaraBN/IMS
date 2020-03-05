@@ -18,13 +18,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <style>
 /* Container */
-.container {
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
-	height: 1000px;
-	background-color: #FFFFFF;
-}
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
@@ -102,7 +95,7 @@ th {
 });
 </script>
 
-<form action="nutrition_table_print.php" method="POST">
+<form action="nutrition_after_submit.php" method="POST">
 	<div id="container">
 		<input type="text"  id="search0" name="food_name[]" placeholder="Name of the food" class="autoc" required />
 		<input type="number" min="1" set="0.01" name="Quantity[]" placeholder="Quantity" required>
@@ -140,10 +133,91 @@ function addNewRow(count){
 </form>
 <br>
 <br>
-<!--
+<?php
+include 'db.php';
+$fat = 0;
+$Carbohydrates = 0;
+$Sugars = 0;
+$Fiber= 0;
+$Protein= 0;
+$Alcohol = 0;
+echo "<br>";
+$quantities = $_POST['Quantity'];
+$foods = $_POST['food_name'];
+
+$i = 0;
+foreach( $foods as  $food ) {
+	$quantity = $link -> real_escape_string($quantities[$i]);
+	$food = $link -> real_escape_string($food);
+	$i++;
+	
+	$food = preg_replace( "/, $/", "", $food ); 
+	$sql = "SELECT * FROM food WHERE name = '$food'";
+	$result_query = mysqli_query($link, $sql);
+	
+	if (mysqli_num_rows($result_query) == 0) {
+		print("No such item in database<br>\n");
+	}
+	else {
+		print("<p style='color:black; font-weight: bold;'>Contents consumed from  '$food'  in grams</p>");
+		echo "<table border='1'>"; //define an html table
+		//<th> Defines a header cell in a table //<tr> Defines a row in a table
+		//<td> Defines a cell in a table
+		echo "<tr><th>Name</th><th>Fat</th><th>Carbohydrates</th><th>Sugars</th><th>Fiber</th><th>Protein</th><th>Alcohol</th></tr>";
+		while($row = mysqli_fetch_row($result_query)){
+		echo "<tr><td>";
+		echo $row[1];
+		echo "</td><td>";
+		echo $row[2] * $quantity;
+		echo "</td><td>";
+		echo $row[3] * $quantity;
+		echo "</td><td>";
+		echo $row[4] * $quantity;
+		echo "</td><td>";
+		echo $row[5] * $quantity;
+		echo "</td><td>";
+		echo $row[6] * $quantity;
+		echo "</td><td>";
+		echo $row[7] * $quantity;
+		echo "</td></tr>";
+		$fat = $fat + ($row[2] * $quantity);
+		$Carbohydrates = $Carbohydrates + ($row[3] * $quantity);
+		$Sugars = $Sugars + ($row[4] * $quantity);
+		$Fiber= $Fiber + ($row[5] * $quantity);
+		$Protein= $Protein + ($row[6] * $quantity);
+		$Alcohol = $Alcohol + ($row[7] * $quantity);
+	}
+		echo "</table>";
+		echo "<br>";
+	}
+}
+		echo ("<p style='color:black; font-weight: bold;'>Total amount of contents consumed in grams</p>");
+		echo "<table border='1'>"; //define an html table
+		//<th> Defines a header cell in a table //<tr> Defines a row in a table
+		//<td> Defines a cell in a table
+		echo "<tr><th>Name</th><th>Fat</th><th>Carbohydrates</th><th>Sugars</th><th>Fiber</th><th>Protein</th><th>Alcohol</th></tr>";
+		echo "<tr><td>";
+		echo "Total content";
+		echo "</td><td>";
+		echo $fat;
+		echo "</td><td>";
+		echo $Carbohydrates;
+		echo "</td><td>";
+		echo $Sugars;
+		echo "</td><td>";
+		echo $Fiber;
+		echo "</td><td>";
+		echo $Protein;
+		echo "</td><td>";
+		echo $Alcohol;
+		echo "</td></tr>";
+		echo "</table>";
+		echo "<br>";
+?>
+
 </section>
-      
-  </section> 
+  </section>
+  <section> 
   <h1 class="hero_header">
   <footer class="footer">
     <p style="margin-top: 0px;margin-bottom: 0px; text-align: center">Contact us! <br/>
@@ -155,7 +229,8 @@ function addNewRow(count){
     </p>
   </footer>
   </h1> 
+  </section> 
 </div>
 </body>
-</html> -->
+</html> 
 
