@@ -77,13 +77,13 @@ if(!isset($_SESSION['username'])){
 
                     <form action="../php/exercise_after_submit_login.php" method="POST">
                         <div id="container">
-                            <input list="extype" name="extype" placeholder="Insert intensity" required>
+                            <input list="extype" name="extype[]" placeholder="Insert intensity" required>
                             <datalist id="extype">
                                 <option value="Low intensity">
                                 <option value="Medium intensity">
                                 <option value="High intensity">
                             </datalist>
-                            <input list="exquant" name="exquant" placeholder="Insert time" required>
+                            <input list="exquant" name="exquant[]" placeholder="Insert time" required>
                             <datalist id="exquant">
                                 <option value="+10 min">
                                 <option value="+20 min">
@@ -106,14 +106,14 @@ if(!isset($_SESSION['username'])){
 	
 <?php
 include 'db.php';
-$date = $_POST["date"];
-$time = $_POST["time"];
-$sex = $_POST["sex"];
-$age = $_POST["age"];
-$height = $_POST["height"];
-$weight = $_POST["weight"];
-$ex_type = $_POST["extype"];
-$ex_quant = $_POST["exquant"];
+$date = $link -> real_escape_string($_POST['date']);
+$time = $link -> real_escape_string($_POST['time']);
+$sex = $link -> real_escape_string($_POST["sex"]);
+$age = $link -> real_escape_string($_POST["age"]);
+$height = $link -> real_escape_string($_POST["height"]);
+$weight = $link -> real_escape_string($_POST["weight"]);
+$ex_types = $_POST["extype"];
+$ex_quants = $_POST["exquant"];
 
 if ($sex == "Female"){
    $bmr = bmr_female($age,$height,$weight); 
@@ -136,13 +136,18 @@ function bmr_male($age,$height,$weight){
     return 66 + (13.7*$weight) + (5*$height) - (6.8*$age);
 }
 
-#Input data going into our database
-$insert = "INSERT INTO exercise(date,time,sex,age,height,weight,patient_id,ex_type,min_spent,bmr) VALUES('$date','$time','$sex', '$age', '$height', '$weight', ".$_SESSION['id'].",'$ex_type','$ex_quant','$bmr')";
-
-mysqli_query($link, $insert);
-
 echo "Basal metabolic rate = ",$bmr;
 echo "</div>";
+
+#Input data going into our database
+$i = 0;
+foreach( $ex_types as  $ex_type ) {
+	$ex_quant = $link -> real_escape_string($ex_quants[$i]);
+	$ex_type = $link -> real_escape_string($ex_type);
+	$insert = "INSERT INTO exercise(date,time,sex,age,height,weight,patient_id,ex_type,min_spent,bmr) VALUES('$date','$time','$sex', '$age', '$height', '$weight', ".$_SESSION['id'].",'$ex_type','$ex_quant','$bmr')";
+	mysqli_query($link, $insert);
+	$i++;
+}
 ?>
     </div>
 <script>
@@ -159,13 +164,13 @@ echo "</div>";
                             '</scr' + 'ipt>' +
                             '<div class="row">' +
                             '<div class="col-md-4">' +
-                        	'<input list="extype" name="extype" placeholder="Insert intensity" required>' +
+                        	'<input list="extype" name="extype[]" placeholder="Insert intensity" required>' +
                             '<datalist id="extype">' +
                             '<option value="Low intensity">' +
                             '<option value="Medium intensity">' +
                             '<option value="High intensity">' +
                             '</datalist>' +
-                            '<input list="exquant" name="exquant" placeholder="Insert time" required>' +
+                            '<input list="exquant" name="exquant[]" placeholder="Insert time" required>' +
                             '<datalist id="exquant">' +
                             '<option value="+10 min">' +
                             '<option value="+20 min">' +

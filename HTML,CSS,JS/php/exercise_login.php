@@ -70,13 +70,13 @@ if(!isset($_SESSION['username'])){
 
                     <form action="../php/exercise_after_submit_login.php" method="POST">
                         <div id="container">
-                            <input list="extype" name="extype" placeholder="Insert intensity" required>
+                            <input list="extype" name="extype[]" placeholder="Insert intensity" required>
                             <datalist id="extype">
                                 <option value="Low intensity">
                                 <option value="Medium intensity">
                                 <option value="High intensity">
                             </datalist>
-                            <input list="exquant" name="exquant" placeholder="Insert time" required>
+                            <input list="exquant" name="exquant[]" placeholder="Insert time" required>
                             <datalist id="exquant">
                                 <option value="+10 min">
                                 <option value="+20 min">
@@ -111,13 +111,13 @@ if(!isset($_SESSION['username'])){
                             '</scr' + 'ipt>' +
                             '<div class="row">' +
                             '<div class="col-md-4">' +
-                        	'<input list="extype" name="extype" placeholder="Insert intensity" required>' +
+                        	'<input list="extype" name="extype[]" placeholder="Insert intensity" required>' +
                             '<datalist id="extype">' +
                             '<option value="Low intensity">' +
                             '<option value="Medium intensity">' +
                             '<option value="High intensity">' +
                             '</datalist>' +
-                            '<input list="exquant" name="exquant" placeholder="Insert time" required>' +
+                            '<input list="exquant" name="exquant[]" placeholder="Insert time" required>' +
                             '<datalist id="exquant">' +
                             '<option value="+10 min">' +
                             '<option value="+20 min">' +
