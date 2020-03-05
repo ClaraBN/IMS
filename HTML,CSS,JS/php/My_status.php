@@ -33,13 +33,6 @@ session_start(); // Right at the top of your script
 	width: 100%;
 	float: left;
 }
-.container_this {
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
-	background-color: #FFFFFF;
-	height: 1000px;
-}
 .heading2 {
 	color: #000000;
 	font-weight: bold;
@@ -120,7 +113,7 @@ if(!isset($_SESSION['username'])){
 </head>
 <body>
 <!-- Main Container -->
-<div class="container_this"> 
+<div class="container"> 
   <!-- Navigation -->
   <header class="header">
 	<a href="Home_login.php"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
