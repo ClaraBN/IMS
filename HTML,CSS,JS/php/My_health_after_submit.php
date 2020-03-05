@@ -83,11 +83,11 @@ if(!isset($_SESSION['username'])){
     <input class="menu-btn" type="checkbox" id="menu-btn" />
     <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
       <ul class="menu">
-        <li><a href="../html/Home_login.php">Home</a></li>
-        <li><a href="../html/My_health.php">My health</a></li>
-        <li><a href="../html/exercise_login.php">Exercise tracker</a></li>
-	    <li><a href="../html/educational_page_login.php">Learn more</a></li>
-	    <li><a href="../html/logout.php">Logout</a></li>
+        <li><a href="Home_login.php">Home</a></li>
+        <li><a href="My_health.php">My health</a></li>
+        <li><a href="exercise_login.php">Exercise tracker</a></li>
+	    <li><a href="educational_page_login.php">Learn more</a></li>
+	    <li><a href="logout.php">Logout</a></li>
 	    <li style="color:yellow;font-weight: bold;
             background-color: #73716A; padding-top: 6px">
             Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
