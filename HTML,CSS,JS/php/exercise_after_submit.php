@@ -7,13 +7,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Exercise tracker</title>
 <link href="../css/exercise.css" rel="stylesheet" type="text/css">
-    <script>var __adobewebfontsappname__="dreamweaver"</script>
-    <script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<!-- jQuery UI library -->
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<style>
+.bmr_output {
+	font-size: 25px;
+	font-weight: bold;
+}
+</style>
 </head>
 
 <body style="font-family: source-sans-pro;">
@@ -26,7 +29,7 @@
                     <li><a href="../html/nutrition.html">Nutrition checker</a></li>
 					<li><a href="../html/exercise.html">Exercise tracker</a></li>
             		<li><a href="../html/educational_page.html">Learn more</a></li>
-                    <li><a href="../html/login.html">Sign In&nbsp;</a></li>
+                    <li><a href="../html/login.html">Log In&nbsp;</a></li>
                 </ul>
             </nav>
         </header>
@@ -80,8 +83,7 @@
                     </span>
 				</fieldset>      
             </form>
-			<?php
-
+<?php
 $sex = $_POST['sex'];
 $age = $_POST['age'];
 $height = $_POST['height'];
@@ -90,25 +92,26 @@ $ex_type = $_POST['extype'];
 $ex_quant = $_POST['exquant'];
 
 if ($sex == "Female"){
-   echo bmr_female($age,$height,$weight); 
+   $bmr = bmr_female($age,$height,$weight); 
 } else {
-    echo bmr_male($age,$height,$weight); 
+   $bmr = bmr_male($age,$height,$weight); 
 }
 
-echo "<br><br><div style:\"font-weight: bold; >\"";
+echo "<br><br><div class=\"bmr_output\">";
 
 
 function bmr_female($age,$height,$weight){
-    echo 655 + (9.6*$weight) + (1.8*$height) - (4.7*$age);
+    return 655 + (9.6*$weight) + (1.8*$height) - (4.7*$age);
 }
 
 function bmr_male($age,$height,$weight){
-    echo 66 + (13.7*$weight) + (5*$height) - (6.8*$age);
+    return 66 + (13.7*$weight) + (5*$height) - (6.8*$age);
 }
+
+echo "Basal metabolic rate = ",$bmr;
 echo "</div>";
 ?>
-        </div>
-    </div>
+</div>
 <script>
                             var count=1;
                               $("#btn").click(function(){

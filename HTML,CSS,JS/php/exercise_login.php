@@ -9,21 +9,9 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Exercise tracker</title>
-    <link href="../css/register.css" rel="stylesheet" type="text/css">
-    <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page.
-    We recommend that you do not modify it.-->
-        <script>var __adobewebfontsappname__="dreamweaver"</script>
+    <link href="../css/exercise.css" rel="stylesheet" type="text/css">
         <script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<!-- jQuery UI library -->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <?php
@@ -34,7 +22,6 @@ if(!isset($_SESSION['username'])){
 </head>
 
 <body style="font-family: source-sans-pro;">
-
     <div class="container" align="center">
         <header class="page_header">
             <a href="Home_login.php"><span></span><h4 class="logo">DiaBeatIt</h4></a>
@@ -46,18 +33,15 @@ if(!isset($_SESSION['username'])){
             		<li><a href="educational_page_login.php">Learn more</a></li>
                     <li><a href="logout.php">Logout</a></li>
                     <li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
-                    <!--<li><a href="login.html">Sign In&nbsp;</a></li> -->
                 </ul>
-            </nav>
+            </nav><br>
         </header>
 
-        <section>
-            <h1 class="hero_header heading_font">Exercise tracker</h1>
-            <h1 class="hero_header">&nbsp;</h1>
-        </section>
+    <section>
+        <h1 class="hero_header" style="font-size: 25px; width: 350px; margin: auto;">Exercise tracker</h1>
+    </section>
 
-    <div align="center">
-    <section class="about" id="about">
+    <div style="width: 500px;  height:500px; margin: 0 auto;">
         <form name="exercise_log" action="../php/exercise_after_submit_login.php" method="POST"><br><br>
             <fieldset>
                 <legend>Exercise log</legend>
@@ -72,13 +56,13 @@ if(!isset($_SESSION['username'])){
                     		<option value="Male">
                 		</datalist><br><br>
                     Age: <br>
-                    <input type="number" min=0 max=120 name="age" placeholder="Age"
+                    <input type="number" min=10 max=120 name="age" placeholder="Age"
                                id="myInput1" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)" required><br><br>
             		Height (cm): <br>
-            		<input type="number" min=100 max=200 name="height" placeholder="Height"
+            		<input type="number" min=50 max=200 name="height" placeholder="Height"
                                id="myInput2" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)" required><br><br>
                     Weight (kg): <br>
-                    <input type="number" min=2 max=200 name="weight" placeholder="Weight"
+                    <input type="number" min=20 max=200 name="weight" placeholder="Weight"
                                id="myInput3" onfocus="focusFunction(this.id)" onblur="blurFunction(this.id)" required><br><br>
 
             		What type of exercise did you do?<br>
@@ -86,13 +70,13 @@ if(!isset($_SESSION['username'])){
 
                     <form action="../php/exercise_after_submit_login.php" method="POST">
                         <div id="container">
-                            <input list="extype" name="extype" placeholder="Insert intensity" required>
+                            <input list="extype" name="extype[]" placeholder="Insert intensity" required>
                             <datalist id="extype">
                                 <option value="Low intensity">
                                 <option value="Medium intensity">
                                 <option value="High intensity">
                             </datalist>
-                            <input list="exquant" name="exquant" placeholder="Insert time" required>
+                            <input list="exquant" name="exquant[]" placeholder="Insert time" required>
                             <datalist id="exquant">
                                 <option value="+10 min">
                                 <option value="+20 min">
@@ -106,21 +90,14 @@ if(!isset($_SESSION['username'])){
                             </datalist>
                         </div>
                     <br>
-                    <span>
-                        <div class="Add_more_button">
-                            <button id="btn">Add more exercise</button>
-                            <br>
-                        </div>
+                    <span><button class="Add_more_button" type="submit" id="btn">Add more exercise</button>
+                    <input type="submit" value="Calculate">
                     </span>
-
-
-
-                    <input type="submit" value="Save log">
-                    </fieldset>
-                    </form>
-
-
-                        <script>
+				</fieldset>
+            </form>
+        </div>
+    </div>
+<script>
                             var count=1;
                               $("#btn").click(function(){
                               $("#container").append(addNewRow(count));
@@ -134,13 +111,13 @@ if(!isset($_SESSION['username'])){
                             '</scr' + 'ipt>' +
                             '<div class="row">' +
                             '<div class="col-md-4">' +
-                        	'<input list="extype" name="extype" placeholder="Insert intensity" required>' +
+                        	'<input list="extype" name="extype[]" placeholder="Insert intensity" required>' +
                             '<datalist id="extype">' +
                             '<option value="Low intensity">' +
                             '<option value="Medium intensity">' +
                             '<option value="High intensity">' +
                             '</datalist>' +
-                            '<input list="exquant" name="exquant" placeholder="Insert time" required>' +
+                            '<input list="exquant" name="exquant[]" placeholder="Insert time" required>' +
                             '<datalist id="exquant">' +
                             '<option value="+10 min">' +
                             '<option value="+20 min">' +
@@ -155,12 +132,7 @@ if(!isset($_SESSION['username'])){
                             '</div>'+
                             '</div>'
                             }
-                        </script>
-
-            </section>
-        </div>
-    </div>
-
+	</script>
  <section></section>
     <script>
         // Focus = Changes the background color of input to SkyBlue

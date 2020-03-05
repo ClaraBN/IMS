@@ -13,7 +13,8 @@ $foods = $_POST['food_name'];
 
 $i = 0;
 foreach( $foods as  $food ) {
-	$quantity = $quantities[$i];
+	$quantity = $link -> real_escape_string($quantities[$i]);
+	$food = $link -> real_escape_string($food);
 	$i++;
 	
 	$food = preg_replace( "/, $/", "", $food ); 

@@ -7,12 +7,12 @@ session_start(); // Right at the top of your script
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Educational page</title>
+<title>My status</title>
 <style>
     a { text-decoration: none; }
-	.wrapper {
-  max-width: 800px;
-  margin: 50px auto;
+		.content_information {
+	width: 70%;
+    margin: 0 auto;
 }
 </style>
 
@@ -122,20 +122,19 @@ if(!isset($_SESSION['username'])){
 <!-- Main Container -->
 <div class="container_this"> 
   <!-- Navigation -->
-  <header class="page_header"> 
-    <a href="Home_login.php"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
-  </a>
-    <nav>
-      <ul>
+  <header class="header">
+	<a href="Home_login.php"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
+    <input class="menu-btn" type="checkbox" id="menu-btn" />
+    <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+      <ul class="menu">
         <li><a href="Home_login.php">Home</a></li>
         <li><a href="My_health.php">My health</a></li>
-        <li><a href="../html/exercise.html">Exercise tracker</a></li>
+        <li><a href="exercise_login.php">Exercise tracker</a></li>
 		<li><a href="educational_page_login.php">Learn more</a></li>
 		<li><a href="logout.php">Logout</a></li>
-		<li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
-        <!--<li> <a href="login.html">Sign In&nbsp;</a></li>-->
-      </ul>
-    </nav>
+		<li style="color:yellow;font-weight: bold;
+            background-color: #73716A; padding-top: 6px">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
+      </ul>  
   </header>
   <!-- Hero Section -->
   <section class="hero" id="hero">

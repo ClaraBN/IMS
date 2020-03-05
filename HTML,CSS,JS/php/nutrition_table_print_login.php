@@ -9,14 +9,15 @@ $Fiber= 0;
 $Protein= 0;
 $Alcohol = 0;
 echo "<br>";
-$date = $_POST['date'] ;
-$time = $_POST['time'] ;
+$date = $link -> real_escape_string($_POST['date']);
+$time = $link -> real_escape_string($_POST['time']);
 $quantities = $_POST['Quantity'];
 $foods = $_POST['food_name'];
 
 $i = 0;
 foreach( $foods as  $food ) {
-	$quantity = $quantities[$i];
+	$quantity = $link -> real_escape_string($quantities[$i]);
+	$food = $link -> real_escape_string($food);
 	$i++;
 	
 	$food = preg_replace( "/, $/", "", $food ); 

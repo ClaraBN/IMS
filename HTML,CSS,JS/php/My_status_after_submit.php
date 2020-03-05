@@ -7,9 +7,13 @@ session_start(); // Right at the top of your script
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Educational page</title>
+<title>My health</title>
 <style>
-    a { text-decoration: none; }
+     a { text-decoration: none; }
+		.content_information {
+	width: 70%;
+    margin: 0 auto;
+}
 	.wrapper {
   max-width: 800px;
   margin: 50px auto;
@@ -33,32 +37,23 @@ session_start(); // Right at the top of your script
 	width: 100%;
 	float: left;
 }
-.container_this {
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
-	background-color: #FFFFFF;
-	height: 2100px;
-}
+
 .heading2 {
 	color: #000000;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 10px;
 	width: 100%;
 	float: left;
 }
 .graphs {
-	position: relative;
-	left: 30%;
+    position: center;
+	right: 50%;
 }
 .graphs_title {
-	position: relative;
-	left: 50%;
+    position: center;
+	right: 50%;
 }
-.pie_chart {
-	position: relative;
-	left: 40%;
-}
+
 .graph_session_h1 {
 	color: #FF00FF;
 	font-weight: bold;
@@ -66,9 +61,18 @@ session_start(); // Right at the top of your script
 	position: relative;
 	left: 70%;
 }
+.container_this {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #FFFFFF;
+}
 .page_header{
 	height: 50px;
 	background-color: #73716A;
+}
+.pie_chart {
+	vertical-align: middle;
 }
 </style>
 <?php 
@@ -120,19 +124,19 @@ if(!isset($_SESSION['username'])){
 <!-- Main Container -->
 <div class="container_this"> 
   <!-- Navigation -->
-  <header class="page_header"> 
-    <a href="Home_login.php"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
-  </a>
-    <nav>
-      <ul>
+  <header class="header">
+	<a href="Home_login.php"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
+    <input class="menu-btn" type="checkbox" id="menu-btn" />
+    <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+      <ul class="menu">
         <li><a href="Home_login.php">Home</a></li>
         <li><a href="My_health.php">My health</a></li>
-		 <li><a href="educational_page_login.php">Learn more</a></li>
-		 <li><a href="logout.php">Logout</a></li>
-		 <li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
-        <!--<li> <a href="login.html">Sign In&nbsp;</a></li>-->
-      </ul>
-    </nav>
+        <li><a href="exercise_login.php">Exercise tracker</a></li>
+		<li><a href="educational_page_login.php">Learn more</a></li>
+		<li><a href="logout.php">Logout</a></li>
+		<li style="color:yellow;font-weight: bold;
+            background-color: #73716A; padding-top: 6px">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
+      </ul>  
   </header>
   <!-- Hero Section -->
   <section class="hero" id="hero">
@@ -160,11 +164,3 @@ if(!isset($_SESSION['username'])){
 		<input type="submit" value="Plot my data">
 		</form>
   </section>
-
-	<section class="about" id="about">
-
-	<h1 class="graph_session_h1 graphs_title">Know your health</h1>
-
-<div id="chartContainer" class="pie_chart"  style="height: 500px; width: 700px;"></div>
-
-
