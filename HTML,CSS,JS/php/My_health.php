@@ -7,7 +7,7 @@ session_start(); // Right at the top of your script
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Light Theme</title>
+<title>My Health</title>
 <link href="../css/nutrition.css" rel="stylesheet" type="text/css">
 
 <script>var __adobewebfontsappname__="dreamweaver"</script>
@@ -40,14 +40,6 @@ background: none;
 -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
 transition: all 0.3s ease 0s;
 }
-/* Container */
-.container {
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
-	height: 1000px;
-	background-color: #FFFFFF;
-}
  </style>
 <?php
 if(!isset($_SESSION['username'])){
@@ -59,25 +51,29 @@ if(!isset($_SESSION['username'])){
 <!-- Main Container -->
 <div class="container">
   <!-- Navigation -->
-  <header class="page_header">
+  <header class="header"> 
     <a href="Home_login.php"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
-  </a>
-    <nav>
-      <ul>
-        <li><a href="Home_login.php">Home</a></li>
-        <li><a href="My_health.php">My health</a></li>
-        <li><a href="exercise_login.php">Exercise tracker</a></li>
-		<li><a href="educational_page_login.php">Learn more</a></li>
-		<li><a href="logout.php">Logout</a></li>
-        <li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
+ 
+    <input class="menu-btn" type="checkbox" id="menu-btn" />
+    <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+      <ul class="menu">
+        <li><a href="../html/Home_login.php">Home</a></li>
+        <li><a href="../html/My_health.php">My health</a></li>
+        <li><a href="../html/exercise_login.php">Exercise tracker</a></li>
+	    <li><a href="../html/educational_page_login.php">Learn more</a></li>
+	    <li><a href="../html/logout.php">Logout</a></li>
+	    <li style="color:yellow;font-weight: bold;
+            background-color: #73716A; padding-top: 6px">
+            Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
         <!--<li> <a href="login.html">Sign In&nbsp;</a></li> -->
       </ul>
-    </nav>
+    
   </header>
 
+  <section class="about" id="about" style="padding-top: 50px; padding-bottom: 450px;">
   <section class="text_column">
     <h1 class = "nutritional_h1">My status</h1>
-<div class="button_cont" ><a class="example_e" href="My_status.php" rel="nofollow noopener">Check my status</a></div>
+    <div class="button_cont" style="padding-top: 50px; padding-bottom: 25px;"><a class="example_e" href="My_status.php" rel="nofollow noopener">Check my status</a></div>
 	<h1 class = "nutritional_h1">Let us know what you ate</h1>
 	<div class="python_search_form">
 	<p style="font-weight: bold;color:black;">Enter the food item here, if you cannot find in our database</p>
@@ -154,6 +150,18 @@ function addNewRow(count){
 		</div>
 	</form>
 </section>
+  </section>
+  <h1 class="hero_header">
+  <footer class="footer">
+    <p style="margin-top: 0px;margin-bottom: 0px; text-align: center">Contact us! <br/>
+    <a href="http://facebook.com"><img src="../images/facebook_icon.png" alt="facebook icon" height="30" width="30" /></a> &nbsp
+    <a href="http://gmail.com"><img src="../images/gmail_icon.png" alt="gmail icon" height="30" width="30" /></a> &nbsp
+    <a href="http://instagram.com"><img src="../images/instagram_icon.png" alt="instagram icon" height="30" width="30" /></a> &nbsp
+    <a href="http://linkedin.com"><img src="../images/linkedin_icon.png" alt="linkedin icon" height="30" width="30" /></a> &nbsp
+    <a href="http://twitter.com"><img src="../images/twitter_icon.png" alt="twitter icon" height="30" width="30" /></a> &nbsp
+    </p>
+  </footer>
+  </h1>
 </div>
 
 </body>
