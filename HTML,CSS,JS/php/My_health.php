@@ -105,12 +105,13 @@ if(!isset($_SESSION['username'])){
 </div>
 <form action="../php/nutrition_table_print_login.php" method="POST">
 	<div id="container">
+	<p>Write your food here: </p>
 		<input type="date" name="date" placeholder="Enter date" required />
 		<input type="time" name="time" placeholder="Enter time" required />
 		<input type="text"  id="search0" name="food_name[]" placeholder="Name of the food" class="autoc" required />
 		<input type="number" min="1" set="0.01" name="Quantity[]" placeholder="Quantity" required>
 	</div>
-
+</form>
 <script>
 var count=1;
   $("#btn").click(function(){
@@ -148,7 +149,7 @@ function addNewRow(count){
 	<div id="container">
 		<input type="date" name="date" placeholder="Enter date" required />
 		<input type="time" name="time" placeholder="Enter time" required />
-		<input type="text" name="bgl_level" placeholder="BGL value" required />
+		<input type="text" name="bgl_level" placeholder="BGL value in mg/dL" required />
 		<input type="submit" value="Submit and save">
 		</div>
 	</form>
