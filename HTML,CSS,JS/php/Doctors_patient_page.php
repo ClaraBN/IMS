@@ -7,7 +7,7 @@ session_start(); // Right at the top of your script
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Light Theme</title>
+<title>My page</title>
 <style>
     a { text-decoration: none; }
 		.content_information {
@@ -156,7 +156,7 @@ if(!isset($_SESSION['username'])){
     echo nl2br("<strong>Email: </strong>" . $row_doctor[2].PHP_EOL."");
 
     ?>
-    <br><button type="button" onClick="window.location.href = '../php/doctors_page_alter_info.php';">Change personal settings</button>
+    <br><button type="button" onClick="window.location.href = '../php/Doctors_page_alter_info.php';">Change personal settings</button>
     </p>
   </section>
 

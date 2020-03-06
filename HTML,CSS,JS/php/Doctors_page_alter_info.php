@@ -7,7 +7,7 @@ session_start(); // Right at the top of your script
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Light Theme</title>
+<title>Change information</title>
 <link href="../css/doctor.css" rel="stylesheet" type="text/css">
 
 <script>var __adobewebfontsappname__="dreamweaver"</script>
@@ -55,18 +55,16 @@ if(!isset($_SESSION['username'])){
 <!-- Main Container -->
 <div class="container"> 
   <!-- Navigation -->
-  <header class="page_header"> 
-    <a href="Home_login.php"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
-  </a>
-    <nav>
-      <ul>
+  <header class="header">
+    <a href="Doctors_home_page.php"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
+  <input class="menu-btn" type="checkbox" id="menu-btn" />
+   <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+      <ul class="menu">
         <li><a href="Doctors_home_page.php">Home</a></li>
         <li><a href="Doctors_page.php">My page</a></li>
 		<li><a href="logout.php">Logout</a></li>
-        <li style="color:yellow;font-weight:strong">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
-        <!--<li> <a href="login.html">Sign In&nbsp;</a></li> -->
+		<li style="color:yellow;font-weight: bold; background-color: #73716A; padding-top: 6px">Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
       </ul>
-    </nav>
   </header>
 
   <?php
@@ -77,6 +75,7 @@ if(!isset($_SESSION['username'])){
     $row_doctor = mysqli_fetch_row($result_doctor);
   ?>
 
+  <section class="about" id="about">
   <section class="content_information">
     <h1 class = "nutritional_h1">Personal information</h1><br><br>
     <p><em>Update personal settings</em></p>
@@ -90,10 +89,21 @@ if(!isset($_SESSION['username'])){
     	<strong>Password: </strong><input type="password" maxlength = "50"  name="pw1" placeholder="Enter password" required><br>
     	<strong>Confirm password: </strong><input type="password" maxlength = "50" name="pw2" placeholder="Confirm password" required><br>
     	<input type="submit" value="Save">
-    	<button type="button" onClick="window.location.href = '../php/doctors_page.php';">Go back</button>
+    	<button type="button" onClick="window.location.href = '../php/Doctors_page.php';">Go back</button>
 	</form>
   </section>
-
+  </section>
+<h1 class="hero_header">
+  <footer class="footer">
+    <p style="margin-top: 0px;margin-bottom: 0px; text-align: center">Contact us! <br/>
+    <a href="http://facebook.com"><img src="../images/facebook_icon.png" alt="facebook icon" height="30" width="30" /></a> &nbsp
+    <a href="http://gmail.com"><img src="../images/gmail_icon.png" alt="gmail icon" height="30" width="30" /></a> &nbsp
+    <a href="http://instagram.com"><img src="../images/instagram_icon.png" alt="instagram icon" height="30" width="30" /></a> &nbsp
+    <a href="http://linkedin.com"><img src="../images/linkedin_icon.png" alt="linkedin icon" height="30" width="30" /></a> &nbsp
+    <a href="http://twitter.com"><img src="../images/twitter_icon.png" alt="twitter icon" height="30" width="30" /></a> &nbsp
+    </p>
+  </footer>
+  </h1>
 
 
 </div>
