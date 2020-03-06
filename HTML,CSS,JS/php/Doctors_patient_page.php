@@ -20,7 +20,7 @@ session_start(); // Right at the top of your script
 }
 </style>
 
-<link href="../css/educational.css" rel="stylesheet" type="text/css">
+<link href="../css/doctor.css" rel="stylesheet" type="text/css">
 
 <script>var __adobewebfontsappname__="dreamweaver"</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -137,6 +137,7 @@ if(!isset($_SESSION['username'])){
       </ul>
   </header>
   
+  <section class="about" id="about">
   <section class="content_information">
     <h1 class = "nutritional_h1">Personal information</h1><br>
     <p><em>Summary of your personal settings</em> <br><br>
@@ -200,7 +201,19 @@ if(!isset($_SESSION['username'])){
 
 
 
-
+  </section>
+  </section>
+  <h1 class="hero_header">
+  <footer class="footer">
+    <p style="margin-top: 0px;margin-bottom: 0px; text-align: center">Contact us! <br/>
+    <a href="http://facebook.com"><img src="../images/facebook_icon.png" alt="facebook icon" height="30" width="30" /></a> &nbsp
+    <a href="http://gmail.com"><img src="../images/gmail_icon.png" alt="gmail icon" height="30" width="30" /></a> &nbsp
+    <a href="http://instagram.com"><img src="../images/instagram_icon.png" alt="instagram icon" height="30" width="30" /></a> &nbsp
+    <a href="http://linkedin.com"><img src="../images/linkedin_icon.png" alt="linkedin icon" height="30" width="30" /></a> &nbsp
+    <a href="http://twitter.com"><img src="../images/twitter_icon.png" alt="twitter icon" height="30" width="30" /></a> &nbsp
+    </p>
+  </footer>
+  </h1>
 </div>
 </body>
 </html>

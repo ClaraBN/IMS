@@ -176,7 +176,7 @@ if(!isset($_SESSION['username'])){
   </header>
 
   <section class="content_information">
-    <h1 class = "nutritional_h1">Personal information</h1><br>
+    <h1 class = "nutritional_h1" style="margin-top: 85px">Personal information</h1><br>
     <p><em>Summary of your personal settings</em> <br><br>
     <?php
     include 'db.php';
