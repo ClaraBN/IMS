@@ -21,7 +21,12 @@ th {
   background-color: #73713b;
   color: white;
 }
-
+.container_this {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #FFFFFF;
+}
 .Add_more_button{
 	position:relative;
 	left: 12%;
@@ -359,7 +364,13 @@ a {
 	height: 1000px;
 	background-color: #FFFFFF;
 }
-   .header {
+.container_this {
+	width: 100%;
+	margin-left: 0px;
+	margin-right: 0px;
+	background-color: #FFFFFF;
+}
+.header {
 	width: 100%;
 
 }
@@ -375,8 +386,8 @@ a {
 	color: black;
 }
 .about {
-	padding-left: 25px;
-	padding-right: 25px;
+	padding-left: 0px;
+	padding-right: 0px;
 	padding-top: 35px;
 	display: inline-block;
 	background-color: #FFFFFF;

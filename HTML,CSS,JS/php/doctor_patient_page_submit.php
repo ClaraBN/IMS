@@ -20,7 +20,7 @@ session_start(); // Right at the top of your script
 }
 </style>
 
-<link href="../css/educational.css" rel="stylesheet" type="text/css">
+<link href="../css/doctor.css" rel="stylesheet" type="text/css">
 
 <script>var __adobewebfontsappname__="dreamweaver"</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -70,12 +70,6 @@ session_start(); // Right at the top of your script
 	font-size: 30px;
 	position: relative;
 	left: 70%;
-}
-.container_this {
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
-	background-color: #FFFFFF;
 }
 .page_header{
 	height: 50px;
