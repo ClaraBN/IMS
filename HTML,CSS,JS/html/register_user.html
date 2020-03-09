@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DiaBeatIt User account</title>
+    <title>User account</title>
     <link href="../css/register.css" rel="stylesheet" type="text/css">
     <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page.
     We recommend that you do not modify it.-->
@@ -21,23 +21,28 @@
 </head>
 
 <body style="font-family: source-sans-pro;">
+    <!-- Main Container -->
     <div class="container" align="center">
-        <header class="page_header">
-            <a href="Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></a>
-            <nav>
-      <ul>
-        <li><a href="Home.html">Home</a></li>
-        <li><a href="nutrition.html">Nutrition checker</a></li>
-		 <li><a href="educational_page.html">Learn more</a></li>
-        <li> <a href="login.html">Sign In&nbsp;</a></li>
-      </ul>
-    </nav>
+        <!-- Navigation -->
+        <header class="header">
+            <a href="Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
+            <input class="menu-btn" type="checkbox" id="menu-btn" />
+            <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+            <ul class="menu">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="nutrition.html">Nutrition checker</a></li>
+		<li><a href="exercise.html">Exercise tracker</a></li>
+                <li><a href="educational_page.html">Learn more</a></li>
+                <li> <a href="login.html">Log In&nbsp;</a></li>
+            </ul>
         </header>
+        
+        
         <section>
             <h1 class="hero_header heading_font">Create an Account</h1>
-            <h1 class="hero_header">&nbsp;</h1>
+            <!--<h1 class="hero_header">&nbsp;</h1> -->
         </section>
-        <div  align="center">
+        
             <section class="about" id="about">
                 <form name="register_patient" action="../php/add_temp_user.php" method="POST"
                       ><br><br>
@@ -76,9 +81,9 @@
                     </fieldset>
                 </form>
             </section>
-        </div>
-    </div>
- <section></section>
+        
+   
+ 
     <script>
         function checkPassword(){
             var pwd1=documents.forms["register_patient"]["password1"].value;
@@ -99,5 +104,17 @@
             document.getElementById(x).style.background = "white";
         }
     </script>
+  <h1 class="hero_header">
+  <footer class="footer">
+    <p style="margin-top: 0px;margin-bottom: 0px; text-align: center">Contact us! <br/>
+    <a href="http://facebook.com"><img src="../images/facebook_icon.png" alt="facebook icon" height="30" width="30" /></a> &nbsp
+    <a href="http://gmail.com"><img src="../images/gmail_icon.png" alt="gmail icon" height="30" width="30" /></a> &nbsp
+    <a href="http://instagram.com"><img src="../images/instagram_icon.png" alt="instagram icon" height="30" width="30" /></a> &nbsp
+    <a href="http://linkedin.com"><img src="../images/linkedin_icon.png" alt="linkedin icon" height="30" width="30" /></a> &nbsp
+    <a href="http://twitter.com"><img src="../images/twitter_icon.png" alt="twitter icon" height="30" width="30" /></a> &nbsp
+    </p>
+  </footer>
+  </h1>
+</div>
 </body>
 </html>
