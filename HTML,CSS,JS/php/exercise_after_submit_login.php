@@ -116,9 +116,9 @@ $ex_types = $_POST["extype"];
 $ex_quants = $_POST["exquant"];
 
 if ($sex == "Female"){
-   $bmr = bmr_female($age,$height,$weight); 
+   $bmr = bmr_female($age,$height,$weight,$ex_type,$ex_quant); 
 } else {
-   $bmr = bmr_male($age,$height,$weight); 
+   $bmr = bmr_male($age,$height,$weigh,$ex_type,$ex_quant); 
 }
 
 echo "<br>";
@@ -128,12 +128,30 @@ echo "<br>";
 echo "<br>";
 echo "<br><br><div class=\"bmr_output\">";
 
-function bmr_female($age,$height,$weight){
-    return 655 + (9.6*$weight) + (1.8*$height) - (4.7*$age);
+function bmr_female($age,$height,$weight,$ex_type,$ex_quant){
+    if($ex_type=="High intensity"){
+      $bmr = (655 + (9.6*$weight) + (1.8*$height) - (4.7*$age))*1.8;
+    } elseif ($ex_type=="Medium intensity" && $ex_quant>=60) {
+      $bmr = (655 + (9.6*$weight) + (1.8*$height) - (4.7*$age))*1.8;
+    } elseif ($ex_type=="Medium intensity" && $ex_quant<60) {
+      $bmr = (655 + (9.6*$weight) + (1.8*$height) - (4.7*$age))*1.6;
+    } else {
+      $bmr = (655 + (9.6*$weight) + (1.8*$height) - (4.7*$age))*1.5;
+    }
+    return $bmr;
 }
 
-function bmr_male($age,$height,$weight){
-    return 66 + (13.7*$weight) + (5*$height) - (6.8*$age);
+function bmr_male($age,$height,$weight,$ex_type,$ex_quant){
+    if($ex_type=="High intensity"){
+      $bmr = (66 + (13.7*$weight) + (5*$height) - (6.8*$age))*1.9;
+    } elseif ($ex_type=="Medium intensity" && $ex_quant>=60) {
+      $bmr = (655 + (9.6*$weight) + (1.8*$height) - (4.7*$age))*1.9;
+    } elseif ($ex_type=="Medium intensity" && $ex_quant<60) {
+      $bmr = (66 + (13.7*$weight) + (5*$height) - (6.8*$age))*1.8;
+    } else {
+      $bmr = (66 + (13.7*$weight) + (5*$height) - (6.8*$age))*1.6;
+    }
+    return $bmr;
 }
 
 echo "Basal metabolic rate = ",$bmr;
