@@ -7,7 +7,7 @@ session_start(); // Right at the top of your script
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>My health</title>
+<title>My page</title>
 <style>
     a { text-decoration: none; }
 		.content_information {
@@ -20,7 +20,7 @@ session_start(); // Right at the top of your script
 }
 </style>
 
-<link href="../css/educational.css" rel="stylesheet" type="text/css">
+<link href="../css/doctor.css" rel="stylesheet" type="text/css">
 
 <script>var __adobewebfontsappname__="dreamweaver"</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -70,12 +70,6 @@ session_start(); // Right at the top of your script
 	font-size: 30px;
 	position: relative;
 	left: 70%;
-}
-.container_this {
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
-	background-color: #FFFFFF;
 }
 .page_header{
 	height: 50px;
@@ -176,7 +170,7 @@ if(!isset($_SESSION['username'])){
   </header>
 
   <section class="content_information">
-    <h1 class = "nutritional_h1">Personal information</h1><br>
+    <h1 class = "nutritional_h1" style="margin-top: 85px">Personal information</h1><br>
     <p><em>Summary of your personal settings</em> <br><br>
     <?php
     include 'db.php';
@@ -193,7 +187,7 @@ if(!isset($_SESSION['username'])){
     echo nl2br("<strong>Email: </strong>" . $row_doctor[2].PHP_EOL."");
 
     ?>
-    <br><button type="button" onClick="window.location.href = '../php/doctors_page_alter_info.php';">Change personal settings</button>
+    <br><button type="button" onClick="window.location.href = '../php/Doctors_page_alter_info.php';">Change personal settings</button>
     </p>
   </section>
 <br>
