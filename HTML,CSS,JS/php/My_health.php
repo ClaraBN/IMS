@@ -57,7 +57,7 @@ if(!isset($_SESSION['username'])){
     <input class="menu-btn" type="checkbox" id="menu-btn" />
     <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
       <ul class="menu">
-        <li><a href="../html/Home_login.php">Home</a></li>
+        <li><a href="Home_login.php">Home</a></li>
         <li><a href="../html/My_health.php">My health</a></li>
         <li><a href="../html/exercise_login.php">Exercise tracker</a></li>
 	    <li><a href="../html/educational_page_login.php">Learn more</a></li>
@@ -67,54 +67,43 @@ if(!isset($_SESSION['username'])){
             Welcome, &nbsp;<br><?php echo $_SESSION['username']; ?></li>
         <!--<li> <a href="login.html">Sign In&nbsp;</a></li> -->
       </ul>
-    
   </header>
-
   <section class="about" id="about" style="padding-top: 50px; padding-bottom: 450px;">
-  <section class="text_column">
-    <h1 class = "nutritional_h1">My status</h1>
-    <div class="button_cont" style="padding-top: 50px; padding-bottom: 25px;"><a class="example_e" href="My_status.php" rel="nofollow noopener">Check my status</a></div>
-	<h1 class = "nutritional_h1">Let us know what you ate</h1>
-	<div class="python_search_form">
-	<p style="font-weight: bold;color:black;">Enter the food item here, if you cannot find in our database</p>
-	<form id="python_form" action="../php/python_command_login.php" method="post">
-	<input type="text"  id="search" name="food_name" placeholder="Name of the food"/>
-	<input type="submit" name="python_search" value="search" form="python_form" />
-	</form>
-	</div>
-	<br>
-	</section>
-	<section class="text_column">
-<script>
-	$(function(){
-    $('#search0').autocomplete({
-        source: "../php/autocomplete_search.php",
-		select: function( event, ui ) {
 
-            $(".items").val(ui.item.id);
-        }
-    });
-});
-</script>
-<div class="Add_more_button">
-<button id="btn" style="position:relative;left:5%">Add more</button>
-</div>
-<form action="../php/nutrition_table_print_login.php" method="POST">
-	<div id="container">
-	<p>Write your food here: </p>
-		<input type="date" name="date" placeholder="Enter date" required />
-		<input type="time" name="time" placeholder="Enter time" required />
-		<input type="text"  id="search0" name="food_name[]" placeholder="Name of the food" class="autoc" required />
-		<input type="number" min="1" set="0.01" name="Quantity[]" placeholder="Quantity" required>
-	</div>
-</form>
-<script>
-var count=1;
-  $("#btn").click(function(){
+    <section class="text_column">
+        <h1 class = "nutritional_h1">My status</h1>
 
-  $("#container").append(addNewRow(count));
-  count++;
-});
+        <div class="button_cont" style="padding-top: 50px; padding-bottom: 25px;"><a class="example_e" href="My_status.php" rel="nofollow noopener">Check my status</a></div>
+	    <h1 class = "nutritional_h1">Let us know what you ate</h1>
+	    <div class="python_search_form">
+
+	    <script>
+	    $(function(){
+            $('#search0').autocomplete({
+                source: "../php/autocomplete_search.php",
+		        select: function( event, ui ) {
+                    $(".items").val(ui.item.id);
+                }
+            });
+        });
+    </script>
+
+    <form action="../php/My_health_after_submit.php" method="POST">
+	    <div id="container">
+		    <input type="date" name="date" placeholder="Enter date" required />
+		    <input type="time" name="time" placeholder="Enter time" required />
+		    <input type="text"  id="search0" name="food_name[]" placeholder="Name of the food" class="autoc" required />
+		    <input type="number" min="1" set="0.01" name="Quantity[]" placeholder="Quantity" required>
+	    </div>
+	        <div class="Add_more_button">
+        <button id="btn" style="position:relative;left:0%">Add more</button>
+    </div>
+    <script>
+    var count=1;
+        $("#btn").click(function(){
+            $("#container").append(addNewRow(count));
+            count++;
+        });
 
 function addNewRow(count){
   return  '<scr' + 'ipt>'+
@@ -135,10 +124,22 @@ function addNewRow(count){
     '</div>'+
 '</div>'
 }
-</script>
-<input type="submit" value="Submit and save">
-</form>
-</section>
+        </script>
+        <input type="submit" value="Submit and save">
+    </form>
+
+
+	        <p style="font-weight: bold;color:black;">If you cannot find it in our database, enter the food item here and re-enter it above: </p>
+	        <form id="python_form" action="../php/python_command_login.php" method="post">
+	           <input type="text"  id="search" name="food_name" placeholder="Name of the food"/>
+	           <input type="submit" name="python_search" value="search" form="python_form" />
+	        </form>
+	    </div>
+	    <br>
+	</section>
+
+
+
 <section class="text_column">
 	<h1 class = "nutritional_h1">Enter your BGL readings</h1>
 	<form action="../php/BGL_entry.php" method="POST">
