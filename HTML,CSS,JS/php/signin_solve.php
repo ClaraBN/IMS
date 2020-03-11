@@ -19,14 +19,14 @@ if (empty($row)) {
           alert('Incorrect username or password!');
            document.location.href = '../html/login.html'; </script>";
 }
-elseif (password_verify($pw, $row[3]) == TRUE AND $row[5] === 'patient') {
+elseif (password_verify($pw, $row[3]) == TRUE AND $row[5] === 'patient' AND $row[10] == 1) {
     //If existing user and correct password, redirecting into another page
     $_SESSION['username']=$row[1];
     $_SESSION['id']=$row[0];
     $url = "../php/Home_login.php";
     header("location:".$url);
 }
-elseif (password_verify($pw, $row[3]) == TRUE AND $row[5] === 'doctor') {
+elseif (password_verify($pw, $row[3]) == TRUE AND $row[5] === 'doctor' AND $row[10] == 1) {
     //If existing user and correct password, redirecting into another page
     $_SESSION['username']=$row[1];
     $_SESSION['id']=$row[0];
