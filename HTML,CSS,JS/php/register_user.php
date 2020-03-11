@@ -210,17 +210,17 @@ function test_input($data) {
 //echo $total_err;
 ?>
     <div class="container">
-        <header class="page_header">
-            <a href="Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></a>
-            <nav>
-      <ul>
-        <li><a href="../html/Home.html">Home</a></li>
-        <li><a href="../html/nutrition.html">Nutrition checker</a></li>
-        <li><a href="../html/exercise.html">Exercise tracker</a></li>
-		<li><a href="../html/educational_page.html">Learn more</a></li>
-        <li> <a href="../html/login.html">Log In&nbsp;</a></li>
-      </ul>
-    </nav>
+        <header class="header">
+            <a href="Home.html"><span></span><h4 class="logo">DiaBeatIt</h4></span></a>
+            <input class="menu-btn" type="checkbox" id="menu-btn" />
+            <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+            <ul class="menu">
+                <li><a href="../html/Home.html">Home</a></li>
+                <li><a href="../html/nutrition.html">Nutrition checker</a></li>
+		<li><a href="..html/exercise.html">Exercise tracker</a></li>
+                <li><a href="..html/educational_page.html">Learn more</a></li>
+                <li> <a href="../html/login.html">Log In&nbsp;</a></li>
+            </ul>
         </header>
         <section>
             <h1 class="hero_header" style="width: 300px; margin: 0 auto;">&nbsp Create an Account</h1>
@@ -405,5 +405,16 @@ function test_input($data) {
         img.src="captcha.php";// this gets the url for the image created in captcha.php
 }
 </script>
+  <h1 class="hero_header">
+  <footer class="footer">
+    <p style="margin-top: 0px;margin-bottom: 0px; text-align: center">Contact us! <br/>
+    <a href="http://facebook.com"><img src="../images/facebook_icon.png" alt="facebook icon" height="30" width="30" /></a> &nbsp
+    <a href="http://gmail.com"><img src="../images/gmail_icon.png" alt="gmail icon" height="30" width="30" /></a> &nbsp
+    <a href="http://instagram.com"><img src="../images/instagram_icon.png" alt="instagram icon" height="30" width="30" /></a> &nbsp
+    <a href="http://linkedin.com"><img src="../images/linkedin_icon.png" alt="linkedin icon" height="30" width="30" /></a> &nbsp
+    <a href="http://twitter.com"><img src="../images/twitter_icon.png" alt="twitter icon" height="30" width="30" /></a> &nbsp
+    </p>
+  </footer>
+  </h1>
 </body>
 </html>
