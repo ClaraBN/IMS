@@ -116,10 +116,11 @@ $ex_types = $_POST["extype"];
 $ex_quants = $_POST["exquant"];
 
 if ($sex == "Female"){
-   $bmr = bmr_female($age,$height,$weight,$ex_type,$ex_quant); 
+   $bmr = bmr_female($age,$height,$weight,$ex_types[0],$ex_quants[0]); 
 } else {
-   $bmr = bmr_male($age,$height,$weigh,$ex_type,$ex_quant); 
+   $bmr = bmr_male($age,$height,$weigh,$ex_types[0],$ex_quants[0]); 
 }
+
 
 echo "<br>";
 echo "<br>";
