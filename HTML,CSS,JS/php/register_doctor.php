@@ -277,7 +277,7 @@ echo $total_err;
                 <p id="length" class="invalid"><b> Minimum 8 characters</b></p>
             </div>
 
-    </div>
+
 
  <section></section>
 
@@ -386,6 +386,7 @@ echo $total_err;
         img.src="captcha.php";// this gets the url for the image created in captcha.php
 }
 </script>
+<h1 class="hero_header"></h><h1 class="hero_header"></h><h1 class="hero_header"></h><h1 class="hero_header"></h>
   <h1 class="hero_header">
   <footer class="footer">
     <p style="margin-top: 0px;margin-bottom: 0px; text-align: center">Contact us! <br/>
@@ -397,5 +398,6 @@ echo $total_err;
     </p>
   </footer>
   </h1>
+      </div>
 </body>
 </html>

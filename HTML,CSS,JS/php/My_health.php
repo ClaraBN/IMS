@@ -70,6 +70,11 @@ if(!isset($_SESSION['username'])){
   </header>
   <section class="about" id="about" style="padding-top: 50px; padding-bottom: 450px;">
 
+
+
+
+
+
     <section class="text_column">
         <h1 class = "nutritional_h1">My status</h1>
 
@@ -127,8 +132,6 @@ function addNewRow(count){
         </script>
         <input type="submit" value="Submit and save">
     </form>
-
-
 	        <p style="font-weight: bold;color:black;">If you cannot find it in our database, enter the food item here and re-enter it above: </p>
 	        <form id="python_form" action="../php/python_command_login.php" method="post">
 	           <input type="text"  id="search" name="food_name" placeholder="Name of the food"/>
@@ -137,6 +140,10 @@ function addNewRow(count){
 	    </div>
 	    <br>
 	</section>
+
+
+
+
 
 
 
@@ -152,6 +159,11 @@ function addNewRow(count){
 	</form>
 </section>
   </section>
+
+
+
+
+
   <h1 class="hero_header">
   <footer class="footer">
     <p style="margin-top: 0px;margin-bottom: 0px; text-align: center">Contact us! <br/>
