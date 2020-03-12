@@ -171,8 +171,12 @@
                 $mail->Body = "
                     <h1>Thanks for registering!</h1><br>
                     Please click on the link below to confirm the registration
-                    <a href='http://localhost/DiaBeatIT/w3tutorials/Project/IMS/HTML,CSS,JS/php/confirm_user?email=$e_mail&token=$token'>Click Here</a>
+                    <a href='http://localhost/DiaBeatIT/php/confirm_user?email=$e_mail&token=$token'>Click Here</a>
                     ";
+                    // Claras link:
+                    // <a href='http://localhost/DiaBeatIT/w3tutorials/Project/IMS/HTML,CSS,JS/php/confirm_user?email=$e_mail&token=$token'>Click Here</a>
+                    // Akshais link:
+                    // <a href='http://localhost/DiaBeatIT/php/confirm_user?email=$e_mail&token=$token'>Click Here</a>
                     // if ssn, username, email, pwd and mail is okay then add user to database
                 if ($mail->send()){
                     //echo "Email was sent, ";
